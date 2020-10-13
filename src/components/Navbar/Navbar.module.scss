@@ -1,0 +1,31 @@
+.navbar {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  background-color: #fff;
+  width: 160px;
+  border-radius: 8px;
+}
+
+.nav__list {
+  padding: 7px;
+}
+
+.nav__list__item {
+}
+
+.nav__list__link {
+  display: flex;
+  align-items: baseline;
+  padding: 30px;
+
+  & > i {
+    margin-right: 7px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f3f3f3;
+    color: var(--secondary-color);
+  }
+}
