@@ -1,0 +1,46 @@
+.dialogs {
+  display: flex;
+  flex-direction: column;
+  width: 945px;
+  margin: 0 auto;
+  background: #fff;
+  padding-top: 25px;
+
+  > div {
+    display: flex;
+    padding: 0 25px;
+  }
+}
+
+.dialogs__header {
+  padding: 0px 25px 18px;
+  border-bottom: 1px solid #e6ecf5;
+}
+
+.dialogs__contacts {
+  padding: 25px;
+}
+
+.dialogs__contact {
+  display: flex;
+}
+
+.dialogs__contact__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.dialogs__contact__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 15px;
+}
+
+.dialogs__contact__title {
+  color: var(--active-text-color);
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.3;
+}

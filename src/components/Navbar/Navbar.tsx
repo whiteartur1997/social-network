@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.scss';
 
 const Navbar = () => {
@@ -7,34 +8,34 @@ const Navbar = () => {
       <nav className="nav">
         <ul className="nav__list">
           <li className={classes.nav__list__item}>
-            <a className={classes.nav__list__link} href="#">
+            <NavLink className={classes.nav__list__link} to="/profile">
               <i className="far fa-user"></i>
               Profile
-            </a>
+            </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <a className={classes.nav__list__link} href="#">
+            <NavLink className={classes.nav__list__link} to="/dialogs">
               <i className="far fa-envelope"></i>
               Messages
-            </a>
+            </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <a className={classes.nav__list__link} href="#">
+            <NavLink className={classes.nav__list__link} to="/news">
               <i className="far fa-newspaper"></i>
               News
-            </a>
+            </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <a className={classes.nav__list__link} href="#">
+            <NavLink className={classes.nav__list__link} to="/music">
               <i className="fas fa-headphones-alt"></i>
               Music
-            </a>
+            </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <a className={classes.nav__list__link} href="#">
+            <NavLink className={classes.nav__list__link} to="/settings">
               <i className="fas fa-cog"></i>
               Settings
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
