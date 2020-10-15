@@ -8,31 +8,46 @@ const Navbar = () => {
       <nav className="nav">
         <ul className="nav__list">
           <li className={classes.nav__list__item}>
-            <NavLink className={classes.nav__list__link} to="/profile">
+            <NavLink
+              className={classes.nav__list__link}
+              activeClassName={classes.active}
+              to="/profile">
               <i className="far fa-user"></i>
               Profile
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <NavLink className={classes.nav__list__link} to="/dialogs">
+            <NavLink
+              className={classes.nav__list__link}
+              activeClassName={classes.active}
+              to="/dialogs">
               <i className="far fa-envelope"></i>
               Messages
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <NavLink className={classes.nav__list__link} to="/news">
+            <NavLink
+              className={classes.nav__list__link}
+              activeClassName={classes.active}
+              to="/news">
               <i className="far fa-newspaper"></i>
               News
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <NavLink className={classes.nav__list__link} to="/music">
+            <NavLink
+              className={classes.nav__list__link}
+              activeClassName={classes.active}
+              to="/music">
               <i className="fas fa-headphones-alt"></i>
               Music
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
-            <NavLink className={classes.nav__list__link} to="/settings">
+            <NavLink
+              className={classes.nav__list__link}
+              activeClassName={classes.active}
+              to="/settings">
               <i className="fas fa-cog"></i>
               Settings
             </NavLink>

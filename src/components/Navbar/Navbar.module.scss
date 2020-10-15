@@ -23,7 +23,8 @@
     margin-right: 7px;
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     cursor: pointer;
     background-color: #f3f3f3;
     color: var(--secondary-color);
