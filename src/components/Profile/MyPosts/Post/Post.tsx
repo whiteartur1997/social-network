@@ -3,13 +3,14 @@ import classes from "./Post.module.scss";
 import avatar from "./../../../../img/profile/avatar.jpg";
 
 type PostType = {
-  message: string
+  id: number
+  content: string
   likeCount: number
 }
 
 const Post: React.FC<PostType> = (props) => {
   return (
-    <article className={classes.post}>
+    <article className={classes.post} id={String(props.id)}>
       <div className={classes.post__info}>
         <div>
           <img className={classes.post__info__avatar} src={avatar} />
@@ -23,7 +24,7 @@ const Post: React.FC<PostType> = (props) => {
       </div>
       <div className={classes.post__content}>
         <p className={classes.post__content__text}>
-          {props.message}
+          {props.content}
         </p>
       </div>
       <div className={classes.post__likes}>

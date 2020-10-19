@@ -3,9 +3,9 @@ import classes from './DialogItem.module.scss';
 import avatar from './../../../img/profile/avatar.jpg';
 import { NavLink } from 'react-router-dom';
 
-type DialogType = {
+export type DialogType = {
   name: string
-  id: string
+  id: number
   preview: string
   time: string
 }
