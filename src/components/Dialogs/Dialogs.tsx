@@ -1,32 +1,44 @@
 import React from 'react';
 import classes from './Dialogs.module.scss';
-import avatar from './../../img/profile/avatar.jpg';
+import DialogItem from './DialogItem/DialogItem';
+import MessageField from './MessageField/MessageField';
 
 const Dialogs = () => {
-  return (
-    <div className={classes.dialogs}>
-      <h4 className={classes.dialogs__header}>Chat / Messages</h4>
-      <div>
-        <ul className={classes.dialogs__contacts}>
-          <li className={classes.dialogs__contact}>
-            <img className={classes.dialogs__contact__avatar} src={avatar} />
-            <div className={classes.dialogs__contact__info}>
-              <h6 className={classes.dialogs__contact__title}>
-                <a className={classes.dialogs__contact__title}>Tony Stark</a>
-            </h6>
-              <span className={classes.dialogs__contact__preview}>
-                Lorem ipsum dolor sit amet.
-            </span>
-              <span className={classes.dialogs__contact__time}>
-                4 hours ago
-            </span>
+    return (
+        <div className={classes.dialogs}>
+            <h4 className={classes.dialogs__header}>Chat / Messages</h4>
+            <div>
+                <ul className={classes.dialogs__contacts}>
+                    <DialogItem
+                        name={"Tony Stark"}
+                        id={"1"}
+                        preview={"Where is my iron suit?"}
+                        time={"8:23 AM"}
+                    />
+                    <DialogItem
+                        name={"Aquaman"}
+                        id={"2"}
+                        preview={"Let's go for swimming..."}
+                        time={"8:13 AM"}
+                    />
+                    <DialogItem
+                        name={"Cat Woman"}
+                        id={"3"}
+                        preview={"Kiss kiss"}
+                        time={"10:23 AM"}
+                    />
+                    <DialogItem
+                        name={"Joker"}
+                        id={"4"}
+                        preview={"Why you so serious?"}
+                        time={"10:54 AM"}
+                    />
+
+                </ul>
+                <MessageField />
             </div>
-            <i className="far fa-envelope"></i>
-          </li>
-        </ul>
-      </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Dialogs;

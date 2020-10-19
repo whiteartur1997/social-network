@@ -8,7 +8,6 @@
 
   > div {
     display: flex;
-    padding: 0 25px;
   }
 }
 
@@ -18,29 +17,6 @@
 }
 
 .dialogs__contacts {
-  padding: 25px;
-}
-
-.dialogs__contact {
-  display: flex;
-}
-
-.dialogs__contact__avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-}
-
-.dialogs__contact__info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 15px;
-}
-
-.dialogs__contact__title {
-  color: var(--active-text-color);
-  font-size: .875rem;
-  font-weight: 700;
-  line-height: 1.3;
+  width: 30%;
+  flex-shrink: 0;
 }
