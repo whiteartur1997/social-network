@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../ProfileInfo.module.scss";
+import classes from "./ProfileInfo.module.scss";
 import coverImage from "../../../img/profile/cover.jpg";
 import avatar from "../../../img/profile/avatar.jpg";
 
