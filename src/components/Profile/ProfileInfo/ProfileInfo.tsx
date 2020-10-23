@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ProfileInfo.module.scss";
-import coverImage from "../../../img/profile/cover.jpg";
-import avatar from "../../../img/profile/avatar.jpg";
+import coverImage from "../../../img/cover.jpg";
+import avatar from "../../../img/batman.png";
 
 
 const ProfileInfo = () => {
@@ -12,9 +12,9 @@ const ProfileInfo = () => {
             </div>
             <div className={classes.profile__header}>
                 <div className={classes.profile__info__wrapper}>
-                    <a className={classes.profile__info__link} href="#">
+                    <div className={classes.profile__info__link}>
                         <img className={classes.profile__info__img} src={avatar} alt="avatar" />
-                    </a>
+                    </div>
                     <div className={classes.profile__info__down}>
                         <h3 className={classes.profile__info__title}>Bruce Wayne</h3>
                         <span className={classes.profile__info__location}>Kyiv, Ukraine</span>

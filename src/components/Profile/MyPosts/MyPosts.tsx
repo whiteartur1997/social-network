@@ -1,27 +1,30 @@
 import React from "react";
 import classes from "./MyPosts.module.scss";
-import AddPost from './AddPost/AddPost';
 import Post from "./Post/Post";
+import avatar from './../../../img/batman.png';
+import { PostsType } from "../Profile";
 
-const MyPosts = () => {
-
-  const postData = [
-    { id: 1, content: "My first steps in react!", likeCount: 23 },
-    { id: 2, content: "Watsup", likeCount: 4 },
-  ];
-
+const MyPosts: React.FC<PostsType> = (props) => {
   return (
     <>
       <div className={classes.posts}>
-        <AddPost />
+        <div className={classes.addPost}>
+          <form className={classes.addPost__form}>
+            <img className={classes.addPost__avatar} src={avatar} alt={"avatar"} />
+            <div>
+              <textarea
+                className={classes.addPost__textarea}
+                placeholder="What's new?"
+              ></textarea>
+              <button type="submit" className={classes.addPost__btn}>
+                Add Post
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <div className={classes.posts}>
-        {postData.map(post => <Post
-          id={post.id}
-          content={post.content}
-          likeCount={post.likeCount}
-        />
-        )}
+        {props.posts.map(post => <Post key={post.id} post={post} />)}
       </div>
     </>
   );
