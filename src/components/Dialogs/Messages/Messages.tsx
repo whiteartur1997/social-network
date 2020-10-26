@@ -2,7 +2,8 @@ import React from 'react';
 import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
 import { NavLink } from 'react-router-dom';
-import { MessageItemType } from '../../..';
+import { MessageItemType } from '../../../redux/state';
+
 
 type MessagesType = {
   messages: Array<MessageItemType>;

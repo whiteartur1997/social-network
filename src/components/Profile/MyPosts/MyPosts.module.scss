@@ -21,11 +21,8 @@
 }
 
 .addPost__avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  @include avatar;
   margin-right: 10px;
-  background-color: #eee;
 
   & + div {
     display: flex;

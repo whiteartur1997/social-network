@@ -1,3 +1,5 @@
+@import './../../index.scss';
+
 .header {
   display: flex;
   align-items: center;
@@ -67,9 +69,7 @@
 }
 
 .header__account__img {
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  @include avatar;
   margin-right: 13px;
 }
 

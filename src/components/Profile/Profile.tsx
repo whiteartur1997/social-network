@@ -3,10 +3,11 @@ import classes from './Profile.module.scss';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import HeaderList from './HeaderList/HeaderList';
-import { PostType } from '../..';
+import { PostType } from '../../redux/state';
+
 
 export type PostsType = {
-  posts: Array<PostType>
+  postsData: Array<PostType>
 }
 
 const Profile: React.FC<PostsType> = (props) => {
@@ -16,7 +17,7 @@ const Profile: React.FC<PostsType> = (props) => {
         <ProfileInfo />
         <HeaderList />
       </div>
-      <MyPosts posts={props.posts} />
+      <MyPosts postsData={props.postsData} />
     </div>
   )
 }

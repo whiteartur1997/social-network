@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageItemType } from '../../../..';
+import { MessageItemType } from '../../../../redux/state';
 import classes from './MessageItem.module.scss';
 
 type MessageItemObj = {

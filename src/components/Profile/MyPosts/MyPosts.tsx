@@ -24,7 +24,7 @@ const MyPosts: React.FC<PostsType> = (props) => {
         </div>
       </div>
       <div className={classes.posts}>
-        {props.posts.map(post => <Post key={post.id} post={post} />)}
+        {props.postsData.map(post => <Post key={post.id} post={post} />)}
       </div>
     </>
   );

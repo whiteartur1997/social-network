@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { DialogItemType, MessageItemType, PostType } from ".";
+import { StateType } from './redux/state';
 import "./App.scss";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
@@ -9,11 +9,10 @@ import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 type AppDataType = {
-  posts: Array<PostType>
-  messages: Array<MessageItemType>
-  dialogs: Array<DialogItemType>
+  state: StateType
 }
 
 
@@ -23,8 +22,9 @@ const App: React.FC<AppDataType> = (props) => {
       <div className="App">
         <Header />
         <Navbar />
-        <Route path="/profile" render={() => <Profile posts={props.posts} />} />
-        <Route path="/dialogs" render={() => <Dialogs dialogs={props.dialogs} messages={props.messages} />} />
+        <Sidebar friends={props.state.sidebar.friends} />
+        <Route path="/profile" render={() => <Profile postsData={props.state.profilePage.posts} />} />
+        <Route path="/dialogs" render={() => <Dialogs dialogsData={props.state.dialogsPage} />} />
         <Route path="/news" component={News} />
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Settings} />
