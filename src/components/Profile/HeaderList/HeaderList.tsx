@@ -1,28 +1,29 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './HeaderList.module.scss';
 
 function HeaderList() {
-  return(
+  return (
     <ul className={classes.profile__header__list}>
-          <li className={classes.profile__header__item}>
-            <a className={`${classes.profile__header__link} ${classes.active}`} href="#">Timeline</a>
-          </li>
-          <li className={classes.profile__header__item}>
-            <a className={classes.profile__header__link} href="#">About</a>
-          </li>
-          <li className={classes.profile__header__item}>
-            <a className={classes.profile__header__link} href="#">Friends</a>
-          </li>
-          <li className={classes.profile__header__item}>
-            <a className={classes.profile__header__link} href="#">Photos</a>
-          </li>
-          <li className={classes.profile__header__item}>
-            <a className={classes.profile__header__link} href="#">Videos</a>
-          </li>
-          <li className={classes.profile__header__item}>
-            <a className={classes.profile__header__link} href="#">About</a>
-          </li>
-        </ul>
+      <li className={classes.profile__header__item}>
+        <NavLink className={`${classes.profile__header__link} ${classes.active}`} to='/#'>Timeline</NavLink>
+      </li>
+      <li className={classes.profile__header__item}>
+        <NavLink className={classes.profile__header__link} to='/#'>About</NavLink>
+      </li>
+      <li className={classes.profile__header__item}>
+        <NavLink className={classes.profile__header__link} to='/#'>Friends</NavLink>
+      </li>
+      <li className={classes.profile__header__item}>
+        <NavLink className={classes.profile__header__link} to='/#'>Photos</NavLink>
+      </li>
+      <li className={classes.profile__header__item}>
+        <NavLink className={classes.profile__header__link} to='/#'>Videos</NavLink>
+      </li>
+      <li className={classes.profile__header__item}>
+        <NavLink className={classes.profile__header__link} to='/#'>About</NavLink>
+      </li>
+    </ul>
   )
 }
 

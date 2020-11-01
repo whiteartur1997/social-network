@@ -1,23 +1,32 @@
 import React from 'react';
+import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
+import { NavLink } from 'react-router-dom';
+import { MessageItemType } from '../../../redux/state';
 
 
-function Messages() {
+type MessagesType = {
+  messages: Array<MessageItemType>;
+}
+
+const Messages: React.FC<MessagesType> = (props) => {
   return (
-    <div className={classes.message__field}>
-      <div className={classes.message__field__title}>
-        <h4 className={classes.message__title}>Joker</h4>
-        <a className={classes.message__settings}>
+    <div className={classes.messages__field}>
+      <div className={classes.messages__field__title}>
+        <h4 className={classes.messages__title}>---Contact---</h4>
+        <NavLink className={classes.messages__settings} to={'/settings'}>
           <i className="fas fa-ellipsis-h"></i>
-        </a>
+        </NavLink>
       </div>
-      <div className={classes.message__area}>
-        <MessageItem name={"Bruce Wayne"}
-          description={"Yo bro. Let's rescue this world"}
-          time={"13:33 PM"} />
-        <MessageItem name={"Yeah Man"}
-          description={"Yo bro. Let's rescue this world"}
-          time={"13:33 PM"} />
+      <div className={classes.messages__area}>
+        {props.messages.map(message => {
+          return (
+            <MessageItem
+              key={message.id}
+              message={message}
+            />
+          )
+        })}
       </div>
     </div>
   )

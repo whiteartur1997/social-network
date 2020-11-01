@@ -1,19 +1,19 @@
 import React from 'react';
+import { MessageItemType } from '../../../../redux/state';
+import classes from './MessageItem.module.scss';
 
-type MessageType = {
-  name: string
-  description: string
-  time: string
+type MessageItemObj = {
+  message: MessageItemType
 }
 
-const MessageItem = (props: MessageType) => {
+const MessageItem: React.FC<MessageItemObj> = (props) => {
   return (
-      <div className={classes.message}>
-          <img src={avatar} className={classes.message__img}/>
-          <h6 className={classes.message__name}>{props.name}</h6>
-          <p className={classes.message__descr}>{props.description}</p>
-          <span className={classes.message__time}>{props.time}</span>
-      </div>
+    <div className={`${classes.message} ${props.message.fromMe ? null : classes.right}`}>
+      <img className={classes.message__img} src={props.message.avatar} alt={props.message.name} />
+      <h6 className={classes.message__name}>{props.message.name}</h6>
+      <p className={classes.message__descr}>{props.message.description}</p>
+      <span className={classes.message__time}>{props.message.time}</span>
+    </div>
   )
 }
 

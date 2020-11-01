@@ -1,15 +1,16 @@
 import React from "react";
 import classes from "./MyPosts.module.scss";
-import avatar from "./../../../img/profile/avatar.jpg";
 import Post from "./Post/Post";
+import avatar from './../../../img/batman.png';
+import { PostsType } from "../Profile";
 
-const MyPosts = () => {
+const MyPosts: React.FC<PostsType> = (props) => {
   return (
     <>
       <div className={classes.posts}>
         <div className={classes.addPost}>
           <form className={classes.addPost__form}>
-            <img className={classes.addPost__avatar} src={avatar} />
+            <img className={classes.addPost__avatar} src={avatar} alt={"avatar"} />
             <div>
               <textarea
                 className={classes.addPost__textarea}
@@ -23,8 +24,7 @@ const MyPosts = () => {
         </div>
       </div>
       <div className={classes.posts}>
-        <Post message={"Hi, how are you?"} likeCount={2} />
-        <Post message={"My first steps in react!"} likeCount={4} />
+        {props.postsData.map(post => <Post key={post.id} post={post} />)}
       </div>
     </>
   );

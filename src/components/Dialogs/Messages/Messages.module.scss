@@ -1,9 +1,9 @@
-.message__field {
+.messages__field {
   width: 70%;
   border-left: 1px solid #e6ecf5;
 }
 
-.message__field__title {
+.messages__field__title {
   display: flex;
   padding: 23px 25px 18px;
   justify-content: space-between;
@@ -11,14 +11,14 @@
   border-bottom: 1px solid #e6ecf5;
 }
 
-.message__title {
+.messages__title {
   font-size: .875rem;
   font-weight: 700;
   line-height: 1.3;
   color: var(--active-text-color);
 }
 
-.message__area {
+.messages__area {
   display: flex;
   flex-direction: column;
   padding: 30px 70px;
