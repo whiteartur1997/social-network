@@ -1,18 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import { rerenderEntireTree } from './render';
 import * as serviceWorker from './serviceWorker';
-import App from "./App";
-import state, { addPost } from './redux/state';
-import { BrowserRouter } from 'react-router-dom';
-
-let rerenderEntireTree = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <App state={state} addPost={addPost} />
-    </BrowserRouter>, document.getElementById('root')
-  );
-}
 
 rerenderEntireTree();
 

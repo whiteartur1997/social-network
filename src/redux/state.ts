@@ -84,14 +84,14 @@ let state: StateType = {
   }
 }
 
-export let addPost = (postMessage: string) => {
-  const newPost = { 
+export const addPost = (postMessage: string) => {
+  const newPost: PostType = { 
     id: 5, 
-    message: postMessage, 
+    message: postMessage,
     name: "Bruce Wayne",
     avatar: require('./../img/batman.png'),
     likeCount: 0, 
-    time: `${new Date().getHours()} ${new Date().getHours()}`
+    time: `${new Date().getHours()} ${new Date().getHours()}`,
   }
   state.profilePage.posts.push(newPost);
   console.log(state.profilePage.posts);

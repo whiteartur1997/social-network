@@ -16,6 +16,9 @@ const AddPost: React.FC<AddPostType> = (props) => {
       let text = newPostTextarea.current.value;
       props.addPost(text);
     }
+    // короткая запись
+    // (newPostTextarea.current && props.addPost(newPostTextarea.current.value))
+    
   }
 
   return(
