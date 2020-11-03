@@ -3,6 +3,7 @@ import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
 import { NavLink } from 'react-router-dom';
 import { MessageItemType } from '../../../redux/state';
+import AddMessage from './AddMessage/AddMessage';
 
 
 type MessagesType = {
@@ -28,6 +29,7 @@ const Messages: React.FC<MessagesType> = (props) => {
           )
         })}
       </div>
+      <AddMessage />
     </div>
   )
 }

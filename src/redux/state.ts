@@ -53,20 +53,20 @@ export type SidebarFriendType = {
 let state: StateType = {
   profilePage: {
     posts: [
-      { id: 1, avatar: require('./../img/einstein.png'), name: 'Albert Einstein', message: 'Hi, how are you?', likeCount: 2, time: "11:32 AM" },
-      { id: 2, avatar: require('./../img/batman.png'), name: 'Bruce Wayne', message: 'My first steps in react!', likeCount: 24, time: "09:32 AM" },
+      { id: 1, avatar: require('./../img/einstein.png'), name: 'Albert Einstein', message: 'Hi, how are you?', likeCount: 2, time: "11:32" },
+      { id: 2, avatar: require('./../img/batman.png'), name: 'Bruce Wayne', message: 'My first steps in react!', likeCount: 24, time: "09:32" },
     ],
   },
   dialogsPage: {
     dialogs: [
-      { name: "Albert Einstein", id: 1, preview: "Anyone who has never made a mistake has never tried anything new", time: "8:23 AM", avatar: require("./../img/einstein.png") },
-      { name: "Kurt Cobain", id: 2, preview: "When the lights out it's less dangerous", time: "8:43 AM", avatar: require("./../img/kurtCobain.png") },
-      { name: "Steve Jobs", id: 3, preview: "It’s really clear that the most precious resource we all have is time", time: "9:23 AM", avatar: require("./../img/steveJobs.png") },
-      { name: "Luis Suarez", id: 4, preview: "Bite bite", time: "7:23 PM", avatar: require("./../img/suarez.png") },
+      { name: "Albert Einstein", id: 1, preview: "Anyone who has never made a mistake has never tried anything new", time: "8:23", avatar: require("./../img/einstein.png") },
+      { name: "Kurt Cobain", id: 2, preview: "When the lights out it's less dangerous", time: "8:43", avatar: require("./../img/kurtCobain.png") },
+      { name: "Steve Jobs", id: 3, preview: "It’s really clear that the most precious resource we all have is time", time: "9:23", avatar: require("./../img/steveJobs.png") },
+      { name: "Luis Suarez", id: 4, preview: "Bite bite", time: "7:23", avatar: require("./../img/suarez.png") },
     ],
     messages: [
-      { id: 1, name: "Bruce Wayne", description: "Yo bro. Let's rescue this world", time: "13:33 PM", fromMe: true, avatar: require('./../img/batman.png') },
-      { id: 2, name: "Albert Einstein", description: "Yeah man. Come on", time: "12:33 PM", fromMe: false, avatar: require('./../img/einstein.png') },
+      { id: 1, name: "Bruce Wayne", description: "Yo bro. Let's rescue this world", time: "13:33", fromMe: true, avatar: require('./../img/batman.png') },
+      { id: 2, name: "Albert Einstein", description: "Yeah man. Come on", time: "12:33", fromMe: false, avatar: require('./../img/einstein.png') },
     ]
   },
   sidebar: {
@@ -82,6 +82,19 @@ let state: StateType = {
       { id: 9, name: "Ms Fitcher", status: "online", avatar: require('./../img/msFitcher.png') },
     ]
   }
+}
+
+export let addPost = (postMessage: string) => {
+  const newPost = { 
+    id: 5, 
+    message: postMessage, 
+    name: "Bruce Wayne",
+    avatar: require('./../img/batman.png'),
+    likeCount: 0, 
+    time: `${new Date().getHours()} ${new Date().getHours()}`
+  }
+  state.profilePage.posts.push(newPost);
+  console.log(state.profilePage.posts);
 }
 
 export default state;

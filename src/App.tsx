@@ -13,6 +13,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 type AppDataType = {
   state: StateType
+  addPost: (postMessage: string) => void
 }
 
 
@@ -22,8 +23,12 @@ const App: React.FC<AppDataType> = (props) => {
         <Header />
         <Navbar />
         <Sidebar friends={props.state.sidebar.friends} />
-        <Route path="/profile" render={() => <Profile postsData={props.state.profilePage.posts} />} />
-        <Route path="/dialogs" render={() => <Dialogs dialogsData={props.state.dialogsPage} />} />
+        <Route path="/profile" 
+          render={() => <Profile 
+            postsData={props.state.profilePage.posts}
+            addPost={props.addPost} />} />
+        <Route path="/dialogs" 
+          render={() => <Dialogs dialogsData={props.state.dialogsPage} />} />
         <Route path="/news" component={News} />
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Settings} />

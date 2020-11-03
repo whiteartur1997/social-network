@@ -8,7 +8,6 @@ type DialogsType = {
     dialogsData: DialogsPageType
 }
 
-
 const Dialogs: React.FC<DialogsType> = (props) => {
     const { dialogs, messages } = props.dialogsData;
     return (

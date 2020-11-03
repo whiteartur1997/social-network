@@ -8,6 +8,7 @@ import { PostType } from '../../redux/state';
 
 export type PostsType = {
   postsData: Array<PostType>
+  addPost: (postMessage: string) => void
 }
 
 const Profile: React.FC<PostsType> = (props) => {
@@ -17,7 +18,7 @@ const Profile: React.FC<PostsType> = (props) => {
         <ProfileInfo />
         <HeaderList />
       </div>
-      <MyPosts postsData={props.postsData} />
+      <MyPosts postsData={props.postsData} addPost={props.addPost} />
     </div>
   )
 }
