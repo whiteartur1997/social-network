@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import * as serviceWorker from './serviceWorker';
-import App from "./App";
-import state, { addPost } from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
+import App from "./App";
+import './index.scss';
+import { addPost, onNewPostMessageChange, StateType } from './redux/state';
 
-export let rerenderEntireTree: () => void = () => {
+export let rerenderEntireTree: (state: StateType) => void = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} addPost={addPost} />
+      <App
+        state={state}
+        addPost={addPost}
+        onNewPostMessageChange={onNewPostMessageChange} />
     </BrowserRouter>, document.getElementById('root')
   );
 }

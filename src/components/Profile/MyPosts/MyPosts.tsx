@@ -1,17 +1,20 @@
 import React from "react";
+import { ProfileDataType } from "../Profile";
+import AddPost from "./AddPost/AddPost";
 import classes from "./MyPosts.module.scss";
 import Post from "./Post/Post";
-import { PostsType } from "../Profile";
-import AddPost from "./AddPost/AddPost";
 
-const MyPosts: React.FC<PostsType> = (props) => {
+const MyPosts: React.FC<ProfileDataType> = (props) => {
   return (
     <>
       <div className={classes.posts}>
-        <AddPost addPost={props.addPost} />
+        <AddPost
+          newPostMessage={props.profileData.newPostMessage}
+          addPost={props.addPost}
+          onNewPostMessageChange={props.onNewPostMessageChange} />
       </div>
       <div className={classes.posts}>
-        {props.postsData.map(post => <Post key={post.id} post={post} />)}
+        {props.profileData.posts.map(post => <Post key={post.id} post={post} />)}
       </div>
     </>
   );

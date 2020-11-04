@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
+import state from './redux/state';
 import { rerenderEntireTree } from './render';
 import * as serviceWorker from './serviceWorker';
 
-rerenderEntireTree();
+rerenderEntireTree(state);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

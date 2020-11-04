@@ -1,45 +1,43 @@
-import React from 'react';
-import { isPropertySignature } from 'typescript';
+import React, { ChangeEvent } from 'react';
 import avatar from './../../../../img/batman.png';
 import classes from './AddPost.module.scss';
 
 type AddPostType = {
-  addPost: (postMessage: string) => void
+  newPostMessage: string
+  addPost: () => void
+  onNewPostMessageChange: (message: string) => void
 }
 
 const AddPost: React.FC<AddPostType> = (props) => {
-
-  let newPostTextarea = React.createRef<HTMLTextAreaElement>();
-
-  let addPost = () => {
-    if(newPostTextarea.current) {
-      let text = newPostTextarea.current.value;
-      props.addPost(text);
-    }
-    // короткая запись
-    // (newPostTextarea.current && props.addPost(newPostTextarea.current.value))
-    
+  const onNewPostMessageChangeCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
+    props.onNewPostMessageChange(e.currentTarget.value);
   }
 
-  return(
+  const addPost: () => void = () => {
+    props.addPost();
+  }
+  // короткая запись
+  // (newPostTextarea.current && props.addPost(newPostTextarea.current.value)
+  return (
     <div className={classes.addPost}>
-    <form className={classes.addPost__form}>
-      <img className={classes.addPost__avatar} src={avatar} alt={"avatar"} />
-      <div>
-        <textarea
-          ref={newPostTextarea}
-          className={classes.addPost__textarea}
-          placeholder="What's new?"
-        ></textarea>
-        <button 
-          type="button" 
-          className={classes.addPost__btn}
-          onClick={addPost}>
-          Add Post
+      <form className={classes.addPost__form}>
+        <img className={classes.addPost__avatar} src={avatar} alt={"avatar"} />
+        <div>
+          <textarea
+            value={props.newPostMessage}
+            onChange={onNewPostMessageChangeCallback}
+            className={classes.addPost__textarea}
+            placeholder="What's new?"
+          ></textarea>
+          <button
+            type="button"
+            className={classes.addPost__btn}
+            onClick={addPost}>
+            Add Post
         </button>
-      </div>
-    </form>
-  </div>
+        </div>
+      </form>
+    </div>
   )
 }
 

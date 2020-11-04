@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
@@ -6,6 +8,7 @@ export type StateType = {
 
 export type ProfilePageType = {
   posts: Array<PostType>
+  newPostMessage: string
 }
 
 export type DialogsPageType = {
@@ -56,6 +59,7 @@ let state: StateType = {
       { id: 1, avatar: require('./../img/einstein.png'), name: 'Albert Einstein', message: 'Hi, how are you?', likeCount: 2, time: "11:32" },
       { id: 2, avatar: require('./../img/batman.png'), name: 'Bruce Wayne', message: 'My first steps in react!', likeCount: 24, time: "09:32" },
     ],
+    newPostMessage: ""
   },
   dialogsPage: {
     dialogs: [
@@ -84,17 +88,23 @@ let state: StateType = {
   }
 }
 
-export const addPost = (postMessage: string) => {
-  const newPost: PostType = { 
-    id: 5, 
-    message: postMessage,
+export const onNewPostMessageChange = (message: string) => {
+  state.profilePage.newPostMessage = message;
+  rerenderEntireTree(state);
+}
+
+export const addPost = () => {
+  const newPost: PostType = {
+    id: 5,
+    message: state.profilePage.newPostMessage,
     name: "Bruce Wayne",
     avatar: require('./../img/batman.png'),
-    likeCount: 0, 
+    likeCount: 0,
     time: `${new Date().getHours()} ${new Date().getHours()}`,
   }
   state.profilePage.posts.push(newPost);
-  console.log(state.profilePage.posts);
+  state.profilePage.newPostMessage = "";
+  rerenderEntireTree(state);
 }
 
 export default state;
