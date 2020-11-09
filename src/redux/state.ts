@@ -1,4 +1,5 @@
-let rerenderEntireTree: () => void;
+let rerenderEntireTree: (state: StateType) => void;
+
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
@@ -89,7 +90,7 @@ let state: StateType = {
 
 export const onNewPostMessageChange = (message: string) => {
   state.profilePage.newPostMessage = message;
-  rerenderEntireTree();
+  rerenderEntireTree(state);
 }
 
 export const addPost = () => {
@@ -99,14 +100,14 @@ export const addPost = () => {
     name: "Bruce Wayne",
     avatar: require('./../img/batman.png'),
     likeCount: 0,
-    time: `${new Date().getHours()} ${new Date().getHours()}`,
+    time: `${new Date().getHours()}:${new Date().getMinutes()}`,
   }
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostMessage = "";
-  rerenderEntireTree();
+  rerenderEntireTree(state);
 }
 
-export const subscribe = (observer: () => void) => {
+export const subscribe = (observer: (state: StateType) => void) => {
   rerenderEntireTree = observer;
 }
 
