@@ -1,5 +1,4 @@
-import { rerenderEntireTree } from "../render";
-
+let rerenderEntireTree: () => void;
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
@@ -90,7 +89,7 @@ let state: StateType = {
 
 export const onNewPostMessageChange = (message: string) => {
   state.profilePage.newPostMessage = message;
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
 
 export const addPost = () => {
@@ -104,7 +103,11 @@ export const addPost = () => {
   }
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostMessage = "";
-  rerenderEntireTree(state);
+  rerenderEntireTree();
+}
+
+export const subscribe = (observer: () => void) => {
+  rerenderEntireTree = observer;
 }
 
 export default state;
