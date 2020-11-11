@@ -8,8 +8,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 export type ProfileDataType = {
   profileData: ProfilePageType
-  addPost: () => void
-  onNewPostMessageChange: (message: string) => void
+  dispatch: () => void
 }
 
 const Profile: React.FC<ProfileDataType> = (props) => {
@@ -21,8 +20,8 @@ const Profile: React.FC<ProfileDataType> = (props) => {
       </div>
       <MyPosts
         profileData={props.profileData}
-        addPost={props.addPost}
-        onNewPostMessageChange={props.onNewPostMessageChange} />
+        dispatch={props.dispatch}
+      />
     </div>
   )
 }

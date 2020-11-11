@@ -4,13 +4,12 @@ import classes from './AddPost.module.scss';
 
 type AddPostType = {
   newPostMessage: string
-  addPost: () => void
-  onNewPostMessageChange: (message: string) => void
+  dispatch: () => {}
 }
 
 const AddPost: React.FC<AddPostType> = (props) => {
-  const onNewPostMessageChangeCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
-    props.onNewPostMessageChange(e.currentTarget.value);
+  const updateNewPostMessageCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
+    props.updateNewPostMessage(e.currentTarget.value);
   }
 
   const addPost: () => void = () => {
@@ -25,7 +24,7 @@ const AddPost: React.FC<AddPostType> = (props) => {
         <div>
           <textarea
             value={props.newPostMessage}
-            onChange={onNewPostMessageChangeCallback}
+            onChange={updateNewPostMessageCallback}
             className={classes.addPost__textarea}
             placeholder="What's new?"
           ></textarea>
