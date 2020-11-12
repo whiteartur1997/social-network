@@ -1,15 +1,16 @@
 import React from 'react';
-import classes from './Dialogs.module.scss';
+import { ActionsTypes, DialogsPageType } from '../../redux/state';
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
+import classes from './Dialogs.module.scss';
 import Messages from './Messages/Messages';
-import { DialogsPageType } from '../../redux/state';
 
 type DialogsType = {
     dialogsData: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Dialogs: React.FC<DialogsType> = (props) => {
-    const { dialogs, messages } = props.dialogsData;
+    const { dialogs, messages, newMessageText } = props.dialogsData;
     return (
         <div className={classes.dialogs}>
             <h4 className={classes.dialogs__header}>Chat / Messages</h4>
@@ -21,7 +22,10 @@ const Dialogs: React.FC<DialogsType> = (props) => {
                         )
                     })}
                 </ul>
-                <Messages messages={messages} />
+                <Messages
+                    messages={messages}
+                    newMessageText={newMessageText}
+                    dispatch={props.dispatch} />
             </div>
         </div>
     )

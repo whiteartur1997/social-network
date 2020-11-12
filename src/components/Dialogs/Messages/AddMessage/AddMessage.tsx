@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { ActionsTypes, sendMessageAC, updateNewMessageTextAC } from '../../../../redux/state';
 import classes from './AddMessage.module.scss';
 
-const AddMessage = () => {
-  let newMessageTextArea = React.createRef<HTMLTextAreaElement>();
+type AddMessageType = {
+  newMessageText: string
+  dispatch: (action: ActionsTypes) => void
+}
 
-  const addMessage = () => {
-    if(newMessageTextArea.current) {
-      alert(newMessageTextArea.current.value);
-    }
+const AddMessage = (props: AddMessageType) => {
+
+  const updateNewMessageTextCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.dispatch(updateNewMessageTextAC(e.currentTarget.value))
   }
+
+  const sendMessageCallback = () => {
+    props.dispatch(sendMessageAC());
+  }
+
   return (
     <div className={classes.newMessage}>
       <textarea
-        ref={newMessageTextArea}
+        onChange={updateNewMessageTextCallback}
+        value={props.newMessageText}
         placeholder="Write your reply..."
         className={classes.newMessage__textarea}>
       </textarea>
@@ -20,10 +29,10 @@ const AddMessage = () => {
         <div className={classes.newMessage__attachments}>
           <i className="fas fa-paperclip"></i>
         </div>
-        <button 
-          className={classes.newMessage__btn} 
-          type="button"
-          onClick={addMessage}>Send Message</button>
+        <button
+          onClick={sendMessageCallback}
+          className={classes.newMessage__btn}
+          type="button">Send Message</button>
       </div>
     </div>
   )

@@ -31,7 +31,7 @@ const App: React.FC<AppDataType> = (props) => {
         />}
       />
       <Route path="/dialogs"
-        render={() => <Dialogs dialogsData={props.state.dialogsPage} />} />
+        render={() => <Dialogs dialogsData={props.state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)} />} />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />
       <Route path="/settings" component={Settings} />

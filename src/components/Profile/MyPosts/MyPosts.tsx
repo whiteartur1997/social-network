@@ -9,7 +9,7 @@ const MyPosts: React.FC<ProfileDataType> = (props) => {
     <>
       <div className={classes.posts}>
         <AddPost
-          newPostMessage={props.profileData.newPostMessage}
+          newPostText={props.profileData.newPostText}
           dispatch={props.dispatch}
         />
       </div>

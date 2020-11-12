@@ -2,21 +2,38 @@ export type StoreType = {
   _subscriber: (state: StateType) => void
   _state: StateType
   getState: () => StateType
-  updateNewPostMessage: (message: string) => void
-  addPost: () => void
   subscribe: (observer: (state: StateType) => void) => void
   dispatch: (action: ActionsTypes) => void
 }
 
 // Actions 
-export type ActionsTypes = AddPostActionType | UpdateNewPostMessageActionType
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC> |
+  ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageTextAC>;
 
-type AddPostActionType = {
-  type: "ADD-POST"
+export const addPostAC = () => {
+  return {
+    type: "ADD-POST"
+  } as const;
 }
-type UpdateNewPostMessageActionType = {
-  type: "UPDATE-NEW-POST-TEXT"
-  newText: string
+
+export const updateNewPostTextAC = (newText: string) => {
+  return {
+    type: "UPDATE-NEW-POST-TEXT",
+    newText: newText
+  } as const;
+}
+
+export const sendMessageAC = () => {
+  return {
+    type: "SEND-MESSAGE"
+  } as const;
+}
+
+export const updateNewMessageTextAC = (newText: string) => {
+  return {
+    type: "UPDATE-NEW-POST-MESSAGE",
+    newText: newText
+  } as const;
 }
 
 export type StateType = {
@@ -27,12 +44,13 @@ export type StateType = {
 
 export type ProfilePageType = {
   posts: Array<PostType>
-  newPostMessage: string
+  newPostText: string
 }
 
 export type DialogsPageType = {
   dialogs: Array<DialogItemType>
   messages: Array<MessageItemType>
+  newMessageText: string
 }
 
 export type SidebarType = {
@@ -81,7 +99,7 @@ const store: StoreType = {
         { id: 1, avatar: require('./../img/einstein.png'), name: 'Albert Einstein', message: 'Hi, how are you?', likeCount: 2, time: "11:32" },
         { id: 2, avatar: require('./../img/batman.png'), name: 'Bruce Wayne', message: 'My first steps in react!', likeCount: 24, time: "09:32" },
       ],
-      newPostMessage: ""
+      newPostText: ""
     },
     dialogsPage: {
       dialogs: [
@@ -93,7 +111,8 @@ const store: StoreType = {
       messages: [
         { id: 1, name: "Bruce Wayne", description: "Yo bro. Let's rescue this world", time: "13:33", fromMe: true, avatar: require('./../img/batman.png') },
         { id: 2, name: "Albert Einstein", description: "Yeah man. Come on", time: "12:33", fromMe: false, avatar: require('./../img/einstein.png') },
-      ]
+      ],
+      newMessageText: ""
     },
     sidebar: {
       friends: [
@@ -116,44 +135,49 @@ const store: StoreType = {
   subscribe(observer: (state: StateType) => void) {
     this._subscriber = observer
   },
-  // методы, которые меняют наш state
-  updateNewPostMessage(message: string) {
-    this._state.profilePage.newPostMessage = message;
-    this._subscriber(this._state);
-  },
-  addPost() {
-    const newPost: PostType = {
-      id: 5,
-      message: this._state.profilePage.newPostMessage,
-      name: "Bruce Wayne",
-      avatar: require('./../img/batman.png'),
-      likeCount: 0,
-      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    }
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostMessage = "";
-    this._subscriber(this._state);
-  },
+  // методы, которые меняют наш state сидят в dispatch
   dispatch(action) { // { type: 'ADD-POST' }
-    if (action.type === "ADD-POST") {
-      const newPost: PostType = {
-        id: 5,
-        message: this._state.profilePage.newPostMessage,
-        name: "Bruce Wayne",
-        avatar: require('./../img/batman.png'),
-        likeCount: 0,
-        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+    switch (action.type) {
+      case "ADD-POST": {
+        const newPost: PostType = {
+          id: 5,
+          message: this._state.profilePage.newPostText,
+          name: "Bruce Wayne",
+          avatar: require('./../img/batman.png'),
+          likeCount: 0,
+          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+        }
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = "";
+        this._subscriber(this._state);
       }
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostMessage = "";
-      this._subscriber(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.profilePage.newPostMessage = action.newText;
-      this._subscriber(this._state);
+        break;
+      case "UPDATE-NEW-POST-TEXT": {
+        this._state.profilePage.newPostText = action.newText;
+        this._subscriber(this._state);
+      }
+        break;
+      case "SEND-MESSAGE": {
+        const newMessage = {
+          id: 3,
+          name: "Bruce Wayne",
+          description: this._state.dialogsPage.newMessageText,
+          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+          fromMe: true,
+          avatar: require('./../img/batman.png')
+        }
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = "";
+        this._subscriber(this._state);
+      }
+        break;
+      case "UPDATE-NEW-POST-MESSAGE": {
+        this._state.dialogsPage.newMessageText = action.newText;
+        this._subscriber(this._state);
+      }
     }
   }
 }
-
 export default store;
 declare global {
   interface Window { store: StoreType }
@@ -183,3 +207,24 @@ window.store = store;
 //     this._subscriber();
 //   }
 // }
+
+
+
+
+    //   if (action.type === "ADD-POST") {
+    //     const newPost: PostType = {
+    //       id: 5,
+    //       message: this._state.profilePage.newPostText,
+    //       name: "Bruce Wayne",
+    //       avatar: require('./../img/batman.png'),
+    //       likeCount: 0,
+    //       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+    //     }
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.newPostText = "";
+    //     this._subscriber(this._state);
+    //   } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+    //     this._state.profilePage.newPostText = action.newText;
+    //     this._subscriber(this._state);
+    //   }
+    // }
