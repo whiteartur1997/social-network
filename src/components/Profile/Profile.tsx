@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProfilePageType } from '../../redux/state';
+import { ActionsTypes, ProfilePageType } from '../../redux/state';
 import HeaderList from './HeaderList/HeaderList';
 import MyPosts from './MyPosts/MyPosts';
 import classes from './Profile.module.scss';
@@ -8,8 +8,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 export type ProfileDataType = {
   profileData: ProfilePageType
-  addPost: () => void
-  onNewPostMessageChange: (message: string) => void
+  dispatch: (action: ActionsTypes) => void
 }
 
 const Profile: React.FC<ProfileDataType> = (props) => {
@@ -21,8 +20,8 @@ const Profile: React.FC<ProfileDataType> = (props) => {
       </div>
       <MyPosts
         profileData={props.profileData}
-        addPost={props.addPost}
-        onNewPostMessageChange={props.onNewPostMessageChange} />
+        dispatch={props.dispatch}
+      />
     </div>
   )
 }

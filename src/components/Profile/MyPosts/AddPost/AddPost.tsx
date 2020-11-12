@@ -1,23 +1,24 @@
 import React, { ChangeEvent } from 'react';
+import { ActionsTypes } from '../../../../redux/state';
 import avatar from './../../../../img/batman.png';
 import classes from './AddPost.module.scss';
 
 type AddPostType = {
   newPostMessage: string
-  addPost: () => void
-  onNewPostMessageChange: (message: string) => void
+  dispatch: (action: ActionsTypes) => void
 }
 
 const AddPost: React.FC<AddPostType> = (props) => {
-  const onNewPostMessageChangeCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
-    props.onNewPostMessageChange(e.currentTarget.value);
+  const updateNewPostTextCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
+    // props.updateNewPostMessage(e.currentTarget.value); было раньше до диспатча
+    props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: e.currentTarget.value});
   }
 
   const addPost: () => void = () => {
-    props.addPost();
+    // props.addPost(); было раньше до диспатча
+    props.dispatch({type: "ADD-POST"});
   }
-  // короткая запись
-  // (newPostTextarea.current && props.addPost(newPostTextarea.current.value)
+  
   return (
     <div className={classes.addPost}>
       <form className={classes.addPost__form}>
@@ -25,7 +26,7 @@ const AddPost: React.FC<AddPostType> = (props) => {
         <div>
           <textarea
             value={props.newPostMessage}
-            onChange={onNewPostMessageChangeCallback}
+            onChange={updateNewPostTextCallback}
             className={classes.addPost__textarea}
             placeholder="What's new?"
           ></textarea>

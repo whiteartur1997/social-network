@@ -10,8 +10,8 @@ const MyPosts: React.FC<ProfileDataType> = (props) => {
       <div className={classes.posts}>
         <AddPost
           newPostMessage={props.profileData.newPostMessage}
-          addPost={props.addPost}
-          onNewPostMessageChange={props.onNewPostMessageChange} />
+          dispatch={props.dispatch}
+        />
       </div>
       <div className={classes.posts}>
         {props.profileData.posts.map(post => <Post key={post.id} post={post} />)}

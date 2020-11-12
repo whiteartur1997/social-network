@@ -9,12 +9,11 @@ import News from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { StateType } from './redux/state';
+import { StateType, StoreType } from './redux/state';
 
 type AppDataType = {
   state: StateType
-  addPost: () => void
-  onNewPostMessageChange: (message: string) => void
+  store: StoreType
 }
 
 
@@ -27,8 +26,10 @@ const App: React.FC<AppDataType> = (props) => {
       <Route path="/profile"
         render={() => <Profile
           profileData={props.state.profilePage}
-          addPost={props.addPost}
-          onNewPostMessageChange={props.onNewPostMessageChange} />} />
+          // bind - привязываем контекст вызова this к store
+          dispatch={props.store.dispatch.bind(props.store)}
+        />}
+      />
       <Route path="/dialogs"
         render={() => <Dialogs dialogsData={props.state.dialogsPage} />} />
       <Route path="/news" component={News} />
