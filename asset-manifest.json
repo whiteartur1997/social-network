@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/social-network/static/css/main.d40c0a3d.chunk.css",
+    "main.js": "/social-network/static/js/main.137916a7.chunk.js",
+    "main.js.map": "/social-network/static/js/main.137916a7.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.005f4cf5.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.005f4cf5.js.map",
+    "static/js/2.e071113c.chunk.js": "/social-network/static/js/2.e071113c.chunk.js",
+    "static/js/2.e071113c.chunk.js.map": "/social-network/static/js/2.e071113c.chunk.js.map",
+    "index.html": "/social-network/index.html",
+    "precache-manifest.96c71b55821dbce1b777a2f3a60a1772.js": "/social-network/precache-manifest.96c71b55821dbce1b777a2f3a60a1772.js",
+    "service-worker.js": "/social-network/service-worker.js",
+    "static/css/main.d40c0a3d.chunk.css.map": "/social-network/static/css/main.d40c0a3d.chunk.css.map",
+    "static/js/2.e071113c.chunk.js.LICENSE.txt": "/social-network/static/js/2.e071113c.chunk.js.LICENSE.txt",
+    "static/media/batman.png": "/social-network/static/media/batman.8758a839.png",
+    "static/media/cover.jpg": "/social-network/static/media/cover.4d76cfcd.jpg",
+    "static/media/discoGirl.png": "/social-network/static/media/discoGirl.aa5b7491.png",
+    "static/media/doctorWho.png": "/social-network/static/media/doctorWho.9d1202b0.png",
+    "static/media/einstein.png": "/social-network/static/media/einstein.8631c425.png",
+    "static/media/hakimAlAsad.png": "/social-network/static/media/hakimAlAsad.6e7f348c.png",
+    "static/media/johnDoe.png": "/social-network/static/media/johnDoe.1923a86d.png",
+    "static/media/keanuReeves.png": "/social-network/static/media/keanuReeves.71838e99.png",
+    "static/media/kurtCobain.png": "/social-network/static/media/kurtCobain.4060eaad.png",
+    "static/media/margoRobby.png": "/social-network/static/media/margoRobby.38dfc36c.png",
+    "static/media/markTwain.png": "/social-network/static/media/markTwain.1ace64cb.png",
+    "static/media/msFitcher.png": "/social-network/static/media/msFitcher.10470661.png",
+    "static/media/nelsonMandela.png": "/social-network/static/media/nelsonMandela.28a40bdc.png",
+    "static/media/steveJobs.png": "/social-network/static/media/steveJobs.3517a71b.png",
+    "static/media/suarez.png": "/social-network/static/media/suarez.68b7cd7e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.005f4cf5.js",
+    "static/js/2.e071113c.chunk.js",
+    "static/css/main.d40c0a3d.chunk.css",
+    "static/js/main.137916a7.chunk.js"
+  ]
+}
