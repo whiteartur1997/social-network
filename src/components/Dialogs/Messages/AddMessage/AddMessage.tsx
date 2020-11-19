@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import { ActionsTypes, sendMessageAC, updateNewMessageTextAC } from '../../../../redux/state';
+import { sendMessageAC, updateNewMessageTextAC } from '../../../../redux/dialogsReducer';
+import { ActionsTypes } from '../../../../redux/state';
 import classes from './AddMessage.module.scss';
 
 type AddMessageType = {

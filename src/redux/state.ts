@@ -1,3 +1,7 @@
+import dialogsReducer, { sendMessageAC, updateNewMessageTextAC } from "./dialogsReducer";
+import profileReducer, { addPostAC, updateNewPostTextAC } from './profileReducer';
+import sidebarReducer from "./sidebarReducer";
+
 export type StoreType = {
   _subscriber: (state: StateType) => void
   _state: StateType
@@ -10,31 +14,6 @@ export type StoreType = {
 export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC> |
   ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageTextAC>;
 
-export const addPostAC = () => {
-  return {
-    type: "ADD-POST"
-  } as const;
-}
-
-export const updateNewPostTextAC = (newText: string) => {
-  return {
-    type: "UPDATE-NEW-POST-TEXT",
-    newText: newText
-  } as const;
-}
-
-export const sendMessageAC = () => {
-  return {
-    type: "SEND-MESSAGE"
-  } as const;
-}
-
-export const updateNewMessageTextAC = (newText: string) => {
-  return {
-    type: "UPDATE-NEW-POST-MESSAGE",
-    newText: newText
-  } as const;
-}
 
 export type StateType = {
   profilePage: ProfilePageType
@@ -137,45 +116,10 @@ const store: StoreType = {
   },
   // методы, которые меняют наш state сидят в dispatch
   dispatch(action) { // { type: 'ADD-POST' }
-    switch (action.type) {
-      case "ADD-POST": {
-        const newPost: PostType = {
-          id: 5,
-          message: this._state.profilePage.newPostText,
-          name: "Bruce Wayne",
-          avatar: require('./../img/batman.png'),
-          likeCount: 0,
-          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._subscriber(this._state);
-      }
-        break;
-      case "UPDATE-NEW-POST-TEXT": {
-        this._state.profilePage.newPostText = action.newText;
-        this._subscriber(this._state);
-      }
-        break;
-      case "SEND-MESSAGE": {
-        const newMessage = {
-          id: 3,
-          name: "Bruce Wayne",
-          description: this._state.dialogsPage.newMessageText,
-          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-          fromMe: true,
-          avatar: require('./../img/batman.png')
-        }
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = "";
-        this._subscriber(this._state);
-      }
-        break;
-      case "UPDATE-NEW-POST-MESSAGE": {
-        this._state.dialogsPage.newMessageText = action.newText;
-        this._subscriber(this._state);
-      }
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    this._subscriber(this._state);
   }
 }
 export default store;
@@ -207,24 +151,3 @@ window.store = store;
 //     this._subscriber();
 //   }
 // }
-
-
-
-
-    //   if (action.type === "ADD-POST") {
-    //     const newPost: PostType = {
-    //       id: 5,
-    //       message: this._state.profilePage.newPostText,
-    //       name: "Bruce Wayne",
-    //       avatar: require('./../img/batman.png'),
-    //       likeCount: 0,
-    //       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    //     }
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this._subscriber(this._state);
-    //   } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-    //     this._state.profilePage.newPostText = action.newText;
-    //     this._subscriber(this._state);
-    //   }
-    // }

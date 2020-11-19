@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import { ActionsTypes, addPostAC, updateNewPostTextAC } from '../../../../redux/state';
+import { addPostAC, updateNewPostTextAC } from '../../../../redux/profileReducer';
+import { ActionsTypes } from '../../../../redux/state';
 import avatar from './../../../../img/batman.png';
 import classes from './AddPost.module.scss';
 
@@ -9,6 +10,7 @@ type AddPostType = {
 }
 
 const AddPost: React.FC<AddPostType> = (props) => {
+
   const updateNewPostTextCallback: (e: ChangeEvent<HTMLTextAreaElement>) => void = (e) => {
     // props.updateNewPostMessage(e.currentTarget.value); было раньше до диспатча
     props.dispatch(updateNewPostTextAC(e.currentTarget.value));
