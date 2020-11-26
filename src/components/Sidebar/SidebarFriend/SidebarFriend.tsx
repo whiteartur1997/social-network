@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { SidebarFriendType } from '../../../redux/state';
+import { SidebarFriendType } from '../../../redux/store';
 import classes from './SidebarFriend.module.scss';
 
 const SidebarFriend: React.FC<SidebarFriendType> = (props) => {

@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { addPostAC, updateNewPostTextAC } from '../../../../redux/profileReducer';
-import { ActionsTypes } from '../../../../redux/state';
+import { ActionsTypes } from '../../../../redux/store';
 import avatar from './../../../../img/batman.png';
 import classes from './AddPost.module.scss';
 

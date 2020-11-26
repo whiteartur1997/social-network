@@ -9,10 +9,11 @@ import News from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { StateType, StoreType } from './redux/state';
+import { StoreType } from './redux/store';
+import {AppStateType} from "./redux/redux-store";
 
 type AppDataType = {
-  state: StateType
+  state: AppStateType
   store: StoreType
 }
 
@@ -31,7 +32,11 @@ const App: React.FC<AppDataType> = (props) => {
         />}
       />
       <Route path="/dialogs"
-        render={() => <Dialogs dialogsData={props.state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)} />} />
+        render={() => <Dialogs
+            dialogsData={props.state.dialogsPage}
+            dispatch={props.store.dispatch.bind(props.store)}
+        />}
+      />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />
       <Route path="/settings" component={Settings} />

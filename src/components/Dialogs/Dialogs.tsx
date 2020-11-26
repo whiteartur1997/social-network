@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionsTypes, DialogsPageType } from '../../redux/state';
+import { ActionsTypes, DialogsPageType } from '../../redux/store';
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
 import classes from './Dialogs.module.scss';
 import Messages from './Messages/Messages';

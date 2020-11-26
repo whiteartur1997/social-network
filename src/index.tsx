@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import store, { StateType } from './redux/state';
+import store from './redux/redux-store';
 import * as serviceWorker from './serviceWorker';
 
 
-export let rerenderEntireTree: (state: StateType) => void = () => {
+export let rerenderEntireTree: () => void = () => {
   ReactDOM.render(
     <BrowserRouter>
       <App
@@ -17,9 +17,9 @@ export let rerenderEntireTree: (state: StateType) => void = () => {
   );
 }
 
-rerenderEntireTree(store.getState()); // изначально отрисовываем приложение
+rerenderEntireTree(); // изначально отрисовываем приложение
 
-// делаем так, что локальная rerenderEntireTree в state.ts
+// делаем так, что локальная rerenderEntireTree в store.ts
 // получет "настоящую rerenderEntireTree"
 store.subscribe(rerenderEntireTree);
 

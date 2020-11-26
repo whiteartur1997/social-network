@@ -1,5 +1,5 @@
 import React from 'react';
-import { SidebarType } from '../../redux/state';
+import { SidebarType } from '../../redux/store';
 import classes from './Sidebar.module.scss';
 import SidebarFriend from './SidebarFriend/SidebarFriend';
 
