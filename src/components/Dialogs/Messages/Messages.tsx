@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ActionsTypes, MessageItemType } from '../../../redux/store';
+import { MessageItemType } from '../../../redux/store';
 import AddMessage from './AddMessage/AddMessage';
 import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
@@ -9,7 +9,8 @@ import classes from './Messages.module.scss';
 type MessagesType = {
   messages: Array<MessageItemType>;
   newMessageText: string
-  dispatch: (action: ActionsTypes) => void
+  updateNewMessageText: (newText: string) => void
+  sendMessage: () => void
 }
 
 const Messages: React.FC<MessagesType> = (props) => {
@@ -33,7 +34,8 @@ const Messages: React.FC<MessagesType> = (props) => {
       </div>
       <AddMessage
         newMessageText={props.newMessageText}
-        dispatch={props.dispatch} />
+        updateNewMessageText={props.updateNewMessageText}
+        sendMessage={props.sendMessage} />
     </div>
   )
 }

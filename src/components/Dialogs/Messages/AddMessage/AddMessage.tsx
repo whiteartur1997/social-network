@@ -1,21 +1,20 @@
 import React, { ChangeEvent } from 'react';
-import { sendMessageAC, updateNewMessageTextAC } from '../../../../redux/dialogsReducer';
-import { ActionsTypes } from '../../../../redux/store';
 import classes from './AddMessage.module.scss';
 
 type AddMessageType = {
   newMessageText: string
-  dispatch: (action: ActionsTypes) => void
+  updateNewMessageText: (newText: string) => void
+  sendMessage: () => void
 }
 
 const AddMessage = (props: AddMessageType) => {
 
   const updateNewMessageTextCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(updateNewMessageTextAC(e.currentTarget.value))
+    props.updateNewMessageText(e.currentTarget.value);
   }
 
   const sendMessageCallback = () => {
-    props.dispatch(sendMessageAC());
+    props.sendMessage();
   }
 
   return (

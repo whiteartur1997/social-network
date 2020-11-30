@@ -1,14 +1,13 @@
 import React from 'react';
-import { ActionsTypes, ProfilePageType } from '../../redux/store';
+import { StoreType } from '../../redux/store';
 import HeaderList from './HeaderList/HeaderList';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import classes from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 export type ProfileDataType = {
-  profileData: ProfilePageType
-  dispatch: (action: ActionsTypes) => void
+  store: StoreType
 }
 
 const Profile: React.FC<ProfileDataType> = (props) => {
@@ -18,10 +17,7 @@ const Profile: React.FC<ProfileDataType> = (props) => {
         <ProfileInfo />
         <HeaderList />
       </div>
-      <MyPosts
-        profileData={props.profileData}
-        dispatch={props.dispatch}
-      />
+      <MyPostsContainer store={props.store} />
     </div>
   )
 }

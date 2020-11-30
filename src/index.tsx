@@ -9,9 +9,7 @@ import * as serviceWorker from './serviceWorker';
 export let rerenderEntireTree: () => void = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App
-        state={store.getState()}
-        store={store}
+      <App store={store}
       />
     </BrowserRouter>, document.getElementById('root')
   );
