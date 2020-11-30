@@ -4,13 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './redux/redux-store';
 import * as serviceWorker from './serviceWorker';
+import StoreContext from './StoreContext';
 
 
 export let rerenderEntireTree: () => void = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store}
-      />
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>, document.getElementById('root')
   );
 }

@@ -12,7 +12,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { StoreType } from './redux/store';
 
 type AppDataType = {
-  store: StoreType
+  store?: StoreType
 }
 
 
@@ -21,12 +21,12 @@ const App: React.FC<AppDataType> = (props) => {
     <div className="App">
       <Header />
       <Navbar />
-      <Sidebar friends={props.store.getState().sidebar.friends} />
+      <Sidebar />
       <Route path="/profile"
-        render={() => <Profile store={props.store} />}
+        render={() => <Profile />}
       />
       <Route path="/dialogs"
-        render={() => <Dialogs store={props.store} />}
+        render={() => <Dialogs />}
       />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />

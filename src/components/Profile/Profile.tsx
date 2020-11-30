@@ -7,7 +7,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 export type ProfileDataType = {
-  store: StoreType
+  store?: StoreType
 }
 
 const Profile: React.FC<ProfileDataType> = (props) => {
@@ -17,7 +17,7 @@ const Profile: React.FC<ProfileDataType> = (props) => {
         <ProfileInfo />
         <HeaderList />
       </div>
-      <MyPostsContainer store={props.store} />
+      <MyPostsContainer />
     </div>
   )
 }
