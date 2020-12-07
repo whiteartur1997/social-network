@@ -6,25 +6,14 @@ import App from './App';
 import store from './redux/redux-store';
 import * as serviceWorker from './serviceWorker';
 
-export let rerenderEntireTree: () => void = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      {/* Provider сидит в библиотеке react-redux */}
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>, document.getElementById('root')
-  );
-}
-
-rerenderEntireTree(); // изначально отрисовываем приложение
-
-// делаем так, что локальная rerenderEntireTree в store.ts
-// получет "настоящую rerenderEntireTree"
-store.subscribe(rerenderEntireTree);
-
-
-
+ReactDOM.render(
+  <BrowserRouter>
+    {/* Provider сидит в библиотеке react-redux */}
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>, document.getElementById('root')
+);
 
 
 // If you want your app to work offline and load faster, you can change

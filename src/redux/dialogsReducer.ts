@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogsPageType} from "./store";
+import { ActionsTypes, DialogsPageType } from "./store";
 
 // нам нужен инит стейт для каждой ветки, так как redux при первой загрузке
 // приложения сам диспатчит action, при этом наш state - undefined
@@ -26,7 +26,7 @@ let initialState: DialogsPageType = {
             time: "9:23",
             avatar: require("./../img/steveJobs.png")
         },
-        {name: "Luis Suarez", id: 4, preview: "Bite bite", time: "7:23", avatar: require("./../img/suarez.png")},
+        { name: "Luis Suarez", id: 4, preview: "Bite bite", time: "7:23", avatar: require("./../img/suarez.png") },
     ],
     messages: [
         {
@@ -60,15 +60,18 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
                 fromMe: true,
                 avatar: require('./../img/batman.png')
             }
-            state.messages.push(newMessage);
-            state.newMessageText = "";
+            const stateCopy = { ...state };
+            stateCopy.messages = [...state.messages];
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = "";
+            return stateCopy;
         }
-            return state;
 
         case "UPDATE-NEW-POST-MESSAGE": {
-            state.newMessageText = action.newText;
+            const stateCopy = { ...state };
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
         }
-            return state;
 
         default:
             return state;

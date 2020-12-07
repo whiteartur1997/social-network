@@ -36,15 +36,19 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
-            state.posts.push(newPost);
-            state.newPostText = "";
+            const stateCopy = { ...state };
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = "";
+            return stateCopy;
         }
-            return state;
 
         case "UPDATE-NEW-POST-TEXT": {
-            state.newPostText = action.newText;
+            const stateCopy = { ...state };
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
         }
-            return state;
+
         default:
             return state
     }
