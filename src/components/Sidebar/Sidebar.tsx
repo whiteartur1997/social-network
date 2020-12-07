@@ -1,25 +1,25 @@
 import React from 'react';
-import { SidebarType } from '../../redux/store';
-import StoreContext from '../../StoreContext';
+import { SidebarFriendType } from '../../redux/store';
 import classes from './Sidebar.module.scss';
 import SidebarFriend from './SidebarFriend/SidebarFriend';
 
-const Sidebar: React.FC = () => {
+
+type SidebarPropsType = {
+  sidebarFriends: SidebarFriendType[]
+}
+
+const Sidebar: React.FC<SidebarPropsType> = (props) => {
   return (
-    <StoreContext.Consumer>
-      {store => (
-        <div className={classes.sidebar}>
-          <ul className={classes.sidebar__friends}>
-            {store.getState().sidebar.friends.map(friend => <SidebarFriend
-              id={friend.id}
-              key={friend.id}
-              name={friend.name}
-              avatar={friend.avatar}
-              status={friend.status} />)}
-          </ul>
-        </div >
-      )}
-    </StoreContext.Consumer>
+    <div className={classes.sidebar}>
+      <ul className={classes.sidebar__friends}>
+        {props.sidebarFriends.map(friend => <SidebarFriend
+          id={friend.id}
+          key={friend.id}
+          name={friend.name}
+          avatar={friend.avatar}
+          status={friend.status} />)}
+      </ul>
+    </div >
   )
 }
 

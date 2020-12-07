@@ -1,4 +1,4 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./store";
+import { ActionsTypes, PostType, ProfilePageType } from "./store";
 
 // тоже самое, при первом диспатче action, который сделает
 // redux, он возьмет этот стейт, а не undefined

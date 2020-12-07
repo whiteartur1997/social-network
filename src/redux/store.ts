@@ -1,6 +1,5 @@
-import dialogsReducer, { sendMessageAC, updateNewMessageTextAC } from "./dialogsReducer";
-import profileReducer, { addPostAC, updateNewPostTextAC } from './profileReducer';
-import sidebarReducer from "./sidebarReducer";
+import { sendMessageAC, updateNewMessageTextAC } from "./dialogsReducer";
+import { addPostAC, updateNewPostTextAC } from './profileReducer';
 
 export type StoreType = {
   // _subscriber: (state: StateType) => void
@@ -11,8 +10,10 @@ export type StoreType = {
 }
 
 // Actions 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC> |
-  ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageTextAC>;
+export type ActionsTypes = ReturnType<typeof addPostAC> |
+  ReturnType<typeof updateNewPostTextAC> |
+  ReturnType<typeof sendMessageAC> |
+  ReturnType<typeof updateNewMessageTextAC>;
 
 
 export type StateType = {
@@ -122,10 +123,10 @@ export type SidebarFriendType = {
 //     this._subscriber(this._state);
 //   }
 // }
-export default store;
-declare global {
-  interface Window { store: StoreType }
-}
+// export default store;
+// declare global {
+//   interface Window { store: StoreType }
+// }
 
 // window.store = store;
 // const store = {

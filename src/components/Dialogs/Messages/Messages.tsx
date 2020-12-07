@@ -6,14 +6,14 @@ import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
 
 
-type MessagesType = {
+type MessagesPropsType = {
   messages: Array<MessageItemType>;
   newMessageText: string
   updateNewMessageText: (newText: string) => void
   sendMessage: () => void
 }
 
-const Messages: React.FC<MessagesType> = (props) => {
+const Messages: React.FC<MessagesPropsType> = (props) => {
   return (
     <div className={classes.messages__field}>
       <div className={classes.messages__field__title}>
