@@ -28,7 +28,6 @@ const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
       dispatch(addPostAC())
     },
     updateNewPostText: (newText: string) => {
-      debugger
       dispatch(updateNewPostTextAC(newText))
     }
   }

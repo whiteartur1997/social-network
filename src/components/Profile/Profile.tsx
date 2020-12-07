@@ -6,11 +6,7 @@ import classes from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
-export type ProfileDataType = {
-  store?: StoreType
-}
-
-const Profile: React.FC<ProfileDataType> = (props) => {
+const Profile: React.FC = () => {
   return (
     <div className={classes.profile}>
       <div className={classes.profile__up}>

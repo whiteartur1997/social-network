@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import { ActionsTypes, PostType, ProfilePageType } from "./store";
 
 // тоже самое, при первом диспатче action, который сделает
@@ -36,17 +37,11 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
-            const stateCopy = { ...state };
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = "";
-            return stateCopy;
+            return { ...state, posts: [...state.posts, newPost], newPostText: "" };
         }
 
         case "UPDATE-NEW-POST-TEXT": {
-            const stateCopy = { ...state };
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {...state, newPostText: action.newText};
         }
 
         default:

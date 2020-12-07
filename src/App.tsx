@@ -28,6 +28,7 @@ const App: React.FC<AppDataType> = () => {
       <Route path="/dialogs"
         render={() => <DialogsContainer />}
       />
+      <Route path="/users" render={() => <div>Users</div>} />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />
       <Route path="/settings" component={Settings} />

@@ -49,7 +49,7 @@ let initialState: DialogsPageType = {
     newMessageText: ""
 };
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case "SEND-MESSAGE": {
             const newMessage = {
@@ -60,17 +60,11 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
                 fromMe: true,
                 avatar: require('./../img/batman.png')
             }
-            const stateCopy = { ...state };
-            stateCopy.messages = [...state.messages];
-            stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = "";
-            return stateCopy;
+            return { ...state, messages: [...state.messages, newMessage], newMessageText: ""};
         }
 
-        case "UPDATE-NEW-POST-MESSAGE": {
-            const stateCopy = { ...state };
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+        case "UPDATE-NEW-MESSAGE-TEXT": {
+            return {...state, newMessageText: action.newText};
         }
 
         default:
@@ -86,7 +80,7 @@ export const sendMessageAC = () => {
 
 export const updateNewMessageTextAC = (newText: string) => {
     return {
-        type: "UPDATE-NEW-POST-MESSAGE",
+        type: "UPDATE-NEW-MESSAGE-TEXT",
         newText: newText
     } as const;
 }

@@ -1,26 +1,33 @@
 import React from 'react';
-import { DialogItemType } from '../../redux/store';
+import { DialogItemType, DialogsPageType } from '../../redux/store';
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
 import classes from './Dialogs.module.scss';
-import MessagesContainer from './Messages/MessagesContainer';
+import Messages from './Messages/Messages';
 
-type DialogsType = {
-  dialogs: DialogItemType[]
+type DialogsPropsType = {
+  dialogsPage: DialogsPageType
+  updateNewMessageText: (newText: string) => void
+  sendMessage: () => void
 }
 
-const Dialogs: React.FC<DialogsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
+  console.log(props);
   return (
     <div className={classes.dialogs}>
       <h4 className={classes.dialogs__header}>Chat / Messages</h4>
       <div>
         <ul className={classes.dialogs__contacts}>
-          {props.dialogs.map(dialog => {
+          {props.dialogsPage.dialogs.map(dialog => {
             return (
               <DialogItem key={dialog.id} dialog={dialog} />
             )
           })}
         </ul>
-        <MessagesContainer />
+        <Messages 
+          messages={props.dialogsPage.messages} 
+          newMessageText={props.dialogsPage.newMessageText} 
+          updateNewMessageText={props.updateNewMessageText}
+          sendMessage={props.sendMessage} />
       </div>
     </div>
   )

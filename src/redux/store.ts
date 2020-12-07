@@ -1,3 +1,4 @@
+import { followAC, unfollowAC, setUsers } from './usersReducer';
 import { sendMessageAC, updateNewMessageTextAC } from "./dialogsReducer";
 import { addPostAC, updateNewPostTextAC } from './profileReducer';
 
@@ -13,7 +14,10 @@ export type StoreType = {
 export type ActionsTypes = ReturnType<typeof addPostAC> |
   ReturnType<typeof updateNewPostTextAC> |
   ReturnType<typeof sendMessageAC> |
-  ReturnType<typeof updateNewMessageTextAC>;
+  ReturnType<typeof updateNewMessageTextAC> |
+  ReturnType<typeof followAC> |
+  ReturnType<typeof unfollowAC> |
+  ReturnType<typeof setUsers>;
 
 
 export type StateType = {
