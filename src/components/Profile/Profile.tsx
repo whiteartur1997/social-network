@@ -1,5 +1,4 @@
 import React from 'react';
-import { StoreType } from '../../redux/store';
 import HeaderList from './HeaderList/HeaderList';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import classes from './Profile.module.scss';

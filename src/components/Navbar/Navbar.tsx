@@ -20,6 +20,12 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
+            <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/users">
+              <i className="fas fa-user-friends"></i>
+              Users
+            </NavLink>
+          </li>
+          <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/news">
               <i className="far fa-newspaper"></i>
               News

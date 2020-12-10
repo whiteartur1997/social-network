@@ -1,6 +1,6 @@
 import { ActionsTypes } from "./store";
 
-type UserType = {
+export type UserType = {
   id: number
   name: string
   surname: string
@@ -22,69 +22,9 @@ type UsersType = {
 
 const initialState: UsersType = {
   users: [
-    // {
-    //   id: 1,
-    //   name: "Lady",
-    //   surname: "Gaga",
-    //   location: {
-    //     city: "New-York",
-    //     country: "USA"
-    //   },
-    //   friends: 102,
-    //   photos: 32,
-    //   avatar: require('./../img/gaga.png'),
-    //   backImage: require('./../img/userBG.jpg'),
-    //   status: "Alejandro...",
-    //   isFollowed: true
-    // },
-    // {
-    //   id: 2,
-    //   name: "Wilson",
-    //   surname: "Deadpool",
-    //   location: {
-    //     city: "Brooklyn",
-    //     country: "USA"
-    //   },
-    //   friends: 243,
-    //   photos: 2,
-    //   avatar: require('./../img/deadpool.png'),
-    //   backImage: require('./../img/userBG.jpg'),
-    //   status: "Like read comics",
-    //   isFollowed: false
-    // },
-    // {
-    //   id: 3,
-    //   name: "Tupac",
-    //   surname: "Shakur",
-    //   location: {
-    //     city: "Los-Angeles",
-    //     country: "USA"
-    //   },
-    //   friends: 44,
-    //   photos: 5,
-    //   avatar: require('./../img/tupac.png'),
-    //   backImage: require('./../img/userBG.jpg'),
-    //   status: "Thug life",
-    //   isFollowed: false
-    // },
-    // {
-    //   id: 4,
-    //   name: "Vlad",
-    //   surname: "Yama",
-    //   location: {
-    //     city: "Kyiv",
-    //     country: "Ukraine"
-    //   },
-    //   friends: 891,
-    //   photos: 77,
-    //   avatar: require('./../img/yama.png'),
-    //   backImage: require('./../img/userBG.jpg'),
-    //   status: "Cha cha cha",
-    //   isFollowed: true
-    // },
+    
   ]
 }
-
 
 function usersReducer(state = initialState, action: ActionsTypes) {
   switch(action.type) {
@@ -119,7 +59,7 @@ function usersReducer(state = initialState, action: ActionsTypes) {
   }
 }
 
-export const setUsers = (users: UserType[]) => {
+export const setUsersAC = (users: UserType[]) => {
   return {
     type: 'SET-USERS',
     users: users
@@ -139,3 +79,5 @@ export const unfollowAC = (userID: number) => {
     id: userID
   } as const
 }
+
+export default usersReducer;

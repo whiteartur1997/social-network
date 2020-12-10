@@ -1,5 +1,5 @@
 import React from 'react';
-import { DialogItemType, DialogsPageType } from '../../redux/store';
+import { DialogsPageType } from '../../redux/store';
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
 import classes from './Dialogs.module.scss';
 import Messages from './Messages/Messages';
@@ -11,7 +11,6 @@ type DialogsPropsType = {
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
-  console.log(props);
   return (
     <div className={classes.dialogs}>
       <h4 className={classes.dialogs__header}>Chat / Messages</h4>

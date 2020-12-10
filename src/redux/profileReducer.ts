@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { ActionsTypes, PostType, ProfilePageType } from "./store";
 
 // тоже самое, при первом диспатче action, который сделает

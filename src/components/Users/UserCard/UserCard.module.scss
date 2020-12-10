@@ -1,0 +1,95 @@
+@import './../../../index.scss';
+
+.usersCards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  position: relative;
+  border-radius: 5px;
+  background: #fff;
+  margin: 10px;
+}
+
+.userCardBg {
+  width: 100%;
+  height: 120px;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 40px;
+}
+
+.userCardAvatar {
+  @include avatar;
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border: 4px solid #fff;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.userCardBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 25px 25px 25px;
+}
+
+.userCardTitle, 
+.userCardFriends > :first-child,
+.userCardPhotos > :first-child {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #515365;
+}
+
+.userCardLocation,
+.userCardFriends > :last-child,
+.userCardPhotos > :last-child,
+.userCardStatus {
+  color: #888da8;
+  font-size: .812rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.userCardFeatures {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.userCardFriends, .userCardPhotos {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.userCardStatus {
+  width: 100%;
+  text-align: center;
+  border: 1px solid #eee;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.userCardBtn {
+  @include btn;
+  min-width: 100%;
+  
+  &Follow {
+    background-color: #38a9ff;
+  }
+
+  &Unfollow {
+    background-color: #d63434;
+  }
+}
