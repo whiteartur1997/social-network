@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './../../img/logo.png';
-import avatar from './../../img/batman.png';
-import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
+import avatar from './../../assets/img/batman.png';
+import logo from './../../assets/img/logo.png';
+import styles from './Header.module.scss';
 
 
 const Header = () => {

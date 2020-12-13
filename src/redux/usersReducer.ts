@@ -1,39 +1,33 @@
 import { ActionsTypes } from "./store";
 
 export type UserType = {
-  id: number
   name: string
-  surname: string
-  location: {
-    city: string
-    country: string
+  id: number
+  uniqueUrlName: null | string
+  photos: {
+    small: null | string
+    large: null | string
   }
-  friends: number
-  photos: number
-  avatar: string
-  backImage: string
-  status: string
-  isFollowed: boolean
+  status: null | string
+  followed: boolean
 }
 
-type UsersType = {
+type UsersPageType = {
   users: UserType[]
 }
 
-const initialState: UsersType = {
-  users: [
-    
-  ]
+const initialState: UsersPageType = {
+  users: []
 }
 
-function usersReducer(state = initialState, action: ActionsTypes) {
-  switch(action.type) {
+function usersReducer(state = initialState, action: ActionsTypes): UsersPageType {
+  switch (action.type) {
     case 'FOLLOW':
       return {
-        ...state, 
+        ...state,
         users: state.users.map(u => {
-          if(u.id === action.id) {
-            return {...u, isFollowed: true}
+          if (u.id === action.id) {
+            return { ...u, followed: true }
           }
           return u;
         })
@@ -42,8 +36,8 @@ function usersReducer(state = initialState, action: ActionsTypes) {
       return {
         ...state,
         users: state.users.map(u => {
-          if(u.id === action.id) {
-            return { ...u, isFollowed: false}
+          if (u.id === action.id) {
+            return { ...u, followed: false }
           }
           return u;
         })
@@ -52,7 +46,7 @@ function usersReducer(state = initialState, action: ActionsTypes) {
       return {
         ...state,
         users: [...state.users, ...action.users]
-      }  
+      }
 
     default:
       return state

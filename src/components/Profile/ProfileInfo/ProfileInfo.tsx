@@ -1,7 +1,7 @@
 import React from "react";
+import avatar from "../../../assets/img/batman.png";
+import coverImage from "../../../assets/img/cover.jpg";
 import classes from "./ProfileInfo.module.scss";
-import coverImage from "../../../img/cover.jpg";
-import avatar from "../../../img/batman.png";
 
 
 const ProfileInfo = () => {

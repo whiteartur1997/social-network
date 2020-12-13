@@ -6,7 +6,7 @@ let initialState: ProfilePageType = {
     posts: [
         {
             id: 1,
-            avatar: require('./../img/einstein.png'),
+            avatar: require('./../assets/img/einstein.png'),
             name: 'Albert Einstein',
             message: 'Hi, how are you?',
             likeCount: 2,
@@ -14,7 +14,7 @@ let initialState: ProfilePageType = {
         },
         {
             id: 2,
-            avatar: require('./../img/batman.png'),
+            avatar: require('./../assets/img/batman.png'),
             name: 'Bruce Wayne',
             message: 'My first steps in react!',
             likeCount: 24,
@@ -32,7 +32,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 id: 5,
                 message: state.newPostText,
                 name: "Bruce Wayne",
-                avatar: require('./../img/batman.png'),
+                avatar: require('./../assets/img/batman.png'),
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
@@ -40,7 +40,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         }
 
         case "UPDATE-NEW-POST-TEXT": {
-            return {...state, newPostText: action.newText};
+            return { ...state, newPostText: action.newText };
         }
 
         default:

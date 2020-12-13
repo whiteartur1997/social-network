@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import avatar from './../../../../img/batman.png';
+import avatar from './../../../../assets/img/batman.png';
 import classes from './AddPost.module.scss';
 
 type AddPostType = {

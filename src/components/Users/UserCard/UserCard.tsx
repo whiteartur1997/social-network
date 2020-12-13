@@ -1,17 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserType } from '../../../redux/usersReducer';
+import userAvatar from './../../../assets/img/user.png';
+import userBG from './../../../assets/img/userBG.jpg';
 import s from './UserCard.module.scss';
 
 type UserPropsType = {
   user: UserType
   followUser: (userId: number) => void
   unfollowUser: (userId: number) => void
-  setUsers:(users: UserType[]) => void
 }
 
-const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser, setUsers }) => {
-  
+const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
+
   function followUserHandler() {
     followUser(user.id)
   }
@@ -23,37 +24,37 @@ const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser, setUser
   return (
     <div className={s.userCard}>
       <div className={s.userCardBgWrapper}>
-        <img className={s.userCardBg} alt={"userBG"} src={user.backImage} />
+        <img className={s.userCardBg} alt={"userBG"} src={userBG} />
       </div>
       <div className={s.userCardAvatarWrapper}>
-        <img className={s.userCardAvatar} alt={"userAvatar"} src={user.avatar} />
+        <img className={s.userCardAvatar} alt={"userAvatar"} src={user.photos.small || userAvatar} />
       </div>
       <div className={s.userCardBottom}>
         <NavLink to={"#"}>
-          <h5 className={s.userCardTitle}>{user.name} {user.surname}</h5>
+          <h5 className={s.userCardTitle}>{user.name}</h5>
         </NavLink>
-        <span className={s.userCardLocation}>{user.location.city}, {user.location.country}</span>
+        <span className={s.userCardLocation}>{"user.location.city"}, {"user.location.country"}</span>
         <div className={s.userCardFeatures}>
           <div className={s.userCardFriends}>
-            <span>{user.friends}</span>
-            <br/>
+            <span>{100}</span>
+            <br />
             <span>friends</span>
-        </div>
+          </div>
           <div className={s.userCardPhotos}>
-            <span>{user.photos}</span>
-            <br/>
+            <span>{100}</span>
+            <br />
             <span>photos</span>
+          </div>
         </div>
-        </div>
-        <h6 className={s.userCardStatus}>{user.status}</h6>
-        {user.isFollowed ?
-          <button 
+        <h6 className={s.userCardStatus}>{user.status || "status"}</h6>
+        {user.followed ?
+          <button
             onClick={unfollowUserHandler}
-            style={{backgroundColor: "#d63434"}} 
+            style={{ backgroundColor: "#d63434" }}
             className={s.userCardBtn}>Unfollow</button>
-          : <button 
+          : <button
             onClick={followUserHandler}
-            style={{backgroundColor: "#38a9ff"}}  
+            style={{ backgroundColor: "#38a9ff" }}
             className={s.userCardBtn}>Follow</button>
         }
       </div>
