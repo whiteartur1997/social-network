@@ -22,8 +22,11 @@ class Users extends React.Component<UsersPropsType> {
   // можно не писать это делегирование, 
   // так как полностью строимся от родитея React.Component
   constructor(props: UsersPropsType) {
-    alert("New")
     super(props);
+  }
+
+  componentDidMount() {
+    console.log("Mounted")
     axios.get<GetUsersRepsonseType>("https://social-network.samuraijs.com/api/1.0/users").then(response => {
       this.props.setUsers(response.data.items);
     }).catch(() => {
