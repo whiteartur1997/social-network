@@ -12,7 +12,7 @@ export type UserType = {
   followed: boolean
 }
 
-type UsersPageType = {
+export type UsersPageType = {
   users: UserType[]
 }
 
