@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { updateNewMessageTextAC, sendMessageAC } from '../../redux/dialogsReducer';
+import {updateNewMessageTextAC, sendMessageAC, DialogsPageType} from '../../redux/dialogsReducer';
 import { AppStateType } from '../../redux/redux-store';
-import { DialogsPageType } from '../../redux/store';
 import Dialogs from './Dialogs';
 
 type MapStateToPropsType = {

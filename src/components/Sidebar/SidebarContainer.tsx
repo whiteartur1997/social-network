@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
-import { SidebarFriendType } from '../../redux/store';
 import Sidebar from './Sidebar';
+import {SidebarFriendType} from "../../redux/sidebarReducer";
 
 type MapStateToPropsType = {
   sidebarFriends: SidebarFriendType[]

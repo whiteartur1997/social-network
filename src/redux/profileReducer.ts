@@ -1,4 +1,18 @@
-import { ActionsTypes, PostType, ProfilePageType } from "./store";
+import { ActionsTypes } from "./redux-store";
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+export type PostType = {
+    id: number
+    avatar: string
+    name: string
+    message: string
+    likeCount: number
+    time: string
+};
 
 // тоже самое, при первом диспатче action, который сделает
 // redux, он возьмет этот стейт, а не undefined

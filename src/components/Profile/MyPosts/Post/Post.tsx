@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./Post.module.scss";
 import { NavLink } from "react-router-dom";
-import { PostType } from "../../../../redux/store";
+import {PostType} from "../../../../redux/profileReducer";
+
+
 
 
 type PostObjType = {

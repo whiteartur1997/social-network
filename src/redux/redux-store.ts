@@ -1,8 +1,18 @@
 import { combineReducers, createStore } from "redux";
-import dialogsReducer from "./dialogsReducer";
-import profileReducer from "./profileReducer";
+import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
+import profileReducer, {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
-import usersReducers from "./usersReducer";
+import usersReducers, {followAC, setCurrentPageAC, setTotalUsersAC, setUsersAC, unfollowAC} from "./usersReducer";
+
+export type ActionsTypes = ReturnType<typeof addPostAC> |
+    ReturnType<typeof updateNewPostTextAC> |
+    ReturnType<typeof sendMessageAC> |
+    ReturnType<typeof updateNewMessageTextAC> |
+    ReturnType<typeof followAC> |
+    ReturnType<typeof unfollowAC> |
+    ReturnType<typeof setUsersAC> |
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setTotalUsersAC>;
 
 
 // reducers - это наш state, с тремя ветками

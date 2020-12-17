@@ -2,8 +2,12 @@
 
 .usersCards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+.selectedPage {
+  font-weight: bold;
 }
 
 .userCard {

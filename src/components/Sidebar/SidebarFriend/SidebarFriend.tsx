@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { SidebarFriendType } from '../../../redux/store';
 import classes from './SidebarFriend.module.scss';
+import {SidebarFriendType} from "../../../redux/sidebarReducer";
 
 const SidebarFriend: React.FC<SidebarFriendType> = (props) => {
   let online = props.status === "online";

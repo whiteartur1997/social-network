@@ -10,14 +10,9 @@ import Profile from "./components/Profile/Profile";
 import Settings from "./components/Settings/Settings";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import { StoreType } from './redux/store';
-
-type AppDataType = {
-  store?: StoreType
-}
 
 
-const App: React.FC<AppDataType> = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Header />

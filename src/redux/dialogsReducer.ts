@@ -1,4 +1,27 @@
-import { ActionsTypes, DialogsPageType } from "./store";
+import {ActionsTypes} from "./redux-store";
+
+export type DialogsPageType = {
+    dialogs: Array<DialogItemType>
+    messages: Array<MessageItemType>
+    newMessageText: string
+}
+
+export type DialogItemType = {
+    name: string
+    id: number
+    preview: string
+    time: string
+    avatar: string
+};
+
+export type MessageItemType = {
+    id: number
+    name: string
+    description: string
+    time: string
+    fromMe: boolean
+    avatar: string
+};
 
 // нам нужен инит стейт для каждой ветки, так как redux при первой загрузке
 // приложения сам диспатчит action, при этом наш state - undefined

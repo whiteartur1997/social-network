@@ -1,4 +1,4 @@
-import { ActionsTypes } from "./store";
+import { ActionsTypes } from "./redux-store";
 
 export type UserType = {
   name: string
@@ -13,11 +13,17 @@ export type UserType = {
 }
 
 export type UsersPageType = {
-  users: UserType[]
+  users: UserType[],
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
 }
 
 const initialState: UsersPageType = {
-  users: []
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1
 }
 
 function usersReducer(state = initialState, action: ActionsTypes): UsersPageType {
@@ -45,9 +51,18 @@ function usersReducer(state = initialState, action: ActionsTypes): UsersPageType
     case 'SET-USERS':
       return {
         ...state,
-        users: [...state.users, ...action.users]
+        users: [...action.users]
       }
-
+    case 'SET-CURRENT-PAGE':
+      return {
+        ...state,
+        currentPage: action.pageNumber
+      }
+    case 'SET-TOTAL-USERS':
+      return {
+        ...state,
+        totalUsersCount: action.totalUsers
+      }
     default:
       return state
   }
@@ -71,6 +86,20 @@ export const unfollowAC = (userID: number) => {
   return {
     type: 'UNFOLLOW',
     id: userID
+  } as const
+}
+
+export const setCurrentPageAC = (pageNumber: number) => {
+  return {
+    type: 'SET-CURRENT-PAGE',
+    pageNumber
+  } as const
+}
+
+export const setTotalUsersAC = (totalUsers: number) => {
+  return {
+    type: 'SET-TOTAL-USERS',
+    totalUsers
   } as const
 }
 
