@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserType } from '../../../redux/usersReducer';
-import userAvatar from './../../../assets/img/user.png';
 import userBG from './../../../assets/img/userBG.jpg';
 import s from './UserCard.module.scss';
 
@@ -27,7 +26,7 @@ const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
         <img className={s.userCardBg} alt={"userBG"} src={userBG} />
       </div>
       <div className={s.userCardAvatarWrapper}>
-        <img className={s.userCardAvatar} alt={"userAvatar"} src={user.photos.small || userAvatar} />
+        <img className={s.userCardAvatar} alt={"userAvatar"} src={user.photos.small || "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"} />
       </div>
       <div className={s.userCardBottom}>
         <NavLink to={"#"}>

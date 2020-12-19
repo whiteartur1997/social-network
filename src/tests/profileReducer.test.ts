@@ -1,6 +1,4 @@
-import {ProfilePageType} from "../redux/store";
-import dialogsReducer from "../redux/dialogsReducer";
-import profileReducer from "../redux/profileReducer";
+import profileReducer, { ProfilePageType } from "../redux/profileReducer";
 
 let initialState: ProfilePageType;
 
@@ -29,7 +27,7 @@ beforeEach(() => {
 })
 
 test("new post should be added", () => {
-    const newState = profileReducer(initialState, {type: "ADD-POST"});
+    const newState = profileReducer(initialState, { type: "ADD-POST" });
 
     expect(newState.posts.length).toBe(3);
     expect(newState.posts[2].message).toBe("");
@@ -37,7 +35,7 @@ test("new post should be added", () => {
 });
 
 test("new post text should be updated", () => {
-    const newState = profileReducer(initialState, {type: "UPDATE-NEW-POST-TEXT", newText: "Dana"});
+    const newState = profileReducer(initialState, { type: "UPDATE-NEW-POST-TEXT", newText: "Dana" });
 
     expect(newState.newPostText).toBe("Dana");
 });

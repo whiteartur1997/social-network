@@ -1,7 +1,7 @@
-import s from "./UserCard/UserCard.module.scss";
-import UserCard from "./UserCard/UserCard";
 import React from "react";
-import {UserType} from "../../redux/usersReducer";
+import { UserType } from "../../redux/usersReducer";
+import UserCard from "./UserCard/UserCard";
+import s from "./UserCard/UserCard.module.scss";
 
 type UsersType = {
     currentPage: number
@@ -10,7 +10,7 @@ type UsersType = {
     users: UserType[]
     onCurrentPageChanged: (currentPage: number) => void
     followUser: (userId: number) => void
-    unfollowUser:  (userId: number) => void
+    unfollowUser: (userId: number) => void
 }
 
 
@@ -22,15 +22,15 @@ const Users = (props: UsersType) => {
         pages.push(i);
     }
 
-    return(
+    return (
         <div>
             <div className={s.pagination}>
                 {pages.map((p, i) => <span
                     key={i}
                     onClick={(e) => props.onCurrentPageChanged(p)}
                     className={props.currentPage === p ? s.selectedPage : ""}>
-                          {p}
-                    </span>
+                    {p}
+                </span>
                 )}
             </div>
             <div className={s.usersCards}>
