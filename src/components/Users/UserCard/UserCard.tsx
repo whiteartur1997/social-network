@@ -25,9 +25,11 @@ const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
       <div className={s.userCardBgWrapper}>
         <img className={s.userCardBg} alt={"userBG"} src={userBG} />
       </div>
-      <div className={s.userCardAvatarWrapper}>
-        <img className={s.userCardAvatar} alt={"userAvatar"} src={user.photos.small || "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"} />
-      </div>
+      <NavLink to={"/profile/" + user.id}>
+        <div className={s.userCardAvatarWrapper}>
+          <img className={s.userCardAvatar} alt={"userAvatar"} src={user.photos.small || "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"} />
+        </div>
+      </NavLink>
       <div className={s.userCardBottom}>
         <NavLink to={"#"}>
           <h5 className={s.userCardTitle}>{user.name}</h5>

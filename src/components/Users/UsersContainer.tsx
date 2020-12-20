@@ -1,10 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
-import { followAC, setCurrentPageAC, setTotalUsersAC, setUsersAC, toggleIsFetchingAC, unfollowAC, UsersPageType, UserType } from '../../redux/usersReducer';
+import { UsersPageType, UserType } from '../../redux/usersReducer';
 import Preloader from "../common/Preloader";
+import {
+  followUser, setCurrentPage,
+  setTotalUsersCount, setUsers,
+  toggleIsFetching, unfollowUser
+} from './../../redux/usersReducer';
 import Users from "./Users";
 
 export type UsersContainerType = {
@@ -70,15 +74,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
   }
 }
 
-type MapDispatchToPropsType = {
-  followUser: (userId: number) => void
-  unfollowUser: (userId: number) => void
-  setUsers: (users: UserType[]) => void
-  setCurrentPage: (pageNumber: number) => void
-  setTotalUsersCount: (totalUsers: number) => void
-  toggleIsFetching: (isFetching: boolean) => void
-}
-
 function mapStateToProps(state: AppStateType): UsersPageType {
   return {
     users: state.usersPage.users,
@@ -89,27 +84,8 @@ function mapStateToProps(state: AppStateType): UsersPageType {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch): MapDispatchToPropsType {
-  return {
-    followUser: (userId) => {
-      dispatch(followAC(userId))
-    },
-    unfollowUser: (userId) => {
-      dispatch(unfollowAC(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber));
-    },
-    setTotalUsersCount: (totalUsers) => {
-      dispatch(setTotalUsersAC(totalUsers))
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingAC(isFetching))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+  followUser, unfollowUser,
+  setUsers, setCurrentPage,
+  setTotalUsersCount, toggleIsFetching
+})(UsersContainer)

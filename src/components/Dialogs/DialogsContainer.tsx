@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import {updateNewMessageTextAC, sendMessageAC, DialogsPageType} from '../../redux/dialogsReducer';
+import { DialogsPageType, sendMessage, updateNewMessageText } from '../../redux/dialogsReducer';
 import { AppStateType } from '../../redux/redux-store';
 import Dialogs from './Dialogs';
 
 type MapStateToPropsType = {
-  dialogsPage: DialogsPageType 
+  dialogsPage: DialogsPageType
 }
 
 type MapDispatchToPropsType = {
@@ -20,17 +19,6 @@ function mapStateToProps(state: AppStateType): MapStateToPropsType {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch): MapDispatchToPropsType {
-  return {
-    updateNewMessageText: (newText: string) => {
-      dispatch(updateNewMessageTextAC(newText))
-    },
-    sendMessage: () => {
-      dispatch(sendMessageAC())
-    }
-  }
-}
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, { sendMessage, updateNewMessageText })(Dialogs)
 
 export default DialogsContainer;

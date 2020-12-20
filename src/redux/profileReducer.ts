@@ -1,6 +1,7 @@
 import { ActionsTypes } from "./redux-store";
 
 export type ProfilePageType = {
+    profile: UserProfileType | null
     posts: Array<PostType>
     newPostText: string
 }
@@ -14,9 +15,32 @@ export type PostType = {
     time: string
 };
 
+export type UserProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string | null,
+        large: string | null
+    }
+}
+
 // тоже самое, при первом диспатче action, который сделает
 // redux, он возьмет этот стейт, а не undefined
 let initialState: ProfilePageType = {
+    profile: null,
     posts: [
         {
             id: 1,
@@ -41,6 +65,12 @@ let initialState: ProfilePageType = {
 // параметр по умолчанию
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
+        case "SET-USER-PROFILE": {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         case "ADD-POST": {
             const newPost: PostType = {
                 id: 5,
@@ -62,16 +92,23 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     }
 }
 
-export const addPostAC = () => {
+export const addPost = () => {
     return {
         type: "ADD-POST"
     } as const;
 }
 
-export const updateNewPostTextAC = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newText: newText
+    } as const;
+}
+
+export const setUserProfile = (profile: UserProfileType) => {
+    return {
+        type: 'SET-USER-PROFILE',
+        profile
     } as const;
 }
 
