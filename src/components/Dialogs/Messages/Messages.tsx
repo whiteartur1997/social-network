@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { MessageItemType } from "../../../redux/dialogsReducer";
 import AddMessage from './AddMessage/AddMessage';
 import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
-import {MessageItemType} from "../../../redux/dialogsReducer";
 
 
 type MessagesPropsType = {

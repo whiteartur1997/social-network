@@ -26,7 +26,6 @@ type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType;
 // ProfileContainer делает грязную работу для Profile (запрос на сервер)
 class ProfileContainer extends Component<WithUrlProfileContainerType> {
   componentDidMount() {
-    debugger;
     const userId = this.props.match.params.userId || 2;
     axios.get<UserProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
       .then(response => {

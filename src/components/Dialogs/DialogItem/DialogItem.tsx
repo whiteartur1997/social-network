@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { DialogItemType } from "../../../redux/dialogsReducer";
 import classes from './DialogItem.module.scss';
-import {DialogItemType} from "../../../redux/dialogsReducer";
 
 
 type DialogItemObj = {
@@ -9,7 +9,7 @@ type DialogItemObj = {
 }
 
 
-const DialogItem: React.FC<DialogItemObj> = (props) => {
+const DialogItemMemo: React.FC<DialogItemObj> = (props) => {
     return (
         <NavLink to={`/dialogs/${props.dialog.id}`} activeClassName={classes.active}>
             <li className={`${classes.dialogs__contact} ${classes.active}`}>
@@ -31,4 +31,4 @@ const DialogItem: React.FC<DialogItemObj> = (props) => {
     )
 }
 
-export default DialogItem;
+export default React.memo(DialogItemMemo);

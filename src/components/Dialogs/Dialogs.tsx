@@ -1,8 +1,8 @@
 import React from 'react';
+import { DialogsPageType } from "../../redux/dialogsReducer";
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
 import classes from './Dialogs.module.scss';
 import Messages from './Messages/Messages';
-import {DialogsPageType} from "../../redux/dialogsReducer";
 
 type DialogsPropsType = {
   dialogsPage: DialogsPageType
@@ -22,9 +22,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             )
           })}
         </ul>
-        <Messages 
-          messages={props.dialogsPage.messages} 
-          newMessageText={props.dialogsPage.newMessageText} 
+        <Messages
+          messages={props.dialogsPage.messages}
+          newMessageText={props.dialogsPage.newMessageText}
           updateNewMessageText={props.updateNewMessageText}
           sendMessage={props.sendMessage} />
       </div>
