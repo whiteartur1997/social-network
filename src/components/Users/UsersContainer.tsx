@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
-import { UsersPageType, UserType } from '../../redux/usersReducer';
+import { UserType } from '../../redux/usersReducer';
 import Preloader from "../common/Preloader";
 import {
   followUser, setCurrentPage,
@@ -11,12 +11,17 @@ import {
 } from './../../redux/usersReducer';
 import Users from "./Users";
 
-export type UsersContainerType = {
+export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType;
+
+type MapStateToPropsType = {
   users: UserType[]
   pageSize: number
   totalUsersCount: number
   currentPage: number
   isFetching: boolean
+}
+
+type MapDispatchToPropsType = {
   followUser: (userId: number) => void
   unfollowUser: (userId: number) => void
   setUsers: (users: UserType[]) => void
@@ -74,7 +79,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
   }
 }
 
-function mapStateToProps(state: AppStateType): UsersPageType {
+function mapStateToProps(state: AppStateType): MapStateToPropsType {
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
