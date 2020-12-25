@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from "redux";
+import authReducer, { setAuthUserData } from "./authReducer";
 import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsReducer";
 import profileReducer, { addPost, setUserProfile, updateNewPostText } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
@@ -14,7 +15,8 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof toggleIsFetching> |
-    ReturnType<typeof setUserProfile>;
+    ReturnType<typeof setUserProfile> |
+    ReturnType<typeof setAuthUserData>;
 
 
 // reducers - это наш state, с тремя ветками
@@ -23,7 +25,8 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducers,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
+    auth: authReducer
 });
 
 type RootReducerType = typeof reducers;

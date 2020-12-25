@@ -11,26 +11,35 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
         return <Preloader />
     }
     return (
-        <>
-            <div className={classes.profile__cover}>
-                <img className={classes.profile__cover__img} src={props.profile?.photos.large || coverImage} alt="cover" />
+        <div className={classes.profileInfo}>
+            <div className={classes.profileCover}>
+                <img className={classes.profileCoverImg} src={props.profile?.photos.large || coverImage} alt="cover" />
             </div>
-            <div className={classes.profile__header}>
-                <div className={classes.profile__info__wrapper}>
-                    <div className={classes.profile__info__link}>
-                        <img className={classes.profile__info__img} src={props.profile?.photos.small || avatar} alt="avatar" />
-                    </div>
-                    <div className={classes.profile__info__down}>
-                        <h3 className={classes.profile__info__title}>{props.profile?.fullName}</h3>
-                        <span className={classes.profile__info__location}>{props.profile?.aboutMe}</span>
-                        <span className={classes.profile__info__location}>
-                            {props.profile?.lookingForAJob ? "Ищу работу" : "Не ищу работу"}
-                        </span>
-                        <span className={classes.profile__info__location}>{props.profile?.lookingForAJobDescription}</span>
-                    </div>
+            <div className={classes.profileBody}>
+                <div className={classes.profileAvatar}>
+                    <img src={props.profile?.photos.small || avatar} alt="avatar" />
+                </div>
+                <div className={classes.profileDescr}>
+                    <h3 className={classes.profileDescrTitle}>{props.profile?.fullName}</h3>
+                    <span className={classes.profileDescrAbout}>{props.profile?.aboutMe}</span>
+                    <span className={classes.profileDescrJobSearch}>
+                        {props.profile?.lookingForAJob ? "Ищу работу" : "Не ищу работу"}
+                    </span>
+                    <span className={classes.profileDescrJobDescr}>{props.profile?.lookingForAJobDescription}</span>
+                </div>
+                <div className={classes.profileContacts}>
+                    <ul>
+                        <li>Main: <a href={`${props.profile.contacts.mainLink}`}></a></li>
+                        <li>FB: <a href={`${props.profile.contacts.facebook}`}></a></li>
+                        <li>Insta: <a href={`${props.profile.contacts.instagram}`}></a></li>
+                        <li>Github: <a href={`${props.profile.contacts.github}`}></a></li>
+                        <li>Twitter: <a href={`${props.profile.contacts.twitter}`}></a></li>
+                        <li>Youtube: <a href={`${props.profile.contacts.youtube}`}></a></li>
+                        <li>VK: <a href={`${props.profile.contacts.vk}`}></a></li>
+                    </ul>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -34,58 +34,6 @@
   font-size: 0.875rem;
 }
 
-.header__search {
-  display: flex;
-}
-
-.header__search__input {
-  width: 500px;
-  height: 100%;
-  padding: 20px 50px 25px 10px;
-  background: #494c62;
-  border: none;
-  margin-right: 21px;
-  color: #fff;
-  font-weight: 500;
-}
-
-.header__search__submit {
-  width: 50px;
-  border: none;
-  padding: 10 20px;
-  background: inherit;
-  color: #fff;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #494c62;
-  }
-}
-
-.header__account {
-  display: flex;
-  align-items: center;
+.headerLogin {
   margin-left: auto;
-}
-
-.header__account__img {
-  @include avatar;
-  margin-right: 13px;
-}
-
-.header__account__info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.header__account__name {
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.header__account__status {
-  font-weight: 700;
-  font-size: 8px;
-  color: var(--primary-text-color);
 }
