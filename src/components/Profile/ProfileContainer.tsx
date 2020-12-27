@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { getUserProfileAPI } from "../../API/API";
 import { AppStateType } from "../../redux/redux-store";
 import { setUserProfile, UserProfileType } from "./../../redux/profileReducer";
 import Profile from './Profile';
@@ -26,11 +26,10 @@ type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType;
 // ProfileContainer делает грязную работу для Profile (запрос на сервер)
 class ProfileContainer extends Component<WithUrlProfileContainerType> {
   componentDidMount() {
-    const userId = this.props.match.params.userId || 2;
-    axios.get<UserProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-      .then(response => {
-        this.props.setUserProfile(response.data);
-      });
+    const userId = this.props.match.params.userId || "2";
+    getUserProfileAPI(userId).then(data => {
+      this.props.setUserProfile(data);
+    });
   }
 
   render() {

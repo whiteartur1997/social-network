@@ -1,14 +1,9 @@
-import axios from 'axios';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { followUserAPI, unfollowUserAPI } from '../../../API/API';
 import { UserType } from '../../../redux/usersReducer';
 import userBG from './../../../assets/img/userBG.jpg';
 import s from './UserCard.module.scss';
-
-type FollowUnfollowUserType = {
-  resultCode: number
-  messages: string[]
-}
 
 type UserPropsType = {
   user: UserType
@@ -19,27 +14,17 @@ type UserPropsType = {
 const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
 
   function followUserHandler() {
-    axios.post<FollowUnfollowUserType>(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-      withCredentials: true,
-      headers: {
-        "API-KEY": "12593e8b-a230-49da-8bc0-827e793858c7"
-      }
-    }).then(response => {
-      if (response.data.resultCode === 0) {
-        followUser(user.id)
+    followUserAPI(user.id).then(data => {
+      if (data.resultCode === 0) {
+        followUser(user.id);
       }
     })
   }
 
   function unfollowUserHandler() {
-    axios.delete<FollowUnfollowUserType>(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-      withCredentials: true,
-      headers: {
-        "API-KEY": "12593e8b-a230-49da-8bc0-827e793858c7"
-      }
-    }).then(response => {
-      if (response.data.resultCode === 0) {
-        unfollowUser(user.id)
+    unfollowUserAPI(user.id).then(data => {
+      if (data.resultCode === 0) {
+        unfollowUser(user.id);
       }
     })
   }
