@@ -90,6 +90,11 @@
   @include btn;
   min-width: 100%;
   
+  &:disabled {
+    background-color: grey !important;
+    opacity: .5;
+  }
+
   &Follow {
     background-color: #38a9ff;
   }

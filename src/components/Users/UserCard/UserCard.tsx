@@ -7,26 +7,31 @@ import s from './UserCard.module.scss';
 
 type UserPropsType = {
   user: UserType
+  followingInProgress: number[]
   followUser: (userId: number) => void
   unfollowUser: (userId: number) => void
+  toggleFollowing: (isFollowing: boolean, userID: number) => void
 }
 
-const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
-
+const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser, toggleFollowing, followingInProgress }) => {
   function followUserHandler() {
+    toggleFollowing(true, user.id);
     followUserAPI(user.id).then(data => {
       if (data.resultCode === 0) {
         followUser(user.id);
       }
+      toggleFollowing(false, user.id);
     })
   }
 
   function unfollowUserHandler() {
+    toggleFollowing(true, user.id);
     unfollowUserAPI(user.id).then(data => {
       if (data.resultCode === 0) {
         unfollowUser(user.id);
       }
     })
+    toggleFollowing(false, user.id);
   }
 
   return (
@@ -59,10 +64,12 @@ const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser }) => {
         <h6 className={s.userCardStatus}>{user.status || "status"}</h6>
         {user.followed ?
           <button
+            disabled={followingInProgress.some(item => item === user.id)}
             onClick={unfollowUserHandler}
             style={{ backgroundColor: "#d63434" }}
             className={s.userCardBtn}>Unfollow</button>
           : <button
+            disabled={followingInProgress.some(item => item === user.id)}
             onClick={followUserHandler}
             style={{ backgroundColor: "#38a9ff" }}
             className={s.userCardBtn}>Follow</button>

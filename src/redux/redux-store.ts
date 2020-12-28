@@ -3,7 +3,7 @@ import authReducer, { setAuthUserData } from "./authReducer";
 import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsReducer";
 import profileReducer, { addPost, setUserProfile, updateNewPostText } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
-import usersReducers, { followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollowUser } from "./usersReducer";
+import usersReducers, { followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUser } from "./usersReducer";
 
 export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof updateNewPostText> |
@@ -16,7 +16,8 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof toggleIsFetching> |
     ReturnType<typeof setUserProfile> |
-    ReturnType<typeof setAuthUserData>;
+    ReturnType<typeof setAuthUserData> |
+    ReturnType<typeof toggleFollowing>;
 
 
 // reducers - это наш state, с тремя ветками
