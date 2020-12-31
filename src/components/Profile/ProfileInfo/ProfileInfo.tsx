@@ -29,13 +29,13 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
                 </div>
                 <div className={classes.profileContacts}>
                     <ul>
-                        <li>Main: <a href={`${props.profile.contacts.mainLink}`}></a></li>
-                        <li>FB: <a href={`${props.profile.contacts.facebook}`}></a></li>
-                        <li>Insta: <a href={`${props.profile.contacts.instagram}`}></a></li>
-                        <li>Github: <a href={`${props.profile.contacts.github}`}></a></li>
-                        <li>Twitter: <a href={`${props.profile.contacts.twitter}`}></a></li>
-                        <li>Youtube: <a href={`${props.profile.contacts.youtube}`}></a></li>
-                        <li>VK: <a href={`${props.profile.contacts.vk}`}></a></li>
+                        <li>Main: <a href={`${props.profile.contacts.mainLink}`}>Main</a></li>
+                        <li>FB: <a href={`${props.profile.contacts.facebook}`}>FB</a></li>
+                        <li>Insta: <a href={`${props.profile.contacts.instagram}`}>Insta</a></li>
+                        <li>Github: <a href={`${props.profile.contacts.github}`}>Github</a></li>
+                        <li>Twitter: <a href={`${props.profile.contacts.twitter}`}>Twitter</a></li>
+                        <li>Youtube: <a href={`${props.profile.contacts.youtube}`}>Youtube</a></li>
+                        <li>VK: <a href={`${props.profile.contacts.vk}`}>VK</a></li>
                     </ul>
                 </div>
             </div>

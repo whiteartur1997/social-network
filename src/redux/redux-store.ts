@@ -1,22 +1,23 @@
-import { combineReducers, createStore } from "redux";
-import authReducer, { setAuthUserData } from "./authReducer";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunkMiddleware from 'redux-thunk'
+import authReducer, { setAuthUserDataSuccess } from "./authReducer";
 import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsReducer";
-import profileReducer, { addPost, setUserProfile, updateNewPostText } from "./profileReducer";
+import profileReducer, { addPost, setUserProfileSuccess, updateNewPostText } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
-import usersReducers, { followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUser } from "./usersReducer";
+import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUser, unfollowUserSuccess } from "./usersReducer";
 
 export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof updateNewPostText> |
     ReturnType<typeof sendMessage> |
     ReturnType<typeof updateNewMessageText> |
-    ReturnType<typeof followUser> |
-    ReturnType<typeof unfollowUser> |
+    ReturnType<typeof followUserSuccess> |
+    ReturnType<typeof unfollowUserSuccess> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof toggleIsFetching> |
-    ReturnType<typeof setUserProfile> |
-    ReturnType<typeof setAuthUserData> |
+    ReturnType<typeof setUserProfileSuccess> |
+    ReturnType<typeof setAuthUserDataSuccess> |
     ReturnType<typeof toggleFollowing>;
 
 
@@ -34,7 +35,7 @@ type RootReducerType = typeof reducers;
 export type AppStateType = ReturnType<RootReducerType>;
 
 // отдаем редюсеры store
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 declare global {
     interface Window {

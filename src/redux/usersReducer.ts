@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { usersAPI } from "../API/API";
 import { ActionsTypes } from "./redux-store";
 
 export type UserType = {
@@ -91,14 +93,14 @@ export const setUsers = (users: UserType[]) => {
   } as const
 }
 
-export const followUser = (userID: number) => {
+export const followUserSuccess = (userID: number) => {
   return {
     type: 'FOLLOW',
     id: userID
   } as const
 }
 
-export const unfollowUser = (userID: number) => {
+export const unfollowUserSuccess = (userID: number) => {
   return {
     type: 'UNFOLLOW',
     id: userID
@@ -132,6 +134,46 @@ export const toggleFollowing = (isFollowing: boolean, userID: number) => {
     isFollowing,
     userID
   } as const
+}
+
+// thunk creator
+export const getUsers = (currentPage: number, pageSize: number) => {
+  return (dispatch: (action: ActionsTypes) => void) => {
+    dispatch(toggleIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
+    usersAPI.getUsers(currentPage, pageSize)
+      .then(data => {
+        dispatch(toggleIsFetching(false));
+        dispatch(setTotalUsersCount(data.totalCount));
+        dispatch(setUsers(data.items));
+      }).catch(() => {
+        dispatch(setUsers([]));
+      })
+  }
+}
+
+export const followUser = (userId: number) => {
+  return (dispatch: (action: ActionsTypes) => void) => {
+    dispatch(toggleFollowing(true, userId));
+    usersAPI.followUser(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(followUserSuccess(userId));
+      }
+      dispatch(toggleFollowing(false, userId));
+    })
+  }
+}
+
+export const unfollowUser = (userId: number) => {
+  return (dispatch: Dispatch) => {
+    dispatch(toggleFollowing(true, userId));
+    usersAPI.unfollowUser(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowUserSuccess(userId));
+      }
+    })
+    dispatch(toggleFollowing(false, userId));
+  }
 }
 
 export default usersReducer;

@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { authAPI } from '../API/API';
 import { ActionsTypes } from "./redux-store";
 
 export type AuthType = {
@@ -30,7 +32,7 @@ const authReducer = (state: AuthType = initialState, action: ActionsTypes) => {
   }
 }
 
-export const setAuthUserData =
+export const setAuthUserDataSuccess =
   (userId: number, email: string, login: string) => {
     return {
       type: 'SET-USER-DATA',
@@ -42,4 +44,17 @@ export const setAuthUserData =
     } as const
   }
 
+export const setAuthUserData = () => {
+  return (dispatch: Dispatch) => {
+    authAPI.authMe()
+      .then(data => {
+        if (data.resultCode === 0) {
+          const { login, email, id } = data.data;
+          dispatch(setAuthUserDataSuccess(id, email, login))
+        }
+      })
+  }
+}
+
+  
 export default authReducer;

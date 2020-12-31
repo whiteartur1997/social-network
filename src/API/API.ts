@@ -30,27 +30,31 @@ const axiosInstance = axios.create({
   }
 })
 
-export const getUsersAPI = (currentPage: number = 1, pageSize: number = 10) => {
-  return axiosInstance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`)
-    .then(response => response.data);
+export const usersAPI = {
+  getUsers: (currentPage: number = 1, pageSize: number = 10) => {
+    return axiosInstance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`)
+      .then(response => response.data);
+  },
+  followUser: (userId: number) => {
+    return axiosInstance.post<FollowUnfollowUserType>(`follow/${userId}`)
+      .then(response => response.data)
+  },
+  unfollowUser: (userId: number) => {
+    return axiosInstance.delete<FollowUnfollowUserType>(`follow/${userId}`)
+      .then(response => response.data)
+  }
+}  
+
+export const authAPI = {
+  authMe: () => {
+    return axiosInstance.get<AuthResponseType>(`auth/me`)
+      .then(response => response.data);
+  }
 }
 
-export const followUserAPI = (userId: number) => {
-  return axiosInstance.post<FollowUnfollowUserType>(`follow/${userId}`)
-    .then(response => response.data)
-}
-
-export const unfollowUserAPI = (userId: number) => {
-  return axiosInstance.delete<FollowUnfollowUserType>(`follow/${userId}`)
-    .then(response => response.data)
-}
-
-export const authMeAPI = () => {
-  return axiosInstance.get<AuthResponseType>(`auth/me`)
-    .then(response => response.data);
-}
-
-export const getUserProfileAPI = (userId: string) => {
-  return axiosInstance.get<UserProfileType>(`profile/${userId}`)
-    .then(response => response.data)
+export const profileAPI = {
+  getUserProfile: (userId: string) => {
+    return axiosInstance.get<UserProfileType>(`profile/${userId}`)
+      .then(response => response.data)
+  }
 }

@@ -12,7 +12,6 @@ type UsersType = {
     onCurrentPageChanged: (currentPage: number) => void
     followUser: (userId: number) => void
     unfollowUser: (userId: number) => void
-    toggleFollowing: (isFollowing: boolean, userID: number) => void
 }
 
 
@@ -44,7 +43,6 @@ const Users = (props: UsersType) => {
                             followUser={props.followUser}
                             unfollowUser={props.unfollowUser}
                             followingInProgress={props.followingInProgress}
-                            toggleFollowing={props.toggleFollowing}
                         />
                     )
                 })}

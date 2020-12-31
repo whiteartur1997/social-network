@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { followUserAPI, unfollowUserAPI } from '../../../API/API';
 import { UserType } from '../../../redux/usersReducer';
 import userBG from './../../../assets/img/userBG.jpg';
 import s from './UserCard.module.scss';
@@ -10,28 +9,15 @@ type UserPropsType = {
   followingInProgress: number[]
   followUser: (userId: number) => void
   unfollowUser: (userId: number) => void
-  toggleFollowing: (isFollowing: boolean, userID: number) => void
 }
 
-const User: React.FC<UserPropsType> = ({ user, followUser, unfollowUser, toggleFollowing, followingInProgress }) => {
+const User: React.FC<UserPropsType> = ({ user, followingInProgress, followUser, unfollowUser}) => {
   function followUserHandler() {
-    toggleFollowing(true, user.id);
-    followUserAPI(user.id).then(data => {
-      if (data.resultCode === 0) {
-        followUser(user.id);
-      }
-      toggleFollowing(false, user.id);
-    })
+    followUser(user.id)
   }
 
   function unfollowUserHandler() {
-    toggleFollowing(true, user.id);
-    unfollowUserAPI(user.id).then(data => {
-      if (data.resultCode === 0) {
-        unfollowUser(user.id);
-      }
-    })
-    toggleFollowing(false, user.id);
+    unfollowUser(user.id);
   }
 
   return (
