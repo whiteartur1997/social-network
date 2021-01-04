@@ -5,17 +5,14 @@ import Dialogs from './Dialogs';
 
 type MapStateToPropsType = {
   dialogsPage: DialogsPageType
-}
-
-type MapDispatchToPropsType = {
-  updateNewMessageText: (newText: string) => void
-  sendMessage: () => void
+  isAuth: boolean
 }
 
 function mapStateToProps(state: AppStateType): MapStateToPropsType {
   return {
     // диалоги будут перерисовываться, если этот объект будет иным
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth
   }
 }
 

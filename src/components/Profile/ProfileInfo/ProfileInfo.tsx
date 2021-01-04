@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import avatar from "../../../assets/img/batman.png";
 import coverImage from "../../../assets/img/cover.jpg";
 import Preloader from "../../common/Preloader";
@@ -7,6 +8,9 @@ import classes from "./ProfileInfo.module.scss";
 
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
+    if (!props.isAuth) {
+        return <Redirect to={"/login"} />
+    }
     if (!props.profile) {
         return <Preloader />
     }

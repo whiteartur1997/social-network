@@ -6,12 +6,13 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 export type ProfileType = {
   profile: UserProfileType | null
+  isAuth: boolean
 }
 
 const Profile: React.FC<ProfileType> = (props) => {
   return (
     <div className={classes.profile}>
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo isAuth={props.isAuth} profile={props.profile} />
       <MyPostsContainer />
     </div>
   )

@@ -14,6 +14,7 @@ type WithUrlProfileContainerType = RouteComponentProps<PathParamsType> &
 
 type MapStateToPropsType = {
   profile: UserProfileType | null
+  isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
@@ -35,7 +36,8 @@ class ProfileContainer extends Component<WithUrlProfileContainerType> {
 
 function mapStateToProps(state: AppStateType): MapStateToPropsType {
   return {
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
   }
 }
 

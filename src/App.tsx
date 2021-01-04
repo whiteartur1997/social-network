@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import "./App.scss";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 import Music from "./components/Music/Music";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
@@ -18,6 +19,7 @@ const App: React.FC = () => {
       <HeaderContainer />
       <Navbar />
       <SidebarContainer />
+      <Route path="/login" render={() => <Login />} />
       <Route path="/profile/:userId?"
         render={() => <ProfileContainer />}
       />

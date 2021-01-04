@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { DialogsPageType } from "../../redux/dialogsReducer";
 import DialogItem from './../Dialogs/DialogItem/DialogItem';
 import classes from './Dialogs.module.scss';
@@ -6,11 +7,16 @@ import Messages from './Messages/Messages';
 
 type DialogsPropsType = {
   dialogsPage: DialogsPageType
+  isAuth: boolean
   updateNewMessageText: (newText: string) => void
   sendMessage: () => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
+  if (!props.isAuth) {
+    return <Redirect to={"/login"} />
+  }
+
   return (
     <div className={classes.dialogs}>
       <h4 className={classes.dialogs__header}>Chat / Messages</h4>
