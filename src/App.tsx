@@ -19,9 +19,12 @@ const App: React.FC = () => {
       <HeaderContainer />
       <Navbar />
       <SidebarContainer />
+      <Route exact path="/" component={Login} />
       <Route path="/login" render={() => <Login />} />
       <Route path="/profile/:userId?"
-        render={() => <ProfileContainer />}
+        render={() => {
+          return <ProfileContainer />
+        }}
       />
       <Route path="/dialogs"
         render={() => <DialogsContainer />}

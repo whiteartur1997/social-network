@@ -14,9 +14,6 @@ const Header: React.FC<HeaderPropsType> = (props) => {
       <NavLink className={styles.header__link} to="/profile">
         <img className={styles.header__logo} src={logo} alt="logo" />
       </NavLink>
-      <div className={styles.header__current}>
-        ---Current Page---
-      </div>
       {props.isAuth
         ? <div className={styles.headerLogin}>
           {props.login}
