@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { compose } from 'redux';
 import { AppStateType } from "../../redux/redux-store";
 import { withAuthRedirect } from '../HOC/AuthRedirect';
 import { setUserProfile, UserProfileType } from "./../../redux/profileReducer";
@@ -32,15 +33,14 @@ class ProfileContainer extends Component<WithUrlProfileContainerType> {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
 function mapStateToProps(state: AppStateType): MapStateToPropsType {
   return {
     profile: state.profilePage.profile
   }
 }
 
-const WithURLDataProfileContainer = withRouter(AuthRedirectComponent);
-
-// эта контейнерная компонента достает state и методы для ProfileContainer
-export default connect(mapStateToProps, { setUserProfile })(WithURLDataProfileContainer);
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, { setUserProfile }), 
+  withRouter, 
+  withAuthRedirect)
+  (ProfileContainer);
