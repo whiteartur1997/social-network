@@ -133,7 +133,7 @@ export const setUserStatusSuccess = (status: string) => {
 
 export const setUserProfile = (userID: string) => {
     return (dispatch: Dispatch) => {
-        const userId = userID || "2";
+        const userId = userID || "13068";
         profileAPI.getUserProfile(userId).then(data => {
             dispatch(setUserProfileSuccess(data));
         });
@@ -142,7 +142,7 @@ export const setUserProfile = (userID: string) => {
 
 export const setUserStatus = (userID: string) => {
     return (dispatch: Dispatch) => {
-        const userId = userID || "2";
+        const userId = userID || "13068";
         profileAPI.getUserStatus(userId).then(data => {
             dispatch(setUserStatusSuccess(data));
         })
@@ -150,7 +150,6 @@ export const setUserStatus = (userID: string) => {
 }
 
 export const updateUserStatus = (status: string) => {
-    debugger
     return (dispatch: Dispatch) => {
         profileAPI.updateUserStatus(status).then(data => {
             if (data.resultCode === 0) {

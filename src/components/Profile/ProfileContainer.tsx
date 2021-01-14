@@ -33,7 +33,6 @@ class ProfileContainer extends Component<WithUrlProfileContainerType> {
   }
 
   render() {
-    console.log(this.props);
     return <Profile
       {...this.props}
       updateUserStatus={this.props.updateUserStatus}

@@ -19,7 +19,6 @@ const App: React.FC = () => {
       <HeaderContainer />
       <Navbar />
       <SidebarContainer />
-      <Route exact path="/" component={ProfileContainer} />
       <Route path="/login" render={() => <Login />} />
       <Route path="/profile/:userId?"
         render={() => {

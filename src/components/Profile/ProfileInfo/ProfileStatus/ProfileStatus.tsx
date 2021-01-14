@@ -18,13 +18,25 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
             isEdit: false,
             status: this.props.status
         }
+        console.log(this.state);
+    }
+
+
+    componentDidUpdate(prevProps: ProfileStatusPropsType, prevState: ProfileStatusType) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     updateStatus = () => {
         this.props.updateUserStatus(this.state.status);
+        this.deactivateEditMode()
     }
 
     onChangehandler = (e: ChangeEvent<HTMLInputElement>) => {
+        debugger
         this.setState({
             status: e.currentTarget.value
         })
@@ -50,9 +62,8 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
                 <input
                     autoFocus
                     value={this.state.status}
-                    onBlur={this.deactivateEditMode}
+                    onBlur={this.updateStatus}
                     onChange={this.onChangehandler} />
-                <button onClick={this.updateStatus}>Change status</button>
             </>
             : <span className={s.status} onDoubleClick={this.activateEditMode}>{this.props.status || "----"}</span>
     }
