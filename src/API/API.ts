@@ -8,18 +8,10 @@ type GetUsersResponseType = {
   error: string
 }
 
-type FollowUnfollowUserType = {
+type CommonResponseType<D> = {
   resultCode: number
-  messages: string[]
-}
-
-type AuthResponseType = {
-  resultCode: number
-  data: {
-    id: number
-    email: string
-    login: string
-  }
+  messages: Array<string>
+  data: D
 }
 
 const axiosInstance = axios.create({
@@ -36,18 +28,23 @@ export const usersAPI = {
       .then(response => response.data);
   },
   followUser: (userId: number) => {
-    return axiosInstance.post<FollowUnfollowUserType>(`follow/${userId}`)
+    return axiosInstance.post<CommonResponseType<{}>>(`follow/${userId}`)
       .then(response => response.data)
   },
   unfollowUser: (userId: number) => {
-    return axiosInstance.delete<FollowUnfollowUserType>(`follow/${userId}`)
+    return axiosInstance.delete<CommonResponseType<{}>>(`follow/${userId}`)
       .then(response => response.data)
   }
 }  
 
 export const authAPI = {
   authMe: () => {
-    return axiosInstance.get<AuthResponseType>(`auth/me`)
+    return axiosInstance.get<CommonResponseType<{data: {
+      messages: Array<string>
+      id: number
+      email: string
+      login: string
+    }}>>(`auth/me`)
       .then(response => response.data);
   }
 }
@@ -56,5 +53,13 @@ export const profileAPI = {
   getUserProfile: (userId: string) => {
     return axiosInstance.get<UserProfileType>(`profile/${userId}`)
       .then(response => response.data)
+  },
+  getUserStatus: (userId: string) => {
+    return axiosInstance.get<string>(`profile/status/${userId}`)
+      .then(response => response.data);
+  },
+  updateUserStatus: () => {
+    return axiosInstance.put<CommonResponseType<{}>>(`profile/status/`)
+      .then(response => response.data);
   }
 }

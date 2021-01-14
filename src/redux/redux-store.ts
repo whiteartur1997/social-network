@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from 'redux-thunk';
 import authReducer, { setAuthUserDataSuccess } from "./authReducer";
 import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsReducer";
-import profileReducer, { addPost, setUserProfileSuccess, updateNewPostText } from "./profileReducer";
+import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess, updateNewPostText } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUserSuccess } from "./usersReducer";
 
@@ -17,6 +17,7 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof toggleIsFetching> |
     ReturnType<typeof setUserProfileSuccess> |
+    ReturnType<typeof setUserStatusSuccess> |
     ReturnType<typeof setAuthUserDataSuccess> |
     ReturnType<typeof toggleFollowing>;
 

@@ -64,4 +64,5 @@ function mapStateToProps(state: AppStateType): MapStateToPropsType {
 }
 
 export default connect(mapStateToProps, {
-  getUsers, followUser, unfollowUser})(UsersContainer)
+  getUsers, followUser, unfollowUser
+})(UsersContainer)

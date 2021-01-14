@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import { AppStateType } from "../../redux/redux-store";
 import { withAuthRedirect } from '../HOC/AuthRedirect';
-import { setUserProfile, UserProfileType } from "./../../redux/profileReducer";
+import { setUserProfile, setUserStatus, UserProfileType } from "./../../redux/profileReducer";
 import Profile from './Profile';
 
 type PathParamsType = { userId: string };
@@ -13,10 +13,12 @@ type WithUrlProfileContainerType = RouteComponentProps<PathParamsType> & Profile
 
 type MapStateToPropsType = {
   profile: UserProfileType | null
+  status: string
 }
 
 type MapDispatchToPropsType = {
   setUserProfile: (userId: string) => void
+  setUserStatus: (userId: string) => void
 }
 
 type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType;
@@ -25,7 +27,8 @@ type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType;
 // ProfileContainer делает грязную работу для Profile (запрос на сервер)
 class ProfileContainer extends Component<WithUrlProfileContainerType> {
   componentDidMount() {
-    this.props.setUserProfile(this.props.match.params.userId)
+    this.props.setUserProfile(this.props.match.params.userId);
+    this.props.setUserStatus(this.props.match.params.userId);
   }
 
   render() {
@@ -35,12 +38,13 @@ class ProfileContainer extends Component<WithUrlProfileContainerType> {
 
 function mapStateToProps(state: AppStateType): MapStateToPropsType {
   return {
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status
   }
 }
 
 export default compose<React.ComponentType>(
-  connect(mapStateToProps, { setUserProfile }), 
+  connect(mapStateToProps, { setUserProfile, setUserStatus }), 
   withRouter, 
   withAuthRedirect)
   (ProfileContainer);

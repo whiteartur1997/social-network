@@ -1,9 +1,11 @@
+import { act } from '@testing-library/react';
 import { Dispatch } from 'redux';
 import { profileAPI } from "../API/API";
 import { ActionsTypes } from "./redux-store";
 
 export type ProfilePageType = {
     profile: UserProfileType | null
+    status: string
     posts: Array<PostType>
     newPostText: string
 }
@@ -43,6 +45,7 @@ export type UserProfileType = {
 // redux, он возьмет этот стейт, а не undefined
 let initialState: ProfilePageType = {
     profile: null,
+    status: "",
     posts: [
         {
             id: 1,
@@ -73,6 +76,14 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 profile: action.profile
             }
         }
+
+        case "SET-USER-STATUS": {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
+
         case "ADD-POST": {
             const newPost: PostType = {
                 id: 5,
@@ -114,6 +125,13 @@ export const setUserProfileSuccess = (profile: UserProfileType) => {
     } as const;
 }
 
+export const setUserStatusSuccess = (status: string) => {
+    return {
+        type: 'SET-USER-STATUS',
+        status
+    } as const;
+}
+
 export const setUserProfile = (userID: string) => {
   return (dispatch: Dispatch) => {
     const userId = userID || "2";
@@ -121,6 +139,25 @@ export const setUserProfile = (userID: string) => {
       dispatch(setUserProfileSuccess(data));
     });
   }
+}
+
+export const setUserStatus = (userID: string) => {
+    return (dispatch: Dispatch) => {
+        const userId = userID || "2";
+        profileAPI.getUserStatus(userId).then(data => {
+            dispatch(setUserStatusSuccess(data));
+        })
+    }
+}
+
+export const updateUserStatus = (status: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.updateUserStatus().then(data => {
+            if(data.resultCode === 0) {
+                dispatch(status);
+            }
+        })
+    }
 }
 
 export default profileReducer;
