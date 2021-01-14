@@ -56,5 +56,5 @@ export const setAuthUserData = () => {
   }
 }
 
-  
+
 export default authReducer;

@@ -8,6 +8,7 @@ type ProfileStatusType = {
 
 type ProfileStatusPropsType = {
     status: string
+    updateUserStatus: (status: string) => void
 }
 
 class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatusType> {
@@ -19,10 +20,11 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
         }
     }
 
+    updateStatus = () => {
+        this.props.updateUserStatus(this.state.status);
+    }
 
     onChangehandler = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger
-
         this.setState({
             status: e.currentTarget.value
         })
@@ -40,12 +42,19 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
         })
     }
 
+
+
     render() {
-        console.log("Status");
-        console.log(this.props.status);
         return this.state.isEdit
-            ? <input autoFocus value={this.state.status} onBlur={this.deactivateEditMode} onChange={this.onChangehandler} />
-            : <span className={s.status} onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+            ? <>
+                <input
+                    autoFocus
+                    value={this.state.status}
+                    onBlur={this.deactivateEditMode}
+                    onChange={this.onChangehandler} />
+                <button onClick={this.updateStatus}>Change status</button>
+            </>
+            : <span className={s.status} onDoubleClick={this.activateEditMode}>{this.props.status || "----"}</span>
     }
 }
 

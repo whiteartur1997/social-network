@@ -35,16 +35,16 @@ export const usersAPI = {
     return axiosInstance.delete<CommonResponseType<{}>>(`follow/${userId}`)
       .then(response => response.data)
   }
-}  
+}
 
 export const authAPI = {
   authMe: () => {
-    return axiosInstance.get<CommonResponseType<{data: {
+    return axiosInstance.get<CommonResponseType<{
       messages: Array<string>
       id: number
       email: string
       login: string
-    }}>>(`auth/me`)
+    }>>(`auth/me`)
       .then(response => response.data);
   }
 }
@@ -58,8 +58,10 @@ export const profileAPI = {
     return axiosInstance.get<string>(`profile/status/${userId}`)
       .then(response => response.data);
   },
-  updateUserStatus: () => {
-    return axiosInstance.put<CommonResponseType<{}>>(`profile/status/`)
+  updateUserStatus: (status: string) => {
+    return axiosInstance.put<CommonResponseType<{}>>(`profile/status/`, {
+      status: status
+    })
       .then(response => response.data);
   }
 }

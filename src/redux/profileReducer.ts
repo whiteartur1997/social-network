@@ -1,4 +1,3 @@
-import { act } from '@testing-library/react';
 import { Dispatch } from 'redux';
 import { profileAPI } from "../API/API";
 import { ActionsTypes } from "./redux-store";
@@ -133,12 +132,12 @@ export const setUserStatusSuccess = (status: string) => {
 }
 
 export const setUserProfile = (userID: string) => {
-  return (dispatch: Dispatch) => {
-    const userId = userID || "2";
-    profileAPI.getUserProfile(userId).then(data => {
-      dispatch(setUserProfileSuccess(data));
-    });
-  }
+    return (dispatch: Dispatch) => {
+        const userId = userID || "2";
+        profileAPI.getUserProfile(userId).then(data => {
+            dispatch(setUserProfileSuccess(data));
+        });
+    }
 }
 
 export const setUserStatus = (userID: string) => {
@@ -151,10 +150,11 @@ export const setUserStatus = (userID: string) => {
 }
 
 export const updateUserStatus = (status: string) => {
+    debugger
     return (dispatch: Dispatch) => {
-        profileAPI.updateUserStatus().then(data => {
-            if(data.resultCode === 0) {
-                dispatch(status);
+        profileAPI.updateUserStatus(status).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setUserStatusSuccess(status));
             }
         })
     }
