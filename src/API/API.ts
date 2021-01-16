@@ -1,4 +1,5 @@
 import axios from "axios";
+import { LoginFormDataType } from "../components/Login/Login";
 import { UserProfileType } from "../redux/profileReducer";
 import { UserType } from "../redux/usersReducer";
 
@@ -46,6 +47,19 @@ export const authAPI = {
       login: string
     }>>(`auth/me`)
       .then(response => response.data);
+  },
+  login: (loginFormData: LoginFormDataType) => {
+    const {login, password, rememberMe} = {...loginFormData}
+    debugger;
+    return axiosInstance.post<CommonResponseType<{ 
+      userId: number 
+    }>>(`auth/login`, {
+      email: login,
+      password: password,
+      rememberMe: rememberMe,
+      captcha: false
+    })
+      .then(response => response.data)
   }
 }
 

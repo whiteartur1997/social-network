@@ -1,0 +1,53 @@
+@import './../../index.scss';
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 5px;
+    min-width: 50%;
+}
+
+.intro {
+    padding: 25px;
+    border: 1px solid #e6ecf5;
+    font-size: .875rem;
+    color: var(--active-text-color);
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 35px 25px;
+    width: 100%;
+}
+
+.loginInput, .loginPassword, .checkboxContainer {
+    margin-bottom: 15px;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxContainer span {
+    font-size: 0.75rem;
+    margin-left: 10px;
+    color: var(--primary-text-color);
+}
+
+.inputContainer input {
+    width: 100%;
+    padding: 10px 7px;
+    border: 1px solid #e6ecf5;
+    color: var(--primary-text-color);
+}
+
+.loginButton {
+    @include btn;
+    width: 100%;
+}
+

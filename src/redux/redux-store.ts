@@ -5,6 +5,7 @@ import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsRedu
 import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess, updateNewPostText } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUserSuccess } from "./usersReducer";
+import {reducer as formReducer} from "redux-form";
 
 export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof updateNewPostText> |
@@ -29,7 +30,8 @@ const reducers = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducers,
     sidebar: sidebarReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 });
 
 type RootReducerType = typeof reducers;
@@ -44,6 +46,7 @@ declare global {
     }
 }
 
-window.state = store.getState();
+//@ts-ignore
+window.store = store;
 
 export default store;

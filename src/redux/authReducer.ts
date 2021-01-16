@@ -1,6 +1,8 @@
 import { Dispatch } from 'redux';
 import { authAPI } from '../API/API';
-import { ActionsTypes } from "./redux-store";
+import { ActionsTypes, AppStateType } from "./redux-store";
+import {LoginFormDataType} from "./../components/Login/Login";
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 export type AuthType = {
   id: number | null
@@ -9,6 +11,8 @@ export type AuthType = {
   isAuth: boolean
   isFetching?: boolean
 }
+
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
 
 const initialState: AuthType = {
   id: null,
@@ -44,7 +48,7 @@ export const setAuthUserDataSuccess =
     } as const
   }
 
-export const setAuthUserData = () => {
+export const setAuthUserData = (): ThunkType => {
   return (dispatch: Dispatch) => {
     authAPI.authMe()
       .then(data => {
@@ -52,6 +56,16 @@ export const setAuthUserData = () => {
           const { login, email, id } = data.data;
           dispatch(setAuthUserDataSuccess(id, email, login))
         }
+      })
+  }
+}
+
+export const loginUser = (loginFormData: LoginFormDataType): ThunkType => {
+  return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
+    authAPI.login(loginFormData)
+      .then(res => {
+        console.log(res.data);
+        dispatch(setAuthUserData())
       })
   }
 }

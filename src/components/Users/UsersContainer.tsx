@@ -35,7 +35,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
   render() {
     return (
-      <div>
+      <>
         {this.props.isFetching
           ? <Preloader />
           : <Users currentPage={this.props.currentPage}
@@ -47,7 +47,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
             followUser={this.props.followUser}
             unfollowUser={this.props.unfollowUser} />
         }
-      </div>
+      </>
     )
   }
 }

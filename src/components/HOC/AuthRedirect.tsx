@@ -19,7 +19,6 @@ type MapPropsType = {
 // дописывая в начало 'with'
 export function withAuthRedirect<WCP>(WrappedComponent: React.ComponentType<WCP>) {
   const WrappedAuthRedirect: React.FC<MapPropsType & {}> = (props) => {
-    debugger
     let { isAuth, ...restProps } = props;
     if (!props.isAuth)
       return <Redirect to='/login' />;

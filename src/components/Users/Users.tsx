@@ -1,6 +1,7 @@
 import React from "react";
 import { UserType } from "../../redux/usersReducer";
 import UserCard from "./UserCard/UserCard";
+import styles from "./Users.module.scss";
 import s from "./UserCard/UserCard.module.scss";
 
 type UsersType = {
@@ -24,8 +25,8 @@ const Users = (props: UsersType) => {
     }
 
     return (
-        <div>
-            <div className={s.pagination}>
+        <div className={styles.users}>
+            <div className={styles.pagination}>
                 {pages.map((p, i) => <span
                     key={i}
                     onClick={(e) => props.onCurrentPageChanged(p)}
