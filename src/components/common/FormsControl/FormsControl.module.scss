@@ -1,0 +1,41 @@
+.formControlPostTextarea {
+    width: 100%;
+    height: 200px;
+    padding: 5px 15px;
+    resize: none;
+    position: relative;
+    border: none;
+    margin-bottom: 20px;
+  
+    &:focus {
+      border: 1px solid var(--secondary-color); 
+    }
+
+    &.error {
+        border: 2px solid red;
+    }  
+  }
+
+  .formControlMessageTextarea {
+    width: 100%;
+    padding: 17px;
+    resize: none;
+    height: 95px;
+    border: none;
+    border-top: 1px solid #e6ecf5;
+    border-bottom: 1px solid #e6ecf5;
+    
+    &.error {
+      border: 2px solid red;
+    }  
+  }
+
+.errorMessage {
+    font-weight: bold;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.error  {
+  border: 2px solid red !important;
+}

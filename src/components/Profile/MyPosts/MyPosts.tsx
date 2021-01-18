@@ -1,14 +1,12 @@
 import React from "react";
 import { PostType } from "../../../redux/profileReducer";
-import AddPost from "./AddPost/AddPost";
+import AddPost, { AddPostFormType } from "./AddPost/AddPost";
 import classes from "./MyPosts.module.scss";
 import Post from "./Post/Post";
 
 type MyPostsType = {
   posts: PostType[]
-  newPostText: string
-  addPost: () => void
-  updateNewPostText: (newText: string) => void
+  addPost: (newPostText: AddPostFormType) => void
 }
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
@@ -16,9 +14,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
     <>
       <div className={classes.posts}>
         <AddPost
-          newPostText={props.newPostText}
           addPost={props.addPost}
-          updateNewPostText={props.updateNewPostText}
         />
       </div>
       <div className={classes.posts}>

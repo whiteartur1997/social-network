@@ -6,8 +6,7 @@ import Messages from './Messages/Messages';
 
 type DialogsPropsType = {
   dialogsPage: DialogsPageType
-  updateNewMessageText: (newText: string) => void
-  sendMessage: () => void
+  sendMessage: (newMessage: string) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -24,8 +23,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         </ul>
         <Messages
           messages={props.dialogsPage.messages}
-          newMessageText={props.dialogsPage.newMessageText}
-          updateNewMessageText={props.updateNewMessageText}
           sendMessage={props.sendMessage} />
       </div>
     </div>

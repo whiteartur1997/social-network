@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
 import { profileAPI } from "../API/API";
+import { AddPostFormType } from '../components/Profile/MyPosts/AddPost/AddPost';
 import { ActionsTypes } from "./redux-store";
 
 export type ProfilePageType = {
     profile: UserProfileType | null
     status: string
     posts: Array<PostType>
-    newPostText: string
 }
 
 export type PostType = {
@@ -63,7 +63,6 @@ let initialState: ProfilePageType = {
             time: "09:32"
         },
     ],
-    newPostText: ""
 };
 
 // параметр по умолчанию
@@ -86,17 +85,13 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         case "ADD-POST": {
             const newPost: PostType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText.post,
                 name: "Bruce Wayne",
                 avatar: require('./../assets/img/batman.png'),
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
-            return { ...state, posts: [...state.posts, newPost], newPostText: "" };
-        }
-
-        case "UPDATE-NEW-POST-TEXT": {
-            return { ...state, newPostText: action.newText };
+            return { ...state, posts: [...state.posts, newPost] };
         }
 
         default:
@@ -104,16 +99,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     }
 }
 
-export const addPost = () => {
+export const addPost = (newPostText: AddPostFormType) => {
     return {
-        type: "ADD-POST"
-    } as const;
-}
-
-export const updateNewPostText = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
+        type: "ADD-POST",
+        newPostText: newPostText
     } as const;
 }
 

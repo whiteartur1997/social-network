@@ -1,16 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { MessageItemType } from "../../../redux/dialogsReducer";
-import AddMessage from './AddMessage/AddMessage';
+import AddMessageForm from './AddMessage/AddMessage';
 import MessageItem from './MessageItem/MessageItem';
 import classes from './Messages.module.scss';
 
 
 type MessagesPropsType = {
   messages: Array<MessageItemType>;
-  newMessageText: string
-  updateNewMessageText: (newText: string) => void
-  sendMessage: () => void
+  sendMessage: (newMessage: string) => void
 }
 
 const Messages: React.FC<MessagesPropsType> = (props) => {
@@ -32,10 +30,7 @@ const Messages: React.FC<MessagesPropsType> = (props) => {
           )
         })}
       </div>
-      <AddMessage
-        newMessageText={props.newMessageText}
-        updateNewMessageText={props.updateNewMessageText}
-        sendMessage={props.sendMessage} />
+      <AddMessageForm sendMessage={props.sendMessage} />
     </div>
   )
 }

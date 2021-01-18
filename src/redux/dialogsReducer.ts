@@ -3,7 +3,6 @@ import { ActionsTypes } from "./redux-store";
 export type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageItemType>
-    newMessageText: string
 }
 
 export type DialogItemType = {
@@ -75,7 +74,6 @@ let initialState: DialogsPageType = {
             avatar: require("./../assets/img/einstein.png")
         },
     ],
-    newMessageText: ""
 };
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
@@ -84,16 +82,12 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             const newMessage = {
                 id: 3,
                 name: "Bruce Wayne",
-                description: state.newMessageText,
+                description: action.newMessage,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
                 fromMe: true,
                 avatar: require('./../assets/img/batman.png')
             }
-            return { ...state, messages: [...state.messages, newMessage], newMessageText: "" };
-        }
-
-        case "UPDATE-NEW-MESSAGE-TEXT": {
-            return { ...state, newMessageText: action.newText };
+            return { ...state, messages: [...state.messages, newMessage]};
         }
 
         default:
@@ -101,16 +95,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
     }
 }
 
-export const sendMessage = () => {
+export const sendMessage = (newMessage: string) => {
     return {
-        type: "SEND-MESSAGE"
-    } as const;
-}
-
-export const updateNewMessageText = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-TEXT",
-        newText: newText
+        type: "SEND-MESSAGE",
+        newMessage
     } as const;
 }
 

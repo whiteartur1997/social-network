@@ -1,16 +1,14 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from 'redux-thunk';
 import authReducer, { setAuthUserDataSuccess } from "./authReducer";
-import dialogsReducer, { sendMessage, updateNewMessageText } from "./dialogsReducer";
-import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess, updateNewPostText } from "./profileReducer";
+import dialogsReducer, { sendMessage } from "./dialogsReducer";
+import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUserSuccess } from "./usersReducer";
 import {reducer as formReducer} from "redux-form";
 
 export type ActionsTypes = ReturnType<typeof addPost> |
-    ReturnType<typeof updateNewPostText> |
     ReturnType<typeof sendMessage> |
-    ReturnType<typeof updateNewMessageText> |
     ReturnType<typeof followUserSuccess> |
     ReturnType<typeof unfollowUserSuccess> |
     ReturnType<typeof setUsers> |
@@ -21,7 +19,6 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setUserStatusSuccess> |
     ReturnType<typeof setAuthUserDataSuccess> |
     ReturnType<typeof toggleFollowing>;
-
 
 // reducers - это наш state, с тремя ветками
 // за св-во profilePage отвечает profileReducer и тд

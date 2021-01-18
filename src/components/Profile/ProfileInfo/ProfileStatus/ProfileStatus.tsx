@@ -18,7 +18,6 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
             isEdit: false,
             status: this.props.status
         }
-        console.log(this.state);
     }
 
 

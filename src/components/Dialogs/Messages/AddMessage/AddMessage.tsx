@@ -1,40 +1,46 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { maxLength50, required } from '../../../../utils/validators/validator';
+import { Textarea } from '../../../common/FormsControl/FormsControl';
 import classes from './AddMessage.module.scss';
 
 type AddMessageType = {
-  newMessageText: string
-  updateNewMessageText: (newText: string) => void
-  sendMessage: () => void
+  sendMessage: (newMessage: string) => void
 }
 
-const AddMessage = (props: AddMessageType) => {
+type AddMessageFormType = {
+  newMessage: string
+}
 
-  const updateNewMessageTextCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updateNewMessageText(e.currentTarget.value);
-  }
-
-  const sendMessageCallback = () => {
-    props.sendMessage();
-  }
-
+const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) => {
   return (
-    <div className={classes.newMessage}>
-      <textarea
-        onChange={updateNewMessageTextCallback}
-        value={props.newMessageText}
+    <form className={classes.newMessage} onSubmit={props.handleSubmit}>
+      <Field 
+        component={Textarea} 
+        name="newMessage" 
         placeholder="Write your reply..."
-        className={classes.newMessage__textarea}>
-      </textarea>
+        validate={[required, maxLength50]} 
+        classNameString="formControlMessageTextarea" />
       <div className={classes.newMessage__bottom}>
         <div className={classes.newMessage__attachments}>
           <i className="fas fa-paperclip"></i>
         </div>
-        <button
-          onClick={sendMessageCallback}
-          className={classes.newMessage__btn}
-          type="button">Send Message</button>
+        <button className={classes.newMessage__btn}>Send Message</button>
       </div>
-    </div>
+    </form>
+  )
+}
+
+const ReduxAddMessageForm = reduxForm<AddMessageFormType>({form: "Add Message"})(AddMessageForm)
+
+const AddMessage: React.FC<AddMessageType> = (props) => {
+
+  const sendMessageCallback = (newMessageText: AddMessageFormType) => {
+    props.sendMessage(newMessageText.newMessage)
+  }
+
+  return(
+    <ReduxAddMessageForm onSubmit={sendMessageCallback} />
   )
 }
 
