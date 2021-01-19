@@ -36,4 +36,7 @@
 
 .headerLogin {
   margin-left: auto;
+  &:hover a {
+    color: white
+  }
 }

@@ -49,8 +49,7 @@ export const authAPI = {
       .then(response => response.data);
   },
   login: (loginFormData: LoginFormDataType) => {
-    const {login, password, rememberMe} = {...loginFormData}
-    debugger;
+    const {login, password, rememberMe = false} = {...loginFormData}
     return axiosInstance.post<CommonResponseType<{ 
       userId: number 
     }>>(`auth/login`, {
@@ -59,6 +58,11 @@ export const authAPI = {
       rememberMe: rememberMe,
       captcha: false
     })
+      .then(response => response.data)
+  },
+  logout: () => {
+    // после этого запроса сервак удалит куку
+    return axiosInstance.delete<CommonResponseType<{}>>(`auth/login`)
       .then(response => response.data)
   }
 }

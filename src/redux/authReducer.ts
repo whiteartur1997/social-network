@@ -12,7 +12,7 @@ export type AuthType = {
   isFetching?: boolean
 }
 
-type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+export type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
 
 const initialState: AuthType = {
   id: null,
@@ -26,8 +26,7 @@ const authReducer = (state: AuthType = initialState, action: ActionsTypes) => {
     case 'SET-USER-DATA': {
       return {
         ...state,
-        ...action.data,
-        isAuth: true
+        ...action.payload,
       }
     }
 
@@ -37,13 +36,14 @@ const authReducer = (state: AuthType = initialState, action: ActionsTypes) => {
 }
 
 export const setAuthUserDataSuccess =
-  (userId: number, email: string, login: string) => {
+  (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
       type: 'SET-USER-DATA',
-      data: {
+      payload: {
         id: userId,
         email,
         login,
+        isAuth: isAuth
       }
     } as const
   }
@@ -54,7 +54,7 @@ export const setAuthUserData = (): ThunkType => {
       .then(data => {
         if (data.resultCode === 0) {
           const { login, email, id } = data.data;
-          dispatch(setAuthUserDataSuccess(id, email, login))
+          dispatch(setAuthUserDataSuccess(id, email, login, true))
         }
       })
   }
@@ -64,8 +64,16 @@ export const loginUser = (loginFormData: LoginFormDataType): ThunkType => {
   return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
     authAPI.login(loginFormData)
       .then(res => {
-        console.log(res.data);
-        dispatch(setAuthUserData())
+        if(res.resultCode === 0) dispatch(setAuthUserData())
+      })
+  }
+}
+
+export const logoutUser = (): ThunkType => {
+  return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
+    authAPI.logout()
+      .then(res => {
+        if(res.resultCode === 0) dispatch(setAuthUserDataSuccess(null, null, null, false))
       })
   }
 }
