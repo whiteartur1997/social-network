@@ -49,9 +49,9 @@ export const authAPI = {
       .then(response => response.data);
   },
   login: (loginFormData: LoginFormDataType) => {
-    const {login, password, rememberMe = false} = {...loginFormData}
-    return axiosInstance.post<CommonResponseType<{ 
-      userId: number 
+    const { login, password, rememberMe = false } = { ...loginFormData }
+    return axiosInstance.post<CommonResponseType<{
+      userId: number
     }>>(`auth/login`, {
       email: login,
       password: password,
@@ -72,7 +72,7 @@ export const profileAPI = {
     return axiosInstance.get<UserProfileType>(`profile/${userId}`)
       .then(response => response.data)
   },
-  getUserStatus: (userId: string) => {
+  getUserStatus: (userId: number | null) => {
     return axiosInstance.get<string>(`profile/status/${userId}`)
       .then(response => response.data);
   },

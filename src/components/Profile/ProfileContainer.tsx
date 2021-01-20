@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -15,13 +14,13 @@ type WithUrlProfileContainerType = RouteComponentProps<PathParamsType> & Profile
 type MapStateToPropsType = {
   profile: UserProfileType | null
   status: string
-  authorizedUserId: number | null 
+  authorizedUserId: number | null
   isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
-  setUserProfile: (userId: string) => void
-  setUserStatus: (userId: string) => void
+  setUserProfile: (userId: number | null) => void
+  setUserStatus: (userId: number | null) => void
   updateUserStatus: (status: string) => void
 }
 
