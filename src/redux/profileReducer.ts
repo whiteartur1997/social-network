@@ -120,19 +120,18 @@ export const setUserStatusSuccess = (status: string) => {
     } as const;
 }
 
-export const setUserProfile = (userID: string) => {
+export const setUserProfile = (userID: number | null) => {
+    debugger
     return (dispatch: Dispatch) => {
-        const userId = userID || "13068";
-        profileAPI.getUserProfile(userId).then(data => {
+        profileAPI.getUserProfile(userID).then(data => {
             dispatch(setUserProfileSuccess(data));
         });
     }
 }
 
-export const setUserStatus = (userID: string) => {
+export const setUserStatus = (userID: number | null) => {
     return (dispatch: Dispatch) => {
-        const userId = userID || "13068";
-        profileAPI.getUserStatus(userId).then(data => {
+        profileAPI.getUserStatus(userID).then(data => {
             dispatch(setUserStatusSuccess(data));
         })
     }

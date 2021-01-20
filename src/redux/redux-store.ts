@@ -5,7 +5,7 @@ import dialogsReducer, { sendMessage } from "./dialogsReducer";
 import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess } from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUserSuccess } from "./usersReducer";
-import {reducer as formReducer} from "redux-form";
+import {FormAction, reducer as formReducer, stopSubmit} from "redux-form";
 
 export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof sendMessage> |

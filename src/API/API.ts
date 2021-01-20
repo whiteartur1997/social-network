@@ -61,14 +61,14 @@ export const authAPI = {
       .then(response => response.data)
   },
   logout: () => {
-    // после этого запроса сервак удалит куку
+    // после этого запроса сервак удалит куку  
     return axiosInstance.delete<CommonResponseType<{}>>(`auth/login`)
       .then(response => response.data)
   }
 }
 
 export const profileAPI = {
-  getUserProfile: (userId: string) => {
+  getUserProfile: (userId: number | null) => {
     return axiosInstance.get<UserProfileType>(`profile/${userId}`)
       .then(response => response.data)
   },
