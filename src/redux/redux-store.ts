@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from "redux-form";
 import thunkMiddleware from 'redux-thunk';
+import appReducer, { setInitializedSuccess } from "./appReducer";
 import authReducer, { setAuthUserDataSuccess } from "./authReducer";
 import dialogsReducer, { sendMessage } from "./dialogsReducer";
 import profileReducer, { addPost, setUserProfileSuccess, setUserStatusSuccess } from "./profileReducer";
@@ -18,7 +19,8 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfileSuccess> |
     ReturnType<typeof setUserStatusSuccess> |
     ReturnType<typeof setAuthUserDataSuccess> |
-    ReturnType<typeof toggleFollowing>;
+    ReturnType<typeof toggleFollowing> |
+    ReturnType<typeof setInitializedSuccess>;
 
 // reducers - это наш state, с тремя ветками
 // за св-во profilePage отвечает profileReducer и тд
@@ -28,7 +30,8 @@ const reducers = combineReducers({
     usersPage: usersReducers,
     sidebar: sidebarReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 type RootReducerType = typeof reducers;

@@ -51,7 +51,7 @@ export const setAuthUserDataSuccess =
 
 export const setAuthUserData = (): ThunkType => {
   return (dispatch: Dispatch) => {
-    authAPI.authMe()
+    return authAPI.authMe()
       .then(data => {
         if (data.resultCode === 0) {
           const { login, email, id } = data.data;
