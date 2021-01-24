@@ -1,10 +1,6 @@
-import { Dispatch } from 'redux';
-import { authAPI } from '../API/API';
-import { ActionsTypes, AppStateType } from "./redux-store";
-import { LoginFormDataType } from "./../components/Login/Login";
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { FormAction, stopSubmit } from 'redux-form';
 import { setAuthUserData } from './authReducer';
+import { ActionsTypes, AppStateType } from "./redux-store";
 
 export type AppReducerType = {
     initialized: boolean
