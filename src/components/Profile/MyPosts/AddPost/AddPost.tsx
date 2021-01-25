@@ -23,7 +23,7 @@ const AddPostForm: React.FC<InjectedFormProps<AddPostFormType>> = (props) => {
           name="post" 
           component={Textarea}
           placeholder={"What's new?"}
-          classNameString={"formControlPostTextarea"} 
+          classnamestring={"formControlPostTextarea"} 
           validate={[required, maxLength30]} />
         <button className={classes.addPost__btn}>Add Post</button>
       </div>

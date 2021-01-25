@@ -137,7 +137,7 @@ export const toggleFollowing = (isFollowing: boolean, userID: number) => {
 }
 
 // thunk creator
-export const getUsers = (currentPage: number, pageSize: number) => {
+export const requestUsers = (currentPage: number, pageSize: number) => {
   return (dispatch: (action: ActionsTypes) => void) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(currentPage));

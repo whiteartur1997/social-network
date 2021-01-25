@@ -7,7 +7,7 @@ type FormControlType = {
     meta: MetaType
     placeholder?: string
     children:  ReactNode
-    classNameString: string
+    classnamestring: string
 }
 
 type InputType = {
@@ -55,7 +55,7 @@ export const Textarea: React.FC<FormControlType> = (props) => {
     const hasError = meta.touched && meta.error;
     return (
         <FormControl {...props}>
-            <textarea className={`${styles[props.classNameString]} ${hasError ? styles.error : ""}`} {...input} {...restProps} />
+            <textarea className={`${styles[props.classnamestring]} ${hasError ? styles.error : ""}`} {...input} {...restProps} />
         </FormControl>
     )    
 }
@@ -66,7 +66,7 @@ export const Input: React.FC<FormControlType> = (props) => {
     return (
         <>
            <FormControl {...props}>
-                <input className={`${styles[props.classNameString]} ${hasError ? styles.error : ""}`} {...input} {...restProps} />
+                <input className={`${styles[props.classnamestring]} ${hasError ? styles.error : ""}`} {...input} {...restProps} />
             </FormControl>
         </>
     )

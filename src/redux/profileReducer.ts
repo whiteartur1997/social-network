@@ -121,7 +121,6 @@ export const setUserStatusSuccess = (status: string) => {
 }
 
 export const setUserProfile = (userID: number | null) => {
-    debugger
     return (dispatch: Dispatch) => {
         profileAPI.getUserProfile(userID).then(data => {
             dispatch(setUserProfileSuccess(data));

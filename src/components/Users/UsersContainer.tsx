@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
-import { getUsers, followUser, UserType, unfollowUser } from '../../redux/usersReducer';
-import { getCurrentPage, getIsFetching, getIsFollowing, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/usersSelectors";
+import { followUser, requestUsers, unfollowUser, UserType } from '../../redux/usersReducer';
+import { getCurrentPage, getIsFetching, getIsFollowing, getPageSize, getTotalUsersCount, getUsers } from "../../redux/usersSelectors";
 import Preloader from "../common/Preloader";
 import Users from "./Users";
 
@@ -18,7 +18,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-  getUsers: (currentPage: number, pageSize: number) => void
+  requestUsers: (currentPage: number, pageSize: number) => void
   followUser: (userId: number) => void
   unfollowUser: (userId: number) => void
 }
@@ -27,14 +27,15 @@ type MapDispatchToPropsType = {
 
 class UsersContainer extends React.Component<UsersContainerType> {
   componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onCurrentPageChanged = (currentPage: number) => {
-    this.props.getUsers(currentPage, this.props.pageSize);
+    this.props.requestUsers(currentPage, this.props.pageSize);
   }
 
   render() {
+    console.log("USERS container render");
     return (
       <>
         {this.props.isFetching
@@ -65,8 +66,9 @@ class UsersContainer extends React.Component<UsersContainerType> {
 // }
 
 function mapStateToProps(state: AppStateType): MapStateToPropsType {
+  console.log("USERS container mapStateToProps")
     return {
-      users: getUsersSelector(state),
+      users: getUsers(state),
       pageSize: getPageSize(state),
       totalUsersCount: getTotalUsersCount(state),
       currentPage: getCurrentPage(state),
@@ -76,5 +78,5 @@ function mapStateToProps(state: AppStateType): MapStateToPropsType {
   }
 
 export default connect(mapStateToProps, {
-  getUsers, followUser, unfollowUser
+  requestUsers, followUser, unfollowUser
 })(UsersContainer)
