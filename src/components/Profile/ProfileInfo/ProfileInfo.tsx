@@ -4,7 +4,7 @@ import coverImage from "../../../assets/img/cover.jpg";
 import Preloader from "../../common/Preloader";
 import { ProfileType } from "../Profile";
 import classes from "./ProfileInfo.module.scss";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
@@ -22,7 +22,7 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
                 </div>
                 <div className={classes.profileDescr}>
                     <h3 className={classes.profileDescrTitle}>{props.profile?.fullName}</h3>
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+                    <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
                     <span>{props.profile.aboutMe}</span>
                     <span className={classes.profileDescrJobSearch}>
                         {props.profile?.lookingForAJob ? "Ищу работу" : "Не ищу работу"}

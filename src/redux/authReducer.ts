@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
-import { authAPI } from '../API/API';
-import { ActionsTypes, AppStateType } from "./redux-store";
-import {LoginFormDataType} from "./../components/Login/Login";
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { FormAction, stopSubmit } from 'redux-form';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { authAPI } from '../API/API';
+import { LoginFormDataType } from "./../components/Login/Login";
+import { ActionsTypes, AppStateType } from "./redux-store";
 
 export type AuthType = {
   id: number | null
@@ -44,7 +44,7 @@ export const setAuthUserDataSuccess =
         id: userId,
         email,
         login,
-        isAuth: isAuth
+        isAuth
       }
     } as const
   }
@@ -65,10 +65,10 @@ export const loginUser = (loginFormData: LoginFormDataType): ThunkType => {
   return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes | FormAction>) => {
     authAPI.login(loginFormData)
       .then(res => {
-        if(res.resultCode === 0) dispatch(setAuthUserData())
+        if (res.resultCode === 0) dispatch(setAuthUserData())
         else {
           const message = res.messages.length > 0 ? res.messages[0] : "Some error";
-          dispatch(stopSubmit("login", {_error: message}));
+          dispatch(stopSubmit("login", { _error: message }));
         }
       })
   }
@@ -78,7 +78,7 @@ export const logoutUser = (): ThunkType => {
   return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
     authAPI.logout()
       .then(res => {
-        if(res.resultCode === 0) dispatch(setAuthUserDataSuccess(null, null, null, false))
+        if (res.resultCode === 0) dispatch(setAuthUserDataSuccess(null, null, null, false))
       })
   }
 }
