@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "45ed6ee889b6ce453841f8baf724babe",
+    "revision": "9090a192938f948f0463bbe70dcaa1b2",
     "url": "/social-network/index.html"
   },
   {
-    "revision": "f8061d8591a3d7c0f373",
-    "url": "/social-network/static/css/main.d40c0a3d.chunk.css"
+    "revision": "f69747d92d1573a4c1f7",
+    "url": "/social-network/static/css/main.c0e4667c.chunk.css"
   },
   {
-    "revision": "0c9f7952e8f23a51988d",
-    "url": "/social-network/static/js/2.e071113c.chunk.js"
+    "revision": "f82ea9d43f713edf097c",
+    "url": "/social-network/static/js/2.8332ff4c.chunk.js"
   },
   {
-    "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/social-network/static/js/2.e071113c.chunk.js.LICENSE.txt"
+    "revision": "9b318b6fb13190fe82c0677e9264b3c7",
+    "url": "/social-network/static/js/2.8332ff4c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f8061d8591a3d7c0f373",
-    "url": "/social-network/static/js/main.137916a7.chunk.js"
+    "revision": "f69747d92d1573a4c1f7",
+    "url": "/social-network/static/js/main.b53acc51.chunk.js"
   },
   {
     "revision": "6657823949f91321416d",
     "url": "/social-network/static/js/runtime-main.005f4cf5.js"
+  },
+  {
+    "revision": "518ce924d830e7fe02ce8babda5cc5c8",
+    "url": "/social-network/static/media/Spinner.518ce924.svg"
   },
   {
     "revision": "8758a83995b858b01b4db46b4e2680e1",
@@ -56,10 +60,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social-network/static/media/keanuReeves.71838e99.png"
   },
   {
-    "revision": "4060eaaddf6f455b25f641f33762eb85",
-    "url": "/social-network/static/media/kurtCobain.4060eaad.png"
-  },
-  {
     "revision": "38dfc36c5f06c731534a4e0156e2bda4",
     "url": "/social-network/static/media/margoRobby.38dfc36c.png"
   },
@@ -76,11 +76,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social-network/static/media/nelsonMandela.28a40bdc.png"
   },
   {
-    "revision": "3517a71b0bc69b0b881b849766325cb9",
-    "url": "/social-network/static/media/steveJobs.3517a71b.png"
-  },
-  {
     "revision": "68b7cd7eb7b735871cc98176f12a99b6",
     "url": "/social-network/static/media/suarez.68b7cd7e.png"
+  },
+  {
+    "revision": "b59ea9b9a061ea047c4b518d70cc25b2",
+    "url": "/social-network/static/media/userBG.b59ea9b9.jpg"
   }
 ]);
