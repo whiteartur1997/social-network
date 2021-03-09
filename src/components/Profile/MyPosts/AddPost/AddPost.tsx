@@ -1,9 +1,10 @@
 import React from 'react';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import {Field, InjectedFormProps, reduxForm, reset} from 'redux-form';
 import { maxLength30, required } from '../../../../utils/validators/validator';
 import { Textarea } from '../../../common/FormsControl/FormsControl';
 import avatar from './../../../../assets/img/batman.png';
 import classes from './AddPost.module.scss';
+import {useDispatch} from "react-redux";
 
 type AddPostType = {
   addPost: (newPostText: AddPostFormType) => void
@@ -37,9 +38,10 @@ const ReduxAddPostForm = reduxForm<AddPostFormType>(
 
 
 const AddPost: React.FC<AddPostType> = (props) => {
-
+    const dispatch = useDispatch();
   const submitHandler = (newPostText: AddPostFormType) => {
     props.addPost(newPostText);
+    dispatch(reset("Add Post"));
   }
 
   return (

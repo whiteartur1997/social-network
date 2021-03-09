@@ -22,7 +22,8 @@ beforeEach(() => {
                 time: "09:32"
             },
         ],
-        newPostText: ""
+        profile: null,
+        status: ""
     }
 })
 
@@ -32,10 +33,4 @@ test("new post should be added", () => {
     expect(newState.posts.length).toBe(3);
     expect(newState.posts[2].message).toBe("");
     expect(newState.posts[2].name).toBe("Bruce Wayne");
-});
-
-test("new post text should be updated", () => {
-    const newState = profileReducer(initialState, { type: "UPDATE-NEW-POST-TEXT", newText: "Dana" });
-
-    expect(newState.newPostText).toBe("Dana");
 });
