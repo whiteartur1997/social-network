@@ -1,6 +1,6 @@
 import CSS from 'csstype';
 import React from 'react';
-import Spinner from './../../assets/img/Spinner.svg';
+import Spinner from '../../../assets/img/Spinner.svg';
 
 const Preloader: React.FC = () => {
 

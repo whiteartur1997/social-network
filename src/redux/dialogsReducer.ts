@@ -22,9 +22,6 @@ export type MessageItemType = {
     avatar: string
 };
 
-// нам нужен инит стейт для каждой ветки, так как redux при первой загрузке
-// приложения сам диспатчит action, при этом наш state - undefined
-// теперь при первой загрузке наш state будет равен initial state
 let initialState: DialogsPageType = {
     dialogs: [
         {
@@ -78,7 +75,7 @@ let initialState: DialogsPageType = {
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
-        case "SEND-MESSAGE": {
+        case "dialogs/SEND-MESSAGE": {
             const newMessage = {
                 id: 3,
                 name: "Bruce Wayne",
@@ -89,17 +86,12 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             }
             return { ...state, messages: [...state.messages, newMessage]};
         }
-
-        default:
-            return state;
+        default: return state;
     }
 }
 
 export const sendMessage = (newMessage: string) => {
-    return {
-        type: "SEND-MESSAGE",
-        newMessage
-    } as const;
+    return {type: "dialogs/SEND-MESSAGE", newMessage} as const;
 }
 
 export default dialogsReducer;

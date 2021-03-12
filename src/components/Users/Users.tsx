@@ -3,6 +3,7 @@ import { UserType } from "../../redux/usersReducer";
 import UserCard from "./UserCard/UserCard";
 import styles from "./Users.module.scss";
 import s from "./UserCard/UserCard.module.scss";
+import {Paginator} from "../common/Paginator/Paginator";
 
 type UsersType = {
     currentPage: number
@@ -26,15 +27,7 @@ const Users = (props: UsersType) => {
 
     return (
         <div className={styles.users}>
-            <div className={styles.pagination}>
-                {pages.map((p, i) => <span
-                    key={i}
-                    onClick={(e) => props.onCurrentPageChanged(p)}
-                    className={props.currentPage === p ? s.selectedPage : ""}>
-                    {p}
-                </span>
-                )}
-            </div>
+            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} onCurrentPageChanged={props.onCurrentPageChanged} currentPage={props.currentPage} />
             <div className={s.usersCards}>
                 {props.users.map(u => {
                     return (

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
 import { followUser, requestUsers, unfollowUser, UserType } from '../../redux/usersReducer';
 import { getCurrentPage, getIsFetching, getIsFollowing, getPageSize, getTotalUsersCount, getUsers } from "../../redux/usersSelectors";
-import Preloader from "../common/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import Users from "./Users";
 
 export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType;
@@ -35,7 +35,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
   }
 
   render() {
-    console.log("USERS container render");
     return (
       <>
         {this.props.isFetching

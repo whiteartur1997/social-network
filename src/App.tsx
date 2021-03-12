@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Route, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import "./App.scss";
-import Preloader from "./components/common/Preloader";
+import Preloader from "./components/common/Preloader/Preloader";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";

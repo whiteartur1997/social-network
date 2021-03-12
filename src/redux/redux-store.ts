@@ -23,8 +23,6 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setInitializedSuccess> |
     ReturnType<typeof removePost>;
 
-// reducers - это наш state, с тремя ветками
-// за св-во profilePage отвечает profileReducer и тд
 const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
@@ -38,14 +36,7 @@ const reducers = combineReducers({
 type RootReducerType = typeof reducers;
 export type AppStateType = ReturnType<RootReducerType>;
 
-// отдаем редюсеры store
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
-
-declare global {
-    interface Window {
-        state: any;
-    }
-}
 
 //@ts-ignore
 window.store = store;

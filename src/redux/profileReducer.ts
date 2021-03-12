@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux';
-import { profileAPI } from "../API/API";
-import { AddPostFormType } from '../components/Profile/MyPosts/AddPost/AddPost';
-import { ActionsTypes } from "./redux-store";
+import {Dispatch} from 'redux';
+import {profileAPI} from "../API/API";
+import {AddPostFormType} from '../components/Profile/MyPosts/AddPost/AddPost';
+import {ActionsTypes} from "./redux-store";
 
 export type ProfilePageType = {
     profile: UserProfileType | null
@@ -40,8 +40,6 @@ export type UserProfileType = {
     }
 }
 
-// тоже самое, при первом диспатче action, который сделает
-// redux, он возьмет этот стейт, а не undefined
 let initialState: ProfilePageType = {
     profile: null,
     status: "",
@@ -65,23 +63,11 @@ let initialState: ProfilePageType = {
     ],
 };
 
-// параметр по умолчанию
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case "SET-USER-PROFILE": {
-            return {
-                ...state,
-                profile: action.profile
-            }
-        }
-
-        case "SET-USER-STATUS": {
-            return {
-                ...state,
-                status: action.status
-            }
-        }
-        case "ADD-POST": {
+        case "profile/SET-USER-PROFILE": return {...state, profile: action.profile};
+        case "profile/SET-USER-STATUS": return {...state, status: action.status}
+        case "profile/ADD-POST": {
             const newPost: PostType = {
                 id: 5,
                 message: action.newPostText.post,
@@ -90,68 +76,45 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
-            return { ...state, posts: [...state.posts, newPost] };
+            return {...state, posts: [...state.posts, newPost]};
         }
-        case "REMOVE-POST": {
-            return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
-        }
-
-        default:
-            return state
+        case "profile/REMOVE-POST": return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
+        default: return state
     }
 }
 
+// actions
 export const addPost = (newPostText: AddPostFormType) => {
-    return {
-        type: "ADD-POST",
-        newPostText: newPostText
-    } as const;
+    return ({type: "profile/ADD-POST", newPostText: newPostText}) as const;
 }
 
 export const removePost = (postId: number) => {
-    return {
-        type: "REMOVE-POST",
-        postId
-    } as const;
+    return ({type: "profile/REMOVE-POST", postId}) as const;
 }
 
 export const setUserProfileSuccess = (profile: UserProfileType) => {
-    return {
-        type: 'SET-USER-PROFILE',
-        profile
-    } as const;
+    return ({type: 'profile/SET-USER-PROFILE', profile}) as const;
 }
 
 export const setUserStatusSuccess = (status: string) => {
-    return {
-        type: 'SET-USER-STATUS',
-        status
-    } as const;
+    return ({type: 'profile/SET-USER-STATUS', status}) as const;
 }
 
-export const setUserProfile = (userID: number | null) => {
-    return (dispatch: Dispatch) => {
-        profileAPI.getUserProfile(userID).then(data => {
-            dispatch(setUserProfileSuccess(data));
-        });
-    }
+// thunks
+export const setUserProfile = (userID: number | null) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.getUserProfile(userID);
+    dispatch(setUserProfileSuccess(res));
 }
 
-export const setUserStatus = (userID: number | null) => {
-    return (dispatch: Dispatch) => {
-        profileAPI.getUserStatus(userID).then(data => {
-            dispatch(setUserStatusSuccess(data));
-        })
-    }
+export const setUserStatus = (userID: number | null) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.getUserStatus(userID)
+    dispatch(setUserStatusSuccess(res));
 }
 
-export const updateUserStatus = (status: string) => {
-    return (dispatch: Dispatch) => {
-        profileAPI.updateUserStatus(status).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setUserStatusSuccess(status));
-            }
-        })
+export const updateUserStatus = (status: string) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.updateUserStatus(status);
+    if (res.resultCode === 0) {
+        dispatch(setUserStatusSuccess(status));
     }
 }
 

@@ -27,8 +27,7 @@ const initalState: SidebarType = {
 
 const sidebarReducer = (state: SidebarType = initalState, action: ActionsTypes) => {
   switch (action.type) {
-    default:
-      return state;
+    default: return state;
   }
 }
 

@@ -8,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
-    {/* Provider сидит в библиотеке react-redux */}
     <Provider store={store}>
       <App />
     </Provider>

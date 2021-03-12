@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from "../../../assets/img/batman.png";
 import coverImage from "../../../assets/img/cover.jpg";
-import Preloader from "../../common/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import { ProfileType } from "../Profile";
 import classes from "./ProfileInfo.module.scss";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
