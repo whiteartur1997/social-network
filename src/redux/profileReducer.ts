@@ -81,7 +81,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 status: action.status
             }
         }
-
         case "ADD-POST": {
             const newPost: PostType = {
                 id: 5,
@@ -93,6 +92,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
             }
             return { ...state, posts: [...state.posts, newPost] };
         }
+        case "REMOVE-POST": {
+            return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
+        }
 
         default:
             return state
@@ -103,6 +105,13 @@ export const addPost = (newPostText: AddPostFormType) => {
     return {
         type: "ADD-POST",
         newPostText: newPostText
+    } as const;
+}
+
+export const removePost = (postId: number) => {
+    return {
+        type: "REMOVE-POST",
+        postId
     } as const;
 }
 
