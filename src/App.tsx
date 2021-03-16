@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Route, withRouter } from "react-router-dom";
-import { compose } from "redux";
+import React, {Component} from "react";
+import {connect, Provider} from "react-redux";
+import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
+import {compose} from "redux";
 import "./App.scss";
 import Preloader from "./components/common/Preloader/Preloader";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -14,57 +14,66 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import Settings from "./components/Settings/Settings";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import { initializeApp } from "./redux/appReducer";
-import { AppStateType } from "./redux/redux-store";
+import {initializeApp} from "./redux/appReducer";
+import store, {AppStateType} from "./redux/redux-store";
 
 type MapStateToPropsType = {
-  initialized: boolean
+    initialized: boolean
 }
 
 type MapDispatchToPropsType = {
-  initializeApp: () => void
+    initializeApp: () => void
 }
 
 type AppComponentStateType = MapStateToPropsType & MapDispatchToPropsType;
 
 class App extends Component<AppComponentStateType> {
 
-  componentDidMount() {
-    this.props.initializeApp();
-  }
+    componentDidMount() {
+        this.props.initializeApp();
+    }
 
-  render() {
-    if(!this.props.initialized) return <Preloader />
-    return (
-      <div className="App">
-        <HeaderContainer />
-        <Navbar />
-        <SidebarContainer />
-        <Route path="/login" render={() => <Login />} />
-        <Route path="/profile/:userId?"
-          render={() => {
-            return <ProfileContainer />
-          }}
-        />
-        <Route path="/dialogs"
-          render={() => <DialogsContainer />}
-        />
-        <Route path="/users" render={() => <UsersContainer />} />
-        <Route path="/news" component={News} />
-        <Route path="/music" component={Music} />
-        <Route path="/settings" component={Settings} />
-      </div>
-    );
-  }
-};
-
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-  return {
-    initialized: state.app.initialized
-  }
+    render() {
+        if (!this.props.initialized) return <Preloader/>
+        return (
+            <div className="App">
+                <HeaderContainer/>
+                <Navbar/>
+                <SidebarContainer/>
+                <Route exact path="/" render={() => <Redirect to="/profile/:userId?" />} />
+                <Route path="/login" render={() => <Login/>}/>
+                <Route path="/profile/:userId?"
+                       render={() => {
+                           return <ProfileContainer/>
+                       }}
+                />
+                <Route path="/dialogs"
+                       render={() => <DialogsContainer/>}
+                />
+                <Route path="/users" render={() => <UsersContainer/>}/>
+                <Route path="/news" component={News}/>
+                <Route path="/music" component={Music}/>
+                <Route path="/settings" component={Settings}/>
+            </div>
+        );
+    }
 }
 
-export default compose<React.ComponentType>(
-  withRouter,
-  connect(mapStateToProps, { initializeApp })
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        initialized: state.app.initialized
+    }
+}
+
+const ContainerApp = compose<React.ComponentType>(
+    withRouter,
+    connect(mapStateToProps, {initializeApp})
 )(App);
+
+export const SocialNetworkApp = () => {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <ContainerApp/>
+        </Provider>
+    </BrowserRouter>
+}
