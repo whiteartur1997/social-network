@@ -26,8 +26,8 @@ const Users = (props: UsersType) => {
     }
 
     return (
-        <div className={styles.users}>
-            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} onCurrentPageChanged={props.onCurrentPageChanged} currentPage={props.currentPage} />
+        <div className={styles.Users}>
+            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} onPageChanged={props.onCurrentPageChanged} currentPage={props.currentPage} />
             <div className={s.usersCards}>
                 {props.users.map(u => {
                     return (
