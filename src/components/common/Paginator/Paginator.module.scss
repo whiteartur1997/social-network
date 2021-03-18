@@ -1,20 +1,34 @@
-.Paginator {
-    display: flex;
-}
+.pagination {
+    padding: 20px 0;
 
-.page {
-    font-size: 12px;
-    font-weight: 700;
-    padding: .9rem 1.2rem;
-    color: #515365;
-    background-color: #fff;
-    border: 1px solid #e6ecf5;
-    transition: all .15s ease-in-out;
-    border-radius: 3px;
+    & > ul {
+        display: flex;
 
-    &:hover, &.active {
-        cursor: pointer;
-        color: white;
-        background: var(--secondary-color);
+        & li [aria-current="page"] {
+            color: white;
+            background: var(--secondary-color);
+        }
+    }
+
+
+    & li {
+
+        & a {
+            font-size: 12px;
+            font-weight: 700;
+            padding: .9rem 1.2rem;
+            color: #515365;
+            background-color: #fff;
+            border: 1px solid #e6ecf5;
+            transition: all .15s ease-in-out;
+            border-radius: 3px;
+
+            &:hover {
+                cursor: pointer;
+                color: white;
+                background: var(--secondary-color);
+            }
+        }
     }
 }
+
