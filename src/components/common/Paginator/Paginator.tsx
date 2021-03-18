@@ -1,4 +1,5 @@
 import React from 'react'
+//@ts-ignore
 import Paginate, { ReactPaginateProps } from 'react-paginate'
 import styles from "./Paginator.module.scss";
 
@@ -21,8 +22,6 @@ export const Paginator = ({
     const changePageHandler = (page: {selected: number}) => {
         onPageChange && onPageChange(page.selected + 1);
     }
-
-    console.log(currentPage);
 
     return (
         <div className={styles.pagination}>

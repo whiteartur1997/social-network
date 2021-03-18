@@ -4,18 +4,21 @@ import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import "./App.scss";
 import Preloader from "./components/common/Preloader/Preloader";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Music from "./components/Music/Music";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import Settings from "./components/Settings/Settings";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {initializeApp} from "./redux/appReducer";
 import store, {AppStateType} from "./redux/redux-store";
+import {WithSuspenseComponent} from "./components/HOC/WithSuspenseComponent";
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+
 
 type MapStateToPropsType = {
     initialized: boolean
@@ -43,12 +46,10 @@ class App extends Component<AppComponentStateType> {
                 <Route exact path="/" render={() => <Redirect to="/profile/:userId?" />} />
                 <Route path="/login" render={() => <Login/>}/>
                 <Route path="/profile/:userId?"
-                       render={() => {
-                           return <ProfileContainer/>
-                       }}
+                       render={WithSuspenseComponent(ProfileContainer)}
                 />
                 <Route path="/dialogs"
-                       render={() => <DialogsContainer/>}
+                       render={WithSuspenseComponent(DialogsContainer)}
                 />
                 <Route path="/users" render={() => <UsersContainer/>}/>
                 <Route path="/news" component={News}/>
