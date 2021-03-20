@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad77c206fcb4366e7fe0502285508613",
+    "revision": "1c47359125f9b9f01d9ce529d229b236",
     "url": "/social-network/index.html"
   },
   {
-    "revision": "084b171ccf6c4df4d602",
+    "revision": "70c7834476dea5dcc695",
     "url": "/social-network/static/css/3.ac922fae.chunk.css"
   },
   {
-    "revision": "ef65e12e8f748ce3bc84",
+    "revision": "f39751d2e28ba2445b3a",
     "url": "/social-network/static/css/4.191dfba9.chunk.css"
   },
   {
-    "revision": "995126237f038c6ee0f7",
+    "revision": "a9b67ca79fd56d481cb0",
     "url": "/social-network/static/css/main.59cc3fb4.chunk.css"
   },
   {
-    "revision": "b8dd61d3f1b3b9a20583",
-    "url": "/social-network/static/js/2.ebf52f5a.chunk.js"
+    "revision": "ffc19ec352c508b80303",
+    "url": "/social-network/static/js/2.69d36455.chunk.js"
   },
   {
     "revision": "9b318b6fb13190fe82c0677e9264b3c7",
-    "url": "/social-network/static/js/2.ebf52f5a.chunk.js.LICENSE.txt"
+    "url": "/social-network/static/js/2.69d36455.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "084b171ccf6c4df4d602",
-    "url": "/social-network/static/js/3.df0739ec.chunk.js"
+    "revision": "70c7834476dea5dcc695",
+    "url": "/social-network/static/js/3.be230112.chunk.js"
   },
   {
-    "revision": "ef65e12e8f748ce3bc84",
-    "url": "/social-network/static/js/4.9fcd167c.chunk.js"
+    "revision": "f39751d2e28ba2445b3a",
+    "url": "/social-network/static/js/4.6d3a229e.chunk.js"
   },
   {
-    "revision": "995126237f038c6ee0f7",
-    "url": "/social-network/static/js/main.3a0bb57e.chunk.js"
+    "revision": "a9b67ca79fd56d481cb0",
+    "url": "/social-network/static/js/main.238f78c9.chunk.js"
   },
   {
-    "revision": "6071af9078b08bee2cee",
-    "url": "/social-network/static/js/runtime-main.24acc609.js"
+    "revision": "d531904bee13deb916a1",
+    "url": "/social-network/static/js/runtime-main.77e435c6.js"
   },
   {
     "revision": "c0b3b691179367be95e1d5a7dd1190af",
