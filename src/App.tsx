@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect, Provider} from "react-redux";
-import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
+import {HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import "./App.scss";
 import Preloader from "./components/common/Preloader/Preloader";
@@ -72,9 +72,9 @@ const ContainerApp = compose<React.ComponentType>(
 )(App);
 
 export const SocialNetworkApp = () => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <ContainerApp/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }

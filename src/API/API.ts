@@ -81,5 +81,9 @@ export const profileAPI = {
       status: status
     })
       .then(response => response.data);
+  },
+  updateUserAvatar:(photo: string) => {
+    return axiosInstance.put<CommonResponseType<{}>>(`profile/photo`, {image: photo})
+        .then(response => response.data);
   }
 }

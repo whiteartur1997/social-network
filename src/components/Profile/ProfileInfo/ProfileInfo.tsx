@@ -5,12 +5,20 @@ import Preloader from "../../common/Preloader/Preloader";
 import { ProfileType } from "../Profile";
 import classes from "./ProfileInfo.module.scss";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
+import {useDispatch} from "react-redux";
 
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
+
+    const dispatch = useDispatch();
+    const onSelectedAvatarHandler = () => {
+        dispatch()
+    }
+
     if (!props.profile) {
         return <Preloader />
     }
+
     return (
         <div className={classes.profileInfo}>
             <div className={classes.profileCover}>
@@ -19,6 +27,7 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
             <div className={classes.profileBody}>
                 <div className={classes.profileAvatar}>
                     <img src={props.profile?.photos.small || avatar} alt="avatar" />
+                    {props.isOwner && <input type={"file"} onChange={onSelectedAvatarHandler} />}
                 </div>
                 <div className={classes.profileDescr}>
                     <h3 className={classes.profileDescrTitle}>{props.profile?.fullName}</h3>

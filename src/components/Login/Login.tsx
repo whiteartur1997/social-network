@@ -60,6 +60,8 @@ const Login = () => {
     <Redirect to="/profile" />
     : <div className={s.container}>
         <div className={s.intro}>Login to your account</div>
+          <div className={s.intro}>Test account: Email: free@samuraijs.com
+              Password: free</div>
         <LoginReduxForm onSubmit={onSumbitHandler} />
       </div>
 

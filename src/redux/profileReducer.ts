@@ -65,8 +65,10 @@ let initialState: ProfilePageType = {
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case "profile/SET-USER-PROFILE": return {...state, profile: action.profile};
-        case "profile/SET-USER-STATUS": return {...state, status: action.status}
+        case "profile/SET-USER-PROFILE":
+            return {...state, profile: action.profile};
+        case "profile/SET-USER-STATUS":
+            return {...state, status: action.status}
         case "profile/ADD-POST": {
             const newPost: PostType = {
                 id: 5,
@@ -78,8 +80,21 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
             }
             return {...state, posts: [...state.posts, newPost]};
         }
-        case "profile/REMOVE-POST": return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
-        default: return state
+        case "profile/REMOVE-POST":
+            return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
+        //@ts-ignore
+        case "profile/SET-UPDATED-AVATAR":
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: {
+                        ...state.profile?.photos
+                    }
+                }
+            }
+        default:
+            return state
     }
 }
 
@@ -100,6 +115,10 @@ export const setUserStatusSuccess = (status: string) => {
     return ({type: 'profile/SET-USER-STATUS', status}) as const;
 }
 
+export const setUpdatedUserAvatar = (photo: any) => {
+    return ({type: 'profile/SET-UPDATED-AVATAR', photo}) as const;
+}
+
 // thunks
 export const setUserProfile = (userID: number | null) => async (dispatch: Dispatch) => {
     const res = await profileAPI.getUserProfile(userID);
@@ -115,6 +134,13 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch) =
     const res = await profileAPI.updateUserStatus(status);
     if (res.resultCode === 0) {
         dispatch(setUserStatusSuccess(status));
+    }
+}
+
+export const updateUserPhoto = (photo: string) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.updateUserAvatar(photo);
+    if (res.resultCode === 0) {
+        dispatch()
     }
 }
 

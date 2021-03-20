@@ -4,7 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 import appReducer, { setInitializedSuccess } from "./appReducer";
 import authReducer, { setAuthUserDataSuccess } from "./authReducer";
 import dialogsReducer, { sendMessage } from "./dialogsReducer";
-import profileReducer, {addPost, removePost, setUserProfileSuccess, setUserStatusSuccess} from "./profileReducer";
+import profileReducer, {
+    addPost,
+    removePost,
+    setUpdatedUserAvatar,
+    setUserProfileSuccess,
+    setUserStatusSuccess
+} from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducers, { followUserSuccess, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, toggleIsFetching, unfollowUserSuccess } from "./usersReducer";
 
@@ -21,7 +27,8 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setAuthUserDataSuccess> |
     ReturnType<typeof toggleFollowing> |
     ReturnType<typeof setInitializedSuccess> |
-    ReturnType<typeof removePost>;
+    ReturnType<typeof removePost> |
+    ReturnType<typeof setUpdatedUserAvatar>;
 
 const reducers = combineReducers({
     profilePage: profileReducer,
