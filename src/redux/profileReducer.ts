@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {profileAPI} from "../API/API";
 import {AddPostFormType} from '../components/Profile/MyPosts/AddPost/AddPost';
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppStateType} from "./redux-store";
 
 export type ProfilePageType = {
     profile: UserProfileType | null
@@ -82,16 +82,11 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         }
         case "profile/REMOVE-POST":
             return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
-        //@ts-ignore
         case "profile/SET-UPDATED-AVATAR":
+            debugger
             return {
                 ...state,
-                profile: {
-                    ...state.profile,
-                    photos: {
-                        ...state.profile?.photos
-                    }
-                }
+                profile: action.profileWithUpdPhoto
             }
         default:
             return state
@@ -115,8 +110,8 @@ export const setUserStatusSuccess = (status: string) => {
     return ({type: 'profile/SET-USER-STATUS', status}) as const;
 }
 
-export const setUpdatedUserAvatar = (photo: any) => {
-    return ({type: 'profile/SET-UPDATED-AVATAR', photo}) as const;
+export const setUpdatedUserAvatar = (profileWithUpdPhoto: UserProfileType | null) => {
+    return ({type: 'profile/SET-UPDATED-AVATAR', profileWithUpdPhoto}) as const;
 }
 
 // thunks
@@ -137,11 +132,24 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch) =
     }
 }
 
-export const updateUserPhoto = (photo: string) => async (dispatch: Dispatch) => {
+export const updateUserPhoto = (photo: File) => async (dispatch: Dispatch, getState: () => AppStateType) => {
+    debugger
     const res = await profileAPI.updateUserAvatar(photo);
     if (res.resultCode === 0) {
-        dispatch()
+        debugger
+        let profileToUpdate: UserProfileType | null = getState().profilePage.profile;
+        if (profileToUpdate) {
+            profileToUpdate = {
+                ...profileToUpdate,
+                photos: {
+                    small: res.data.photos.small,
+                    large: res.data.photos.large
+                }
+            }
+        }
+        dispatch(setUpdatedUserAvatar(profileToUpdate))
     }
+    debugger
 }
 
 export default profileReducer;

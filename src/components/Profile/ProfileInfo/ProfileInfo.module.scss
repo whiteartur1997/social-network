@@ -1,3 +1,5 @@
+@import './../../../index.scss';
+
 .profileInfo {
   width: 100%;
   display: flex;
@@ -24,12 +26,15 @@
 
 .profileAvatar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 40%;
+  padding: 20px 0;
 }
 
 .profileAvatar img {
   width: 40%;
-  height: 100%;
+  max-height: 50% !important;
   border-radius: 50%;
 }
 
@@ -47,4 +52,14 @@
   font-size: 14px;
   font-weight: 700;
   color:  var(--primary-text-color);
+}
+
+.avatarInput {
+  display: none;
+}
+
+.avatarInputLabel {
+  display: inline-block;
+  max-height: 30%;
+  @include btn;
 }

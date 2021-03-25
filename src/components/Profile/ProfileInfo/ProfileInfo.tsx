@@ -1,18 +1,19 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import avatar from "../../../assets/img/batman.png";
 import coverImage from "../../../assets/img/cover.jpg";
 import Preloader from "../../common/Preloader/Preloader";
-import { ProfileType } from "../Profile";
+import {ProfileType} from "../Profile";
 import classes from "./ProfileInfo.module.scss";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
-import {useDispatch} from "react-redux";
 
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
 
-    const dispatch = useDispatch();
-    const onSelectedAvatarHandler = () => {
-        dispatch()
+    const onSelectedAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.files);
+        if(event.target.files && event.target.files.length > 0) {
+            props.updateUserPhoto(event.target.files[0]);
+        }
     }
 
     if (!props.profile) {
@@ -22,12 +23,23 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
     return (
         <div className={classes.profileInfo}>
             <div className={classes.profileCover}>
-                <img className={classes.profileCoverImg} src={props.profile?.photos.large || coverImage} alt="cover" />
+                <img
+                    className={classes.profileCoverImg}
+                    src={props.profile?.photos.large || coverImage}
+                    alt="cover" />
             </div>
             <div className={classes.profileBody}>
                 <div className={classes.profileAvatar}>
                     <img src={props.profile?.photos.small || avatar} alt="avatar" />
-                    {props.isOwner && <input type={"file"} onChange={onSelectedAvatarHandler} />}
+                    {
+                        props.isOwner && <label className={classes.avatarInputLabel}>
+                            Set new avatar
+                            <input
+                                className={classes.avatarInput}
+                                type={"file"}
+                                onChange={onSelectedAvatarHandler}/>
+                        </label>
+                    }
                 </div>
                 <div className={classes.profileDescr}>
                     <h3 className={classes.profileDescrTitle}>{props.profile?.fullName}</h3>

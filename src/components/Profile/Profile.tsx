@@ -9,6 +9,7 @@ export type ProfileType = {
     profile: UserProfileType | null
     status: string
     updateUserStatus: (status: string) => void
+    updateUserPhoto: (photo: File) => Function
 }
 
 const Profile: React.FC<ProfileType> = (props) => {
@@ -16,6 +17,7 @@ const Profile: React.FC<ProfileType> = (props) => {
     return (
         <div className={classes.profile}>
             <ProfileInfo
+                updateUserPhoto={props.updateUserPhoto}
                 isOwner={props.isOwner}
                 updateUserStatus={props.updateUserStatus}
                 profile={props.profile}

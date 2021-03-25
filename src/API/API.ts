@@ -82,8 +82,12 @@ export const profileAPI = {
     })
       .then(response => response.data);
   },
-  updateUserAvatar:(photo: string) => {
-    return axiosInstance.put<CommonResponseType<{}>>(`profile/photo`, {image: photo})
+  updateUserAvatar:(photo: File) => {
+    const formData = new FormData();
+     formData.append("image", photo);
+    return axiosInstance.put<CommonResponseType<{photos: {small: string | null, large: string | null}}>>(`profile/photo/`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
         .then(response => response.data);
   }
 }
