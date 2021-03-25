@@ -83,7 +83,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         case "profile/REMOVE-POST":
             return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
         case "profile/SET-UPDATED-AVATAR":
-            debugger
             return {
                 ...state,
                 profile: action.profileWithUpdPhoto
@@ -133,10 +132,8 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch) =
 }
 
 export const updateUserPhoto = (photo: File) => async (dispatch: Dispatch, getState: () => AppStateType) => {
-    debugger
     const res = await profileAPI.updateUserAvatar(photo);
     if (res.resultCode === 0) {
-        debugger
         let profileToUpdate: UserProfileType | null = getState().profilePage.profile;
         if (profileToUpdate) {
             profileToUpdate = {
@@ -149,7 +146,6 @@ export const updateUserPhoto = (photo: File) => async (dispatch: Dispatch, getSt
         }
         dispatch(setUpdatedUserAvatar(profileToUpdate))
     }
-    debugger
 }
 
 export default profileReducer;

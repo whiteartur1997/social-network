@@ -1,5 +1,3 @@
-@import './../../../index.scss';
-
 .profileInfo {
   width: 100%;
   display: flex;
@@ -19,47 +17,7 @@
 
 .profileBody {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: #FFF;
-}
-
-.profileAvatar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-width: 40%;
-  padding: 20px 0;
-}
-
-.profileAvatar img {
-  width: 40%;
-  max-height: 50% !important;
-  border-radius: 50%;
-}
-
-.profileDescr, .profileContacts {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.profileDescrTitle {
-  color: var(--active-text-color);
-}
-
-.profileDescr span {
-  font-size: 14px;
-  font-weight: 700;
-  color:  var(--primary-text-color);
-}
-
-.avatarInput {
-  display: none;
-}
-
-.avatarInputLabel {
-  display: inline-block;
-  max-height: 30%;
-  @include btn;
 }

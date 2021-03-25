@@ -1,16 +1,15 @@
 import React, {ChangeEvent} from "react";
-import avatar from "../../../assets/img/batman.png";
 import coverImage from "../../../assets/img/cover.jpg";
 import Preloader from "../../common/Preloader/Preloader";
 import {ProfileType} from "../Profile";
 import classes from "./ProfileInfo.module.scss";
-import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
-
+import {ProfileAvatar} from "./ProfileAvatar/ProfileAvatar";
+import {ProfileDescription} from "./ProfileDescription/ProfileDescription";
+import {ProfileContacts} from "./ProfileContacts";
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
 
     const onSelectedAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.files);
         if(event.target.files && event.target.files.length > 0) {
             props.updateUserPhoto(event.target.files[0]);
         }
@@ -26,41 +25,17 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
                 <img
                     className={classes.profileCoverImg}
                     src={props.profile?.photos.large || coverImage}
-                    alt="cover" />
+                    alt="cover"/>
             </div>
             <div className={classes.profileBody}>
-                <div className={classes.profileAvatar}>
-                    <img src={props.profile?.photos.small || avatar} alt="avatar" />
-                    {
-                        props.isOwner && <label className={classes.avatarInputLabel}>
-                            Set new avatar
-                            <input
-                                className={classes.avatarInput}
-                                type={"file"}
-                                onChange={onSelectedAvatarHandler}/>
-                        </label>
-                    }
-                </div>
-                <div className={classes.profileDescr}>
-                    <h3 className={classes.profileDescrTitle}>{props.profile?.fullName}</h3>
-                    <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
-                    <span>{props.profile.aboutMe}</span>
-                    <span className={classes.profileDescrJobSearch}>
-                        {props.profile?.lookingForAJob ? "Ищу работу" : "Не ищу работу"}
-                    </span>
-                    <span className={classes.profileDescrJobDescr}>{props.profile?.lookingForAJobDescription}</span>
-                </div>
-                <div className={classes.profileContacts}>
-                    <ul>
-                        <li>Main: <a href={`${props.profile.contacts.mainLink}`}>Main</a></li>
-                        <li>FB: <a href={`${props.profile.contacts.facebook}`}>FB</a></li>
-                        <li>Insta: <a href={`${props.profile.contacts.instagram}`}>Insta</a></li>
-                        <li>Github: <a href={`${props.profile.contacts.github}`}>Github</a></li>
-                        <li>Twitter: <a href={`${props.profile.contacts.twitter}`}>Twitter</a></li>
-                        <li>Youtube: <a href={`${props.profile.contacts.youtube}`}>Youtube</a></li>
-                        <li>VK: <a href={`${props.profile.contacts.vk}`}>VK</a></li>
-                    </ul>
-                </div>
+                <ProfileAvatar
+                    profile={props.profile}
+                    owner={props.isOwner}
+                    onChange={onSelectedAvatarHandler}
+                    status={props.status}
+                    updateUserStatus={props.updateUserStatus} />
+                <ProfileDescription profile={props.profile} />
+                <ProfileContacts contacts={props.profile.contacts}/>
             </div>
         </div>
     )

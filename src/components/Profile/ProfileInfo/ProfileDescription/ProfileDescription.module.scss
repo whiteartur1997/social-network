@@ -1,0 +1,28 @@
+@import "./../../../../index";
+
+.profileDescr {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profileDescr > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profileDescrTitle {
+  color: var(--active-text-color);
+}
+
+.profileDescr span {
+  font-size: 14px;
+  font-weight: 700;
+  color:  var(--primary-text-color) !important;
+}
+
+.editButton {
+  @include btn;
+  font-size: .6em;
+  padding: 4px 6px;
+}
