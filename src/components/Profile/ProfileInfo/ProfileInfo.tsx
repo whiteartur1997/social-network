@@ -5,10 +5,9 @@ import {ProfileType} from "../Profile";
 import classes from "./ProfileInfo.module.scss";
 import {ProfileAvatar} from "./ProfileAvatar/ProfileAvatar";
 import {ProfileDescription} from "./ProfileDescription/ProfileDescription";
-import {ProfileContacts} from "./ProfileContacts";
+import {ProfileContacts} from "./ProfileContacts/ProfileContacts";
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
-
     const onSelectedAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
         if(event.target.files && event.target.files.length > 0) {
             props.updateUserPhoto(event.target.files[0]);

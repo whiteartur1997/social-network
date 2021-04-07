@@ -1,5 +1,6 @@
-import classes from "./ProfileInfo.module.scss";
+import classes from "./ProfileContacts.module.scss";
 import React from "react";
+import { ProfileContact } from "./ProfileContact/ProfileContact";
 
 type ContactType = {
     github: string | null
@@ -17,15 +18,14 @@ type ProfileContactsType = {
 }
 
 export const ProfileContacts:React.FC<ProfileContactsType> = (props) => {
-    console.log(props.contacts);
+
+    console.log(props);
+
     return <div className={classes.profileContacts}>
         <ul>
             {
-                Object.keys(props.contacts).map((contact, index) => (
-                    <li key={index}>
-                        <b>{contact}</b>
-                        <a href={""}>{props.contacts[contact as keyof ContactType]}</a>
-                        </li>
+                Object.entries(props.contacts).map((contact) => (
+                   <ProfileContact site={contact[0]} link={contact[1]} />
                 ))
             }
             {/*<li>VK: <a href={`${props.contacts.vk}`}>VK</a></li>*/}

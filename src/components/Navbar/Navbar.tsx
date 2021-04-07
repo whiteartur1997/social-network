@@ -6,41 +6,41 @@ const Navbar = () => {
   return (
     <div className={classes.navbar}>
       <nav className="nav">
-        <ul className="nav__list">
+        <ul className={classes.nav__list}>
           <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/profile">
+              <span>Profile</span>
               <i className="far fa-user"></i>
-              Profile
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/dialogs">
+              <span>Messages</span>
               <i className="far fa-envelope"></i>
-              Messages
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/users">
+              <span>Users</span>
               <i className="fas fa-user-friends"></i>
-              Users
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/news">
+              <span>News</span>
               <i className="far fa-newspaper"></i>
-              News
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
               <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/music">
+              <span>Music</span>
               <i className="fas fa-headphones-alt"></i>
-              Music
             </NavLink>
           </li>
           <li className={classes.nav__list__item}>
             <NavLink activeClassName={classes.active} className={classes.nav__list__link} to="/settings">
+              <span>Settings</span>
               <i className="fas fa-cog"></i>
-              Settings
             </NavLink>
           </li>
         </ul>

@@ -13,7 +13,6 @@ type ProfileAvatarType = {
 }
 
 export const ProfileAvatar:React.FC<ProfileAvatarType> = (props) => {
-    console.log(props);
     return <div className={classes.profileAvatar}>
         <div className={classes.profileAvatarWrapper}>
             <img src={props.profile?.photos.small || avatar} alt="avatar"/>

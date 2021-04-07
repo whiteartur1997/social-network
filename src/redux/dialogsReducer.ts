@@ -22,7 +22,7 @@ export type MessageItemType = {
     avatar: string
 };
 
-let initialState: DialogsPageType = {
+let initialState: DialogsPageType = {  
     dialogs: [
         {
             name: "Albert Einstein",

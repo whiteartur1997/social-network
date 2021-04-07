@@ -13,9 +13,7 @@ const MyPosts: React.FC<MyPostsType> = React.memo((props) => {
     return (
         <>
             <div className={classes.posts}>
-                <AddPost
-                    addPost={props.addPost}
-                />
+                <AddPost addPost={props.addPost} />
             </div>
             <div className={classes.posts}>
                 {props.posts.map(post => <Post key={post.id} post={post}/>)}
