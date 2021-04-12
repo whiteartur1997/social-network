@@ -19,16 +19,16 @@ type ProfileContactsType = {
 
 export const ProfileContacts:React.FC<ProfileContactsType> = (props) => {
 
-    console.log(props);
-
     return <div className={classes.profileContacts}>
         <ul>
             {
                 Object.entries(props.contacts).map((contact) => (
-                   <ProfileContact site={contact[0]} link={contact[1]} />
+                   <ProfileContact 
+                        key={`${contact[0]} ${contact[1]}`} 
+                        site={contact[0]} 
+                        link={contact[1]} />
                 ))
             }
-            {/*<li>VK: <a href={`${props.contacts.vk}`}>VK</a></li>*/}
         </ul>
     </div>;
 }

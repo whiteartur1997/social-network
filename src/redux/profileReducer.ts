@@ -1,7 +1,10 @@
-import {Dispatch} from 'redux';
-import {profileAPI} from "../API/API";
-import {AddPostFormType} from '../components/Profile/MyPosts/AddPost/AddPost';
-import {ActionsTypes, AppStateType} from "./redux-store";
+import { Action, Dispatch } from 'redux';
+import { stopSubmit } from 'redux-form';
+import { ThunkDispatch } from 'redux-thunk';
+import { profileAPI } from "../API/API";
+import { AddPostFormType } from '../components/Profile/MyPosts/AddPost/AddPost';
+import { UserDescriptionFormDataType } from '../components/Profile/ProfileInfo/ProfileDescription/ProfileDescription';
+import { ActionsTypes, AppStateType } from "./redux-store";
 
 export type ProfilePageType = {
     profile: UserProfileType | null
@@ -66,9 +69,9 @@ let initialState: ProfilePageType = {
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case "profile/SET-USER-PROFILE":
-            return {...state, profile: action.profile};
+            return { ...state, profile: action.profile };
         case "profile/SET-USER-STATUS":
-            return {...state, status: action.status}
+            return { ...state, status: action.status }
         case "profile/ADD-POST": {
             const newPost: PostType = {
                 id: 5,
@@ -78,10 +81,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 likeCount: 0,
                 time: `${new Date().getHours()}:${new Date().getMinutes()}`,
             }
-            return {...state, posts: [...state.posts, newPost]};
+            return { ...state, posts: [...state.posts, newPost] };
         }
         case "profile/REMOVE-POST":
-            return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
+            return { ...state, posts: state.posts.filter(post => post.id !== action.postId) }
         case "profile/SET-UPDATED-AVATAR":
             return {
                 ...state,
@@ -94,24 +97,25 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
 
 // actions
 export const addPost = (newPostText: AddPostFormType) => {
-    return ({type: "profile/ADD-POST", newPostText: newPostText}) as const;
+    return ({ type: "profile/ADD-POST", newPostText: newPostText }) as const;
 }
 
 export const removePost = (postId: number) => {
-    return ({type: "profile/REMOVE-POST", postId}) as const;
+    return ({ type: "profile/REMOVE-POST", postId }) as const;
 }
 
 export const setUserProfileSuccess = (profile: UserProfileType) => {
-    return ({type: 'profile/SET-USER-PROFILE', profile}) as const;
+    return ({ type: 'profile/SET-USER-PROFILE', profile }) as const;
 }
 
 export const setUserStatusSuccess = (status: string) => {
-    return ({type: 'profile/SET-USER-STATUS', status}) as const;
+    return ({ type: 'profile/SET-USER-STATUS', status }) as const;
 }
 
 export const setUpdatedUserAvatar = (profileWithUpdPhoto: UserProfileType | null) => {
-    return ({type: 'profile/SET-UPDATED-AVATAR', profileWithUpdPhoto}) as const;
+    return ({ type: 'profile/SET-UPDATED-AVATAR', profileWithUpdPhoto }) as const;
 }
+
 
 // thunks
 export const setUserProfile = (userID: number | null) => async (dispatch: Dispatch) => {
@@ -147,5 +151,27 @@ export const updateUserPhoto = (photo: File) => async (dispatch: Dispatch, getSt
         dispatch(setUpdatedUserAvatar(profileToUpdate))
     }
 }
+
+export const updateUserProfile = (profileData: UserDescriptionFormDataType) => async (dispatch: ThunkDispatch<void, AppStateType, Action>, getState: () => AppStateType) => {
+        const userId = getState().auth.id;
+        const res = await profileAPI.updateUserInfo(profileData);
+        if(res.resultCode === 0) {
+            if(userId) {
+                dispatch(setUserProfile(userId));
+                return Promise.resolve("success");
+            }
+        } else {
+            if(res.messages.length) {
+                const errorObj: {[key: string]: string} = {};
+                for(let message of res.messages) {
+                    const startingPoint = message.indexOf("->", 0);
+                    const errorField = message.slice(startingPoint + 2, message.length - 1).toLowerCase();
+                    errorObj[errorField] = message;
+                }
+                dispatch(stopSubmit("profileDescription", {contacts : errorObj}))
+            }
+            return Promise.reject("error");
+        }
+    }
 
 export default profileReducer;

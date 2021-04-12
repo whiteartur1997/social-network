@@ -89,5 +89,9 @@ export const profileAPI = {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
         .then(response => response.data);
+  },
+  updateUserInfo: (userData: Partial<UserProfileType> ) => {
+    return axiosInstance.put<CommonResponseType<{}>>(`profile`, userData)
+      .then(response => response.data)
   }
 }

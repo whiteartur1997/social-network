@@ -1,11 +1,9 @@
-import React, {ChangeEvent} from "react";
+import React, { ChangeEvent } from "react";
 import coverImage from "../../../assets/img/cover.jpg";
-import Preloader from "../../common/Preloader/Preloader";
-import {ProfileType} from "../Profile";
+import { ProfileType } from "../Profile";
+import { ProfileAvatar } from "./ProfileAvatar/ProfileAvatar";
+import { ProfileDescription } from "./ProfileDescription/ProfileDescription";
 import classes from "./ProfileInfo.module.scss";
-import {ProfileAvatar} from "./ProfileAvatar/ProfileAvatar";
-import {ProfileDescription} from "./ProfileDescription/ProfileDescription";
-import {ProfileContacts} from "./ProfileContacts/ProfileContacts";
 
 const ProfileInfo: React.FC<ProfileType> = (props) => {
     const onSelectedAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -14,8 +12,8 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
         }
     }
 
-    if (!props.profile) {
-        return <Preloader />
+    if(!props.profile) {
+        return null
     }
 
     return (
@@ -33,8 +31,10 @@ const ProfileInfo: React.FC<ProfileType> = (props) => {
                     onChange={onSelectedAvatarHandler}
                     status={props.status}
                     updateUserStatus={props.updateUserStatus} />
-                <ProfileDescription profile={props.profile} />
-                <ProfileContacts contacts={props.profile.contacts}/>
+                <ProfileDescription 
+                    updateUserProfile={props.updateUserProfile}
+                    owner={props.isOwner} 
+                    profile={props.profile} />
             </div>
         </div>
     )

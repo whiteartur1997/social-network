@@ -9,9 +9,11 @@ import {
     setUserStatus,
     updateUserPhoto,
     updateUserStatus,
-    UserProfileType
+    UserProfileType,
+    updateUserProfile
 } from "../../redux/profileReducer";
 import Profile from './Profile';
+import { UserDescriptionFormDataType } from './ProfileInfo/ProfileDescription/ProfileDescription';
 
 type PathParamsType = { userId: string };
 
@@ -29,6 +31,7 @@ type MapDispatchToPropsType = {
     setUserStatus: (userId: number | null) => void
     updateUserStatus: (status: string) => void
     updateUserPhoto: (photo: File) => Function
+    updateUserProfile: (data: UserDescriptionFormDataType) => Promise<string>
 }
 
 type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType;
@@ -63,12 +66,12 @@ function mapStateToProps(state: AppStateType): MapStateToPropsType {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.id,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
     }
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {setUserProfile, setUserStatus, updateUserStatus, updateUserPhoto}),
+    connect(mapStateToProps, {setUserProfile, setUserStatus, updateUserStatus, updateUserPhoto, updateUserProfile}),
     withRouter,
     withAuthRedirect)
 (ProfileContainer);

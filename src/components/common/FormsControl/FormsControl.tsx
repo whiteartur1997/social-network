@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode } from "react";
 import { ActionsTypes } from "../../../redux/redux-store";
 import styles from "./FormsControl.module.scss";
 
@@ -66,7 +66,10 @@ export const Input: React.FC<FormControlType> = (props) => {
     return (
         <>
            <FormControl {...props}>
-                <input className={`${styles[props.classnamestring]} ${hasError ? styles.error : ""}`} {...input} {...restProps} />
+                <input 
+                    className={`${styles[props.classnamestring]} ${hasError ? styles.error : ""}`} 
+                    {...input} 
+                    {...restProps} />
             </FormControl>
         </>
     )

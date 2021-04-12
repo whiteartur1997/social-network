@@ -64,8 +64,6 @@ const Login = () => {
               Password: free</div>
         <LoginReduxForm onSubmit={onSumbitHandler} />
       </div>
-
-
 }
 
 export default Login;

@@ -2,9 +2,9 @@
 
 .profileDescr {
   display: flex;
-  align-items: baseline;
-  height: 100%;
-  width: 40%;
+  align-items: center;
+  flex-grow: 1;
+  max-height: 100%;
 }
 
 .profileDescr > .regularMode {
@@ -16,17 +16,27 @@
 }
 
 .profileDescrTitle {
+  display: flex;
+  align-items: center;
   color: var(--active-text-color);
 }
 
 .profileDescr span {
   font-size: 14px;
   font-weight: 700;
-  color:  var(--primary-text-color) !important;
+  color:  var(--primary-text-color);
+}
+
+.profileDescription {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .editButton {
   @include btn;
   font-size: .6em;
   padding: 4px 6px;
+  margin-left: 7px;
 }
