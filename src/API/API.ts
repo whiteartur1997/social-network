@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginFormDataType } from "../components/Login/Login";
+import { LoginFormValuesType } from "../components/Login/Login";
 import { UserProfileType } from "../redux/profileReducer";
 import { UserType } from "../redux/usersReducer";
 
@@ -48,15 +48,15 @@ export const authAPI = {
     }>>(`auth/me`)
       .then(response => response.data);
   },
-  login: (loginFormData: LoginFormDataType) => {
-    const { login, password, rememberMe = false } = { ...loginFormData }
+  login: (loginFormData: LoginFormValuesType) => {
+    const { login, password, rememberMe = false, captcha = null } = { ...loginFormData }
     return axiosInstance.post<CommonResponseType<{
       userId: number
     }>>(`auth/login`, {
       email: login,
       password: password,
       rememberMe: rememberMe,
-      captcha: false
+      captcha: captcha
     })
       .then(response => response.data)
   },
@@ -93,5 +93,12 @@ export const profileAPI = {
   updateUserInfo: (userData: Partial<UserProfileType> ) => {
     return axiosInstance.put<CommonResponseType<{}>>(`profile`, userData)
       .then(response => response.data)
+  }
+}
+
+export const securityAPI = {
+  getCaptchaUrl: () => {
+    return axiosInstance.get<{url: string}>("/security/get-captcha-url")
+      .then(response => response.data.url);
   }
 }

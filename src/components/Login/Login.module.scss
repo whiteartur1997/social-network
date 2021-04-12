@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-.loginInput, .loginPassword, .checkboxContainer {
+.loginInput, .loginPassword, .checkboxContainer, .loginCaptcha {
     margin-bottom: 15px;
 }
 
@@ -44,6 +44,18 @@
     padding: 10px 7px;
     border: 1px solid #e6ecf5;
     color: var(--primary-text-color);
+}
+
+.loginCaptcha {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    & {
+        input {
+            width: 50%;
+        }
+    }
 }
 
 .loginButton {
