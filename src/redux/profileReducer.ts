@@ -4,6 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { profileAPI } from "../API/API";
 import { AddPostFormType } from '../components/Profile/MyPosts/AddPost/AddPost';
 import { UserDescriptionFormDataType } from '../components/Profile/ProfileInfo/ProfileDescription/ProfileDescription';
+import { setErrorMessage } from './appReducer';
 import { ActionsTypes, AppStateType } from "./redux-store";
 
 export type ProfilePageType = {
@@ -132,6 +133,8 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch) =
     const res = await profileAPI.updateUserStatus(status);
     if (res.resultCode === 0) {
         dispatch(setUserStatusSuccess(status));
+    } else {
+        dispatch(setErrorMessage(res.messages[0]));
     }
 }
 

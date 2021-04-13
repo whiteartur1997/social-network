@@ -18,7 +18,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
       {props.isAuth
         ? <div className={styles.headerLogin}>
           <NavLink to="/profile">{props.login}</NavLink>
-          <button onClick={props.logoutUser}>Log out</button>
+          <button className={styles.logOut} onClick={props.logoutUser}>Log out</button>
         </div>
         : <div className={styles.headerLogin}>
           <NavLink to='/login'>Login</NavLink>

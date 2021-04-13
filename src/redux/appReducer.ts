@@ -4,11 +4,13 @@ import {ActionsTypes, AppStateType} from "./redux-store";
 
 export type AppReducerType = {
     initialized: boolean
+    error: null | string
 }
 
 
 const initialState: AppReducerType = {
-    initialized: false
+    initialized: false,
+    error: null
 }
 
 const appReducer = (state: AppReducerType = initialState, action: ActionsTypes): AppReducerType => {
@@ -19,6 +21,12 @@ const appReducer = (state: AppReducerType = initialState, action: ActionsTypes):
                 initialized: action.initialized
             }
         }
+        case 'app/SET-ERROR': {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
         default:
             return state;
     }
@@ -27,6 +35,10 @@ const appReducer = (state: AppReducerType = initialState, action: ActionsTypes):
 // actions
 export const setInitializedSuccess = () => {
     return {type: 'app/SUCCESS-INITIALIZED', initialized: true} as const
+}
+
+export const setErrorMessage = (errorMessage: string | null) => {
+    return {type: 'app/SET-ERROR', error: errorMessage} as const
 }
 
 // thunks

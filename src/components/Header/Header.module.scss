@@ -20,7 +20,6 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  // padding: 15px;
   background-color: var(--secondary-color);
 }
 
@@ -39,4 +38,9 @@
   &:hover a {
     color: white
   }
+}
+
+.logOut {
+  @include btn;
+  margin-left: 10px;
 }

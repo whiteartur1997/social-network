@@ -21,7 +21,6 @@ export type LoginFormValuesType = {
 }
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = (props) => {
-  console.log(props);
   return (
     <form className={s.form} onSubmit={props.handleSubmit}>
       <div className={`${s.loginInput} ${s.inputContainer}`}>

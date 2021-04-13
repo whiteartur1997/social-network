@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from "redux-form";
 import thunkMiddleware from 'redux-thunk';
-import appReducer, { setInitializedSuccess } from "./appReducer";
+import appReducer, { setErrorMessage, setInitializedSuccess } from "./appReducer";
 import authReducer, { setAuthUserDataSuccess, setCaptchaUrlOnSuccess } from "./authReducer";
 import dialogsReducer, { sendMessage } from "./dialogsReducer";
 import profileReducer, {
@@ -29,7 +29,8 @@ export type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setInitializedSuccess> |
     ReturnType<typeof removePost> |
     ReturnType<typeof setUpdatedUserAvatar> |
-    ReturnType<typeof setCaptchaUrlOnSuccess>;
+    ReturnType<typeof setCaptchaUrlOnSuccess> |
+    ReturnType<typeof setErrorMessage>;
 
 const reducers = combineReducers({
     profilePage: profileReducer,
